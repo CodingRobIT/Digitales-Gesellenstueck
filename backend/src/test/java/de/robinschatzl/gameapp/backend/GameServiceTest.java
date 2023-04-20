@@ -40,16 +40,16 @@ class GameServiceTest {
         Game game1 = new Game("1", "FFXI" ,"Square Enix", "MMORPG", "PC and PS4");
         Game game2 = new Game("2", "Doom", "N/A", "Shooter","");
 
-        List<Game> expectetGames = Arrays.asList(game1, game2);
+        List<Game> expectedGames = Arrays.asList(game1, game2);
 
-        when(gameRepoInterfaceMock.findAll()).thenReturn(expectetGames);
+        when(gameRepoInterfaceMock.findAll()).thenReturn(expectedGames);
 
         List<Game> actualGames = gameService.getAllGames();
 
-        assertEquals(expectetGames.size(), actualGames.size());
+        assertEquals(expectedGames.size(), actualGames.size());
 
-        for (int i = 0; i < expectetGames.size(); i++) {
-            assertEquals(expectetGames.get(i), actualGames.get(i));
+        for (int i = 0; i < expectedGames.size(); i++) {
+            assertEquals(expectedGames.get(i), actualGames.get(i));
         }
         verify(gameRepoInterfaceMock, times(1)).findAll();
     }
