@@ -12,7 +12,7 @@ import java.util.List;
 @RequestMapping("/api/games")
 public class GameController {
 
-    private final GameService gameService
+    private final GameService gameService;
 
     @GetMapping
     public List<Game> getAllGames() {
