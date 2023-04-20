@@ -2,7 +2,7 @@ package game;
 
 import org.springframework.data.annotation.Id;
 
-public record Games(
+public record Game(
 
     @Id
     String id,
