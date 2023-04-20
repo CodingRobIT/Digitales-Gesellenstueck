@@ -3,7 +3,6 @@ package de.robinschatzl.gameapp.backend;
 import de.robinschatzl.gameapp.backend.game.Game;
 import de.robinschatzl.gameapp.backend.game.GameRepoInterface;
 import de.robinschatzl.gameapp.backend.game.GameService;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
