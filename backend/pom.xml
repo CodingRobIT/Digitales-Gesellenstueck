@@ -36,6 +36,10 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>de.flapdoodle.embed</groupId> <artifactId>de.flapdoodle.embed.mongo.spring30x</artifactId> <scope>test</scope>
+			<version>4.6.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -51,6 +55,9 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId> <groupId>org.apache.maven.plugins</groupId> <version>2.22.2</version>
 			</plugin>
 		</plugins>
 	</build>
