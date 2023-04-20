@@ -1,4 +1,4 @@
-package game;
+package de.robinschatzl.gameapp.backend.game;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
