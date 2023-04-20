@@ -12,9 +12,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @AutoConfigureMockMvc
@@ -44,11 +47,30 @@ class GameServiceTest {
 
         List<Game> actualGames = gameService.getAllGames();
 
-        Assertions.assertEquals(expectetGames.size(), actualGames.size());
+        assertEquals(expectetGames.size(), actualGames.size());
 
         for (int i = 0; i < expectetGames.size(); i++) {
-            Assertions.assertEquals(expectetGames.get(i), actualGames.get(i));
+            assertEquals(expectetGames.get(i), actualGames.get(i));
         }
         verify(gameRepoInterfaceMock, times(1)).findAll();
+    }
+
+    @Test
+    @DirtiesContext
+    void getAllGames_expectedEmptyList_WhenDataBaseIsEmpty() {
+        //GIVEN
+        final GameRepoInterface gameRepoInterface = mock(GameRepoInterface.class);
+        final GameService gameService = new GameService(gameRepoInterface);
+
+        when(gameRepoInterface.findAll())
+                .thenReturn(Collections.emptyList());
+
+        //WHEN
+        List<Game> actual = gameService.getAllGames();
+        List<Game> expected = new ArrayList<>();
+
+        //THEN
+        verify(gameRepoInterface).findAll();
+        assertEquals(actual, expected);
     }
 }
