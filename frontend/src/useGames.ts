@@ -1,10 +1,11 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {Game} from "./Game"
+import {Game, NewGame} from "./Game"
 export default function useGames() {
 
     const [games , setGames] = useState<Game[]>([])
     const [searchTerm , setSearchTerm] = useState('');
+    const filteredGames = games.filter((game) => game.titel.toLowerCase().includes(searchTerm.toLowerCase()));
 
     useEffect(() => {
         loadAllGames()
@@ -18,8 +19,13 @@ export default function useGames() {
                 console.error(error)
             })
     }
-    const filteredGames = games.filter((game) => game.titel.toLowerCase().includes(searchTerm.toLowerCase()));
 
-    return {games: filteredGames, searchTerm}
+    function  addGame(newGame: NewGame) {
+        axios.post("/api/games", newGame)
+            .then(() => loadAllGames())
+            .catch(() => console.error("post on /api/games not successful!!!"))
+    }
+
+    return {games: filteredGames, searchTerm, addGame}
 
 }
