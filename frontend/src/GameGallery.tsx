@@ -2,6 +2,7 @@ import {Game} from "./Game";
 import {useState} from "react";
 import useGames from "./useGames";
 import GameCard from "./GameCard";
+import {TextField} from "@mui/material";
 
 type GameGalleryProps = {
     games: Game[],
@@ -18,9 +19,11 @@ export default function GameGallery(props: GameGalleryProps) {
     return (
         <div className="game-gallery">
             <div className="searchbar">
+                <TextField id="outlined-basic" label="Search for a Game..." variant="outlined" value={searchTerm}
+                           onChange={(e) => setSearchTerm(e.target.value)}/>
                 <input
                     type="text"
-                    placeholder="Search for a Game..."
+                    placeholder="Search for a Game...(Temp)"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
