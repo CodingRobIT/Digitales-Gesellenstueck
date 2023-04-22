@@ -1,4 +1,5 @@
 import React from 'react';
+import Header from "./Header"
 import './App.css';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import GameGallery from "./GameGallery";
@@ -11,13 +12,12 @@ function App() {
     return (
         <BrowserRouter>
             <div className="App">
-                <header className="App-header"/>
+                <Header/>
                 <Routes>
                     <Route element={<Navigate to="/games"/>}/>
-                    <Route path="/recipes"
+                    <Route path="/games"
                            element={<GameGallery games={games}/>}/>
                 </Routes>
-
             </div>
         </BrowserRouter>
     );

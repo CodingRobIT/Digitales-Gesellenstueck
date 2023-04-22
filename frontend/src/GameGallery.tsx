@@ -12,7 +12,7 @@ export default function GameGallery(props: GameGalleryProps) {
     const [searchTerm, setSearchTerm] = useState("")
 
     const filteredGames = games.filter((game) =>
-        game.name.toLowerCase().includes(searchTerm.toLowerCase())
+        game.titel.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     return (
