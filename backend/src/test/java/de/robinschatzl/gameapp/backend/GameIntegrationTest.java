@@ -1,5 +1,6 @@
 package de.robinschatzl.gameapp.backend;
 
+import de.robinschatzl.gameapp.backend.game.Game;
 import de.robinschatzl.gameapp.backend.game.GameRepoInterface;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,47 @@ class GameIntegrationTest {
                         """
                                 []
                                 """
+                ));
+    }
+
+    @Test
+    @DirtiesContext
+    void getGame_ShouldReturnAllGamesAdded() throws Exception {
+        Game game1 = new Game("1", "FFXI" ,"Square Enix", "MMORPG", "PC and PS2");
+        gameRepoInterface.save(game1);
+        Game game2 = new Game("2", "Doom", "N/A", "N/A","");
+        gameRepoInterface.save(game2);
+        Game game3 = new Game("3" , "Mario World", "Nintendo" , "Jump'n run", "");
+        gameRepoInterface.save(game3);
+
+        mockMvc.perform(get("/api/games"))
+                .andExpect(status().isOk())
+                .andExpect(content().json(
+                        """
+                                   [
+                                   {
+                                   "id": "1",
+                                   "titel": "FFXI",
+                                   "publisher": "Square Enix",
+                                   "genre": "MMORPG",
+                                   "note": "PC and PS2"
+                                   },
+                                   {
+                                   "id": "2",
+                                   "titel": "Doom",
+                                   "publisher": "N/A",
+                                   "genre": "N/A",
+                                   "note": ""
+                                   },
+                                   {
+                                   "id": "3",
+                                   "titel": "Mario World",
+                                   "publisher": "Nintendo",
+                                   "genre": "Jump'n run",
+                                   "note": ""
+                                   }
+                                   ]
+                                   """
                 ));
     }
 }
