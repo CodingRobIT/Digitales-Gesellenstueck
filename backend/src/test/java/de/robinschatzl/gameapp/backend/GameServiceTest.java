@@ -102,7 +102,7 @@ class GameServiceTest {
 
     @DirtiesContext
     @Test
-    void testAddGame_ShooldRespondAddedGame() {
+    void testAddGame_ShouldRespondAddedGame() {
         //GIVEN
         final GameRepoInterface gameRepoInterface = mock(GameRepoInterface.class);
         final GameService gameService = new GameService(gameRepoInterface);
