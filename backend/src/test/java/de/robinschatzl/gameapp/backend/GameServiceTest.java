@@ -83,7 +83,7 @@ class GameServiceTest {
 
     @Test
     @DirtiesContext
-    void getAllGames_expectedEmptyList_WhenDataBaseIsEmpty() {
+    void testGetAllGames_expectedEmptyList_WhenDataBaseIsEmpty() {
         //GIVEN
         final GameRepoInterface gameRepoInterface = mock(GameRepoInterface.class);
         final GameService gameService = new GameService(gameRepoInterface);
@@ -102,7 +102,7 @@ class GameServiceTest {
 
     @DirtiesContext
     @Test
-    void addGame_ShooldRespondAddedGame() {
+    void testAddGame_ShooldRespondAddedGame() {
         //GIVEN
         final GameRepoInterface gameRepoInterface = mock(GameRepoInterface.class);
         final GameService gameService = new GameService(gameRepoInterface);
