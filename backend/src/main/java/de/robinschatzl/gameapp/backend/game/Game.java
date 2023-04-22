@@ -9,6 +9,6 @@ public record Game(
     String titel,
     String publisher,
     String genre,
-    String node
+    String note
 ) {
 }
