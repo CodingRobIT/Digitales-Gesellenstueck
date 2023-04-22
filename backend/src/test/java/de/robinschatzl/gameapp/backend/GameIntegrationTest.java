@@ -6,12 +6,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -72,6 +73,35 @@ class GameIntegrationTest {
                                    }
                                    ]
                                    """
+                ));
+    }
+
+    @Test
+    @DirtiesContext
+    void addGame_shouldReturnAddedgame() throws Exception {
+        mockMvc.perform(post("/api/games")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {
+                        "id": "1",
+                        "titel": "MGS",
+                        "publisher": "Hideo Kojima",
+                        "genre": "N/A",
+                        "note": "Nice"
+                        }
+                        """
+                ))
+                .andExpect(status().isOk())
+                .andExpect(content().json(
+                        """
+                                {
+                                "id": "1",
+                                "titel": "MGS",
+                                "publisher": "Hideo Kojima",
+                                "genre": "N/A",
+                                "note": "Nice"
+                                }
+                                """
                 ));
     }
 }
