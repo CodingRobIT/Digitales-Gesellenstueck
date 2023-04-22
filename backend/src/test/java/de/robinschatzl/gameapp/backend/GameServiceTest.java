@@ -37,6 +37,7 @@ class GameServiceTest {
     @Test
     @DirtiesContext
     void testGetAllGames() {
+        //GIVEN
         Game game1 = new Game("1", "FFXI" ,"Square Enix", "MMORPG", "PC and PS4");
         Game game2 = new Game("2", "Doom", "N/A", "Shooter","");
 
@@ -44,10 +45,36 @@ class GameServiceTest {
 
         when(gameRepoInterfaceMock.findAll()).thenReturn(expectedGames);
 
+        //WHEN
         List<Game> actualGames = gameService.getAllGames();
 
+        //THEN
         assertEquals(expectedGames.size(), actualGames.size());
+        for (int i = 0; i < expectedGames.size(); i++) {
+            assertEquals(expectedGames.get(i), actualGames.get(i));
+        }
+        verify(gameRepoInterfaceMock, times(1)).findAll();
+    }
 
+    @Test
+    @DirtiesContext
+    void testGetAllGamesWithBiggerLibrary() {
+        //GIVEN
+        Game game1 = new Game("1", "FFXI" ,"Square Enix", "MMORPG", "PC and PS4");
+        Game game2 = new Game("2", "Doom", "N/A", "Shooter","");
+        Game game3 = new Game("3" , "Mario World", "Nintendo" , "Jump'n run", "");
+        Game game4 = new Game("4" , "Mario & Luigi", "Nintendo" , "Jump'n run", "");
+        Game game5 = new Game("5" , "Super Mario Land", "Nintendo" , "Jump'n run", "");
+
+        List<Game> expectedGames = Arrays.asList(game1, game2, game3, game4, game5);
+
+        when(gameRepoInterfaceMock.findAll()).thenReturn(expectedGames);
+
+        //WHEN
+        List<Game> actualGames = gameService.getAllGames();
+
+        //THEN
+        assertEquals(expectedGames.size(), actualGames.size());
         for (int i = 0; i < expectedGames.size(); i++) {
             assertEquals(expectedGames.get(i), actualGames.get(i));
         }
