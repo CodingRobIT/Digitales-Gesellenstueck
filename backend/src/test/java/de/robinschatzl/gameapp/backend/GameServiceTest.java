@@ -72,4 +72,23 @@ class GameServiceTest {
         verify(gameRepoInterface).findAll();
         assertEquals(actual, expected);
     }
+
+    @DirtiesContext
+    @Test
+    void addGame_ShooldRespondAddedGame() {
+        //GIVEN
+        final GameRepoInterface gameRepoInterface = mock(GameRepoInterface.class);
+        final GameService gameService = new GameService(gameRepoInterface);
+
+        Game doom = new Game("666", "Doom", "id Software", "Ego-Shooter", "wurde am 10. Dezember 1993 erstmals von id Software veröffentlicht");
+        when(gameRepoInterface.save(doom))
+                .thenReturn(doom);
+
+        //WHEN
+        Game actual = gameService.addGame(doom);
+
+        //THEN
+        verify(gameRepoInterface).save(doom);
+        assertEquals(actual, doom);
+    }
 }
