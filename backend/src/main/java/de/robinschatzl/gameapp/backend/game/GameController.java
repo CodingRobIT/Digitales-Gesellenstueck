@@ -1,9 +1,7 @@
 package de.robinschatzl.gameapp.backend.game;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -17,5 +15,10 @@ public class GameController {
     @GetMapping
     public List<Game> getAllGames() {
         return gameService.getAllGames();
+    }
+
+    @PostMapping
+    public Game addGame(@RequestBody Game gameToAdd) {
+        return gameService.addGame(gameToAdd);
     }
 }

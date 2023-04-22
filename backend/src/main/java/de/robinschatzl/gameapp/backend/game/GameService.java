@@ -14,4 +14,8 @@ public class GameService {
     public List<Game> getAllGames() {
         return gameRepoInterface.findAll();
     }
+
+    public Game addGame(Game gameToAdd) {
+        return gameRepoInterface.save(gameToAdd);
+    }
 }
