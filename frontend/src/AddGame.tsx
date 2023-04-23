@@ -26,6 +26,11 @@ export default function AddGame(props: AddGameProps) {
     function onSaveGame(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
+        if (title === undefined || title === '') {
+            console.error("Title required")
+            return
+        }
+
         const newGame: NewGame = {title: title, publisher: publisher, genre: genre, note: note};
 
         props.addGame(newGame);
@@ -37,6 +42,7 @@ export default function AddGame(props: AddGameProps) {
         <FormContainer onSubmit={onSaveGame}>
             <TextField
                 label="Spiel Titel"
+                required
                 variant="outlined"
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
