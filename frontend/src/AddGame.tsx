@@ -103,9 +103,9 @@ export default function AddGame(props: AddGameProps) {
             <div {...getRootProps()}>
                 <input {...getInputProps()} />
                 {isDragActive ? (
-                    <p>Drop the image here ...</p>
+                    <p>Bild für Upload hier her ziehen ...</p>
                 ) : (
-                    <p>Drag and drop an image or click to select</p>
+                    <p>Drag and drop oder Klick um aus dem Ordner auszuwählen</p>
                 )}
             </div>
             {errorMessage && <p>{errorMessage}</p>}
