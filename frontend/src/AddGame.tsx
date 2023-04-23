@@ -1,11 +1,17 @@
+import React, { FormEvent, useCallback, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDropzone } from 'react-dropzone';
+import axios from 'axios';
 import { Button, TextField } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { NewGame } from './Game';
-import { FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 type AddGameProps = {
     addGame: (newGame: NewGame) => void;
+};
+
+type ImageUploadResponse = {
+    imageUrl: string;
 };
 
 const FormContainer = styled('form')({
@@ -22,16 +28,41 @@ export default function AddGame(props: AddGameProps) {
     const [publisher, setPublisher] = useState<string>('');
     const [genre, setGenre] = useState<string>('');
     const [note, setNote] = useState<string>('');
+    const [image, setImage] = useState<string>('');
+    const [errorMessage, setErrorMessage] = useState<string>('');
+
+    const onDrop = async (acceptedFiles: File[]) => {
+        const file = acceptedFiles[0];
+        const formData = new FormData();
+        formData.append('image', file);
+        try {
+            const response = await axios.post<ImageUploadResponse>(
+                '/api/images/upload',
+                formData
+            );
+            setImage(response.data.imageUrl);
+        } catch (error) {
+            setErrorMessage('Error uploading image');
+        }
+    };
+
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     function onSaveGame(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
         if (title === undefined || title === '') {
-            console.error("Title required")
-            return
+            console.error('Title required');
+            return;
         }
 
-        const newGame: NewGame = {title: title, publisher: publisher, genre: genre, note: note};
+        const newGame: NewGame = {
+            title: title,
+            publisher: publisher,
+            genre: genre,
+            note: note,
+            image: image,
+        };
 
         props.addGame(newGame);
 
@@ -41,7 +72,7 @@ export default function AddGame(props: AddGameProps) {
     return (
         <FormContainer onSubmit={onSaveGame}>
             <TextField
-                label="Spiel Titel"
+                label="Game Title"
                 required
                 variant="outlined"
                 value={title}
@@ -63,11 +94,24 @@ export default function AddGame(props: AddGameProps) {
             />
 
             <TextField
-                label="Notiz"
+                label="Note"
                 variant="outlined"
                 value={note}
                 onChange={(event) => setNote(event.target.value)}
             />
+
+            <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                {isDragActive ? (
+                    <p>Drop the image here ...</p>
+                ) : (
+                    <p>Drag and drop an image or click to select</p>
+                )}
+            </div>
+            {errorMessage && <p>{errorMessage}</p>}
+            {image && (
+                <img src={image} alt="Game" style={{ maxWidth: '100%' }} />
+            )}
 
             <Button variant="contained" type="submit">
                 Save Game
