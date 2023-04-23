@@ -1,0 +1,45 @@
+.game-gallery {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+
+}
+
+@media only screen and (max-width: 600px) {
+    .game-gallery {
+        gap: 10px;
+    }
+}
+
+.searchbar {
+    display: flex;
+    max-width: 500px;
+    justify-content: center;
+    margin-bottom: 16px;
+    flex-direction: column;
+}
+
+.searchbar input {
+    margin-right: 16px;
+    flex: 1;
+}
+
+.game-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+
+/*.game-card-container {*/
+/*    display: flex;*/
+/*    flex-wrap: wrap;*/
+/*    justify-content: center;*/
+/*    gap: 16px;*/
+/*}*/
