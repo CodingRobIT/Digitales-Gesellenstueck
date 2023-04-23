@@ -26,8 +26,8 @@ export default function AddGame(props: AddGameProps) {
     }
 
     return (
-        <Form>
-            <Form.Group className="mb-3" controlId="formBasicEmail" onSubmit={onSaveGame}>
+        <Form onSubmit={onSaveGame}>
+            <Form.Group className="mb-3" controlId="formBasicEmail">
                 <Form.Label>Spiel Titel</Form.Label>
                 <Form.Control type="text"
                               placeholder="Spiel Titel"
