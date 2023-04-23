@@ -2,10 +2,9 @@ import React, { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
-import {Button, paperClasses, TextField} from '@mui/material';
+import {Button, TextField} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { NewGame } from './Game';
-// import classes from "addGame.module.css";
 import Paper from "@material-ui/core/Paper";
 
 type AddGameProps = {
