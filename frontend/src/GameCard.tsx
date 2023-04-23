@@ -15,12 +15,15 @@ export default function GameCard(props: GameProps) {
             <Card sx={{ maxWidth: 345, bgcolor: '#2E3B55', color: '#fff', margin: '16px' }}>
                 <CardHeader title={props.game.title} />
                 <CardContent>
-                    <Typography variant="body2" color="text.secondary">
+                    <Typography variant="body2"
+                                color="text.secondary">
                         {props.game.note}
                     </Typography>
                 </CardContent>
                 <CardActions>
-                    <Button size="small" onClick={() => navigate('/')}>
+                    <Button sx={{ color: '#fff', fontWeight: 'bold' }}
+                            size="small"
+                            onClick={() => navigate('/')}>
                         noch keine Details
                     </Button>
                 </CardActions>
