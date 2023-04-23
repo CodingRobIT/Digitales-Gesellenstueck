@@ -52,21 +52,21 @@ class GameIntegrationTest {
                                    [
                                    {
                                    "id": "1",
-                                   "titel": "FFXI",
+                                   "title": "FFXI",
                                    "publisher": "Square Enix",
                                    "genre": "MMORPG",
                                    "note": "PC and PS2"
                                    },
                                    {
                                    "id": "2",
-                                   "titel": "Doom",
+                                   "title": "Doom",
                                    "publisher": "N/A",
                                    "genre": "N/A",
                                    "note": ""
                                    },
                                    {
                                    "id": "3",
-                                   "titel": "Mario World",
+                                   "title": "Mario World",
                                    "publisher": "Nintendo",
                                    "genre": "Jump'n run",
                                    "note": ""
@@ -84,7 +84,7 @@ class GameIntegrationTest {
                 .content("""
                         {
                         "id": "1",
-                        "titel": "MGS",
+                        "title": "MGS",
                         "publisher": "Hideo Kojima",
                         "genre": "N/A",
                         "note": "Nice"
@@ -96,7 +96,7 @@ class GameIntegrationTest {
                         """
                                 {
                                 "id": "1",
-                                "titel": "MGS",
+                                "title": "MGS",
                                 "publisher": "Hideo Kojima",
                                 "genre": "N/A",
                                 "note": "Nice"
