@@ -1,10 +1,12 @@
-import React, { FormEvent, useCallback, useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
 import axios from 'axios';
-import { Button, TextField } from '@mui/material';
+import {Button, paperClasses, TextField} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { NewGame } from './Game';
+// import classes from "addGame.module.css";
+import Paper from "@material-ui/core/Paper";
 
 type AddGameProps = {
     addGame: (newGame: NewGame) => void;
@@ -100,6 +102,7 @@ export default function AddGame(props: AddGameProps) {
                 onChange={(event) => setNote(event.target.value)}
             />
 
+            <Paper className="addGame" variant="outlined">
             <div {...getRootProps()}>
                 <input {...getInputProps()} />
                 {isDragActive ? (
@@ -112,6 +115,7 @@ export default function AddGame(props: AddGameProps) {
             {image && (
                 <img src={image} alt="Game" style={{ maxWidth: '100%' }} />
             )}
+            </Paper>
 
             <Button variant="contained" type="submit">
                 Save Game
