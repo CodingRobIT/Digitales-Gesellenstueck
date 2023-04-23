@@ -5,7 +5,7 @@ export default function useGames() {
 
     const [games , setGames] = useState<Game[]>([])
     const [searchTerm , setSearchTerm] = useState('');
-    const filteredGames = games.filter((game) => game.titel.toLowerCase().includes(searchTerm.toLowerCase()));
+    const filteredGames = games.filter((game) => game.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
     useEffect(() => {
         loadAllGames()

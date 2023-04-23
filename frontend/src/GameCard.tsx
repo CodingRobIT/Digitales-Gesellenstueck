@@ -11,7 +11,7 @@ export default function GameCard(props: GameProps) {
 
     return (
         <div className="Game-Card">
-            {props.game.titel}
+            {props.game.title}
             {props.game.id}
         </div>
     )

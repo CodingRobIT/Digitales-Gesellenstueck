@@ -6,7 +6,7 @@ public record Game(
 
     @Id
     String id,
-    String titel,
+    String title,
     String publisher,
     String genre,
     String note
