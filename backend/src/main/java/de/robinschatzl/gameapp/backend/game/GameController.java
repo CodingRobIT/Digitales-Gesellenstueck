@@ -26,4 +26,9 @@ public class GameController {
     public Game getGameById(@PathVariable String id) {
         return gameService.getGameById(id);
     }
+
+    @DeleteMapping
+    public void deleteGame(@PathVariable String id){
+        gameService.deleteGame(id);
+    }
 }

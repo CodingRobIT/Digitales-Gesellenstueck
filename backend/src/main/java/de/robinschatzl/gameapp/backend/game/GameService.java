@@ -22,4 +22,9 @@ public class GameService {
     public Game getGameById(String id) {
         return gameRepoInterface.findById(id).orElseThrow();
     }
+
+
+    public void deleteGame(String id) {
+        gameRepoInterface.deleteById(id);
+    }
 }
