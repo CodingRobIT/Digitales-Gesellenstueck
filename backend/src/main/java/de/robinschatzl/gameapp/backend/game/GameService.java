@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RequiredArgsConstructor
 @Service
@@ -20,9 +21,8 @@ public class GameService {
     }
 
     public Game getGameById(String id) {
-        return gameRepoInterface.findById(id).orElseThrow();
+        return gameRepoInterface.findById(id).orElseThrow(() -> new NoSuchElementException("Game with id " + id + " not found" ));
     }
-
 
     public void deleteGame(String id) {
         gameRepoInterface.deleteById(id);

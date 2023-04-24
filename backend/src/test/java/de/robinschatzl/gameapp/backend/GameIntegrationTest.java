@@ -112,7 +112,7 @@ class GameIntegrationTest {
 
     @DirtiesContext
     @Test
-    void getGameById_ShouldReturnGameAddedGame() throws Exception {
+    void getGameById_ShouldReturnAddedGame() throws Exception {
         Game testGame = new Game("42", "Die Antwort auf alles", "", "", "");
         gameRepoInterface.save(testGame);
 
