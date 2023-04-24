@@ -1,19 +1,12 @@
 import React, { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDropzone } from 'react-dropzone';
-import axios from 'axios';
 import {Button, TextField} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { NewGame } from './Game';
-import Paper from "@material-ui/core/Paper";
 import './AddGame.css'
 
 type AddGameProps = {
     addGame: (newGame: NewGame) => void;
-};
-
-type ImageUploadResponse = {
-    imageUrl: string;
 };
 
 const FormContainer = styled('form')({
@@ -30,25 +23,6 @@ export default function AddGame(props: AddGameProps) {
     const [publisher, setPublisher] = useState<string>('');
     const [genre, setGenre] = useState<string>('');
     const [note, setNote] = useState<string>('');
-    const [image, setImage] = useState<string>('');
-    const [errorMessage, setErrorMessage] = useState<string>('');
-
-    const onDrop = async (acceptedFiles: File[]) => {
-        const file = acceptedFiles[0];
-        const formData = new FormData();
-        formData.append('image', file);
-        try {
-            const response = await axios.post<ImageUploadResponse>(
-                '/api/images/upload',
-                formData
-            );
-            setImage(response.data.imageUrl);
-        } catch (error) {
-            setErrorMessage('Error uploading image');
-        }
-    };
-
-    const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     function onSaveGame(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -63,7 +37,6 @@ export default function AddGame(props: AddGameProps) {
             publisher: publisher,
             genre: genre,
             note: note,
-            image: image,
         };
 
         props.addGame(newGame);
@@ -101,21 +74,6 @@ export default function AddGame(props: AddGameProps) {
                 value={note}
                 onChange={(event) => setNote(event.target.value)}
             />
-
-            <Paper className="addGame" variant="outlined">
-            <div {...getRootProps()}>
-                <input {...getInputProps()} />
-                {isDragActive ? (
-                    <p>Bild für Upload hier her ziehen ...</p>
-                ) : (
-                    <p>Drag and drop oder Klick um aus dem Ordner auszuwählen</p>
-                )}
-            </div>
-            {errorMessage && <p>{errorMessage}</p>}
-            {image && (
-                <img src={image} alt="Game" style={{ maxWidth: '100%' }} />
-            )}
-            </Paper>
 
             <Button variant="contained" type="submit">
                 Save Game
