@@ -3,6 +3,7 @@ package de.robinschatzl.gameapp.backend;
 import de.robinschatzl.gameapp.backend.game.Game;
 import de.robinschatzl.gameapp.backend.game.GameRepoInterface;
 import de.robinschatzl.gameapp.backend.game.GameService;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -11,12 +12,10 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
 
 @AutoConfigureMockMvc
@@ -117,5 +116,45 @@ class GameServiceTest {
         //THEN
         verify(gameRepoInterface).save(doom);
         assertEquals(actual, doom);
+    }
+
+    @DirtiesContext
+    @Test
+    void getGameById_ShoueldReturnOneGame_WhenOneGameIsAdded() {
+        //GIVEN
+        Game gameTest1 = new Game("0815", "Kein Plan", "Robin Schatzl", "Lost in Java", "");
+
+        when(gameRepoInterfaceMock.findById("1")).thenReturn(Optional.of(gameTest1));
+
+        //WHEN
+        Game actual = gameService.getGameById("1");
+
+        //THEN
+        Game expected = new Game("0815", "Kein Plan", "Robin Schatzl", "Lost in Java", "");
+        verify(gameRepoInterfaceMock).findById("1");
+        assertEquals(expected, actual);
+    }
+
+    @DirtiesContext
+    @Test
+    void getGameById_ShouldReturnException_WhenGameDoseNotExist() {
+        //GIVEN
+        when(gameRepoInterfaceMock.findById("1")).thenThrow(NoSuchElementException.class);
+
+        //WHEN
+        try {
+            gameService.getGameById("1");
+            fail();
+        }
+        //THEN
+        catch (NoSuchElementException Ignored) {
+            verify(gameRepoInterfaceMock).findById("1");
+        }
+    }
+
+    @DirtiesContext
+    @Test
+    void getGameByID_ShouldReturnException_WhenGameDoseNotExist_Alternate_Version() {
+        Assertions.assertThrows(NoSuchElementException.class, () -> gameService.getGameById("1"));
     }
 }
