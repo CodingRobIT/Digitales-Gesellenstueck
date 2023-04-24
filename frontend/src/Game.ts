@@ -3,11 +3,11 @@ export type Game = {
     title: string,
     publisher: string,
     genre: string,
-    note: string
+    note: string,
 }
 export type NewGame = {
     title: string,
     publisher: string,
     genre: string,
-    note: string
+    note: string,
 }

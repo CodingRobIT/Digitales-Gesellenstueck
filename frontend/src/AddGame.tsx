@@ -1,8 +1,9 @@
-import { Button, TextField } from '@mui/material';
+import React, { FormEvent, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import {Button, TextField} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { NewGame } from './Game';
-import { FormEvent, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import './AddGame.css'
 
 type AddGameProps = {
     addGame: (newGame: NewGame) => void;
@@ -12,7 +13,7 @@ const FormContainer = styled('form')({
     display: 'flex',
     flexDirection: 'column',
     gap: '1rem',
-    maxWidth: '500px',
+    maxWidth: '400px',
     margin: '0 auto',
 });
 
@@ -26,7 +27,17 @@ export default function AddGame(props: AddGameProps) {
     function onSaveGame(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        const newGame: NewGame = {title: title, publisher: publisher, genre: genre, note: note};
+        if (title === undefined || title === '') {
+            console.error('Title required');
+            return;
+        }
+
+        const newGame: NewGame = {
+            title: title,
+            publisher: publisher,
+            genre: genre,
+            note: note,
+        };
 
         props.addGame(newGame);
 
@@ -34,9 +45,10 @@ export default function AddGame(props: AddGameProps) {
     }
 
     return (
-        <FormContainer onSubmit={onSaveGame}>
+        <FormContainer className="form-container" onSubmit={onSaveGame}>
             <TextField
-                label="Spiel Titel"
+                label="Game Title"
+                required
                 variant="outlined"
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
@@ -57,7 +69,7 @@ export default function AddGame(props: AddGameProps) {
             />
 
             <TextField
-                label="Notiz"
+                label="Note"
                 variant="outlined"
                 value={note}
                 onChange={(event) => setNote(event.target.value)}
