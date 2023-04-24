@@ -4,7 +4,6 @@ import axios from "axios";
 import {toast} from "react-toastify";
 import {useParams} from "react-router-dom";
 
-
 export default function useGameDetail() {
     const [game, setGame] = useState<Game>();
     const {id} = useParams<{id: string}>()
