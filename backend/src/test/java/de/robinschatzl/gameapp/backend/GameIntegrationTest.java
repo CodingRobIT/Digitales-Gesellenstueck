@@ -166,4 +166,26 @@ class GameIntegrationTest {
                                 []
                                 """));
     }
+
+    @DirtiesContext
+    @Test
+    void editGame_ById_shouldReturnEditedGame() throws Exception {
+        mockMvc.perform(put("/api/games/465/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content("""
+                        {
+                        "id": "465",
+                        "title": "ICO"
+                        }
+                        """
+                ))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {
+                        "id": "465",
+                        "title": "ICO"
+                        }
+                        """
+                ));
+    }
 }
