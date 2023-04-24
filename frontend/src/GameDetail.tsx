@@ -16,16 +16,26 @@ export default function GameDetails() {
 
     return (
         <div>
-            {
-                game
-                ?<div>
-                    <header>{game.title}</header>
-                    <p>{game.genre}</p>
-                    <p>{game.publisher}</p>
-                    <p>{game.note}</p>
-                    </div>
-                    : <div>Loading...</div>
-            }
+            {game ? (
+                <Card sx={{ bgcolor: "transparent", boxShadow: "none" }}>
+                    <CardHeader title={game.title} />
+                    <CardContent>
+                        <Box sx={{ display: "flex", justifyContent: "center", gap: 8 }}>
+                            <Typography variant="body1" color="text.secondary">
+                                {game.genre}
+                            </Typography>
+                            <Typography variant="body1" color="text.secondary">
+                                {game.publisher}
+                            </Typography>
+                        </Box>
+                        <Typography variant="body2" color="text.secondary">
+                            {game.note}
+                        </Typography>
+                    </CardContent>
+                </Card>
+            ) : (
+                <div>Loading...</div>
+            )}
         </div>
     );
 }
