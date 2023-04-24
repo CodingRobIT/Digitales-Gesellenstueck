@@ -157,4 +157,18 @@ class GameServiceTest {
     void getGameByID_ShouldReturnException_WhenGameDoseNotExist_Alternate_Version() {
         Assertions.assertThrows(NoSuchElementException.class, () -> gameService.getGameById("1"));
     }
+
+    @DirtiesContext
+    @Test
+    void deleteGameById_shouldDeleteGameById() {
+        //GIVEN
+        Game testGameToDelete = new Game("88" ,"Delete me","","", "");
+        gameRepoInterfaceMock.save(testGameToDelete);
+
+        //WHEN
+        gameService.deleteGame("88");
+
+        //THEN
+        verify(gameRepoInterfaceMock).deleteById("88");
+    }
 }
