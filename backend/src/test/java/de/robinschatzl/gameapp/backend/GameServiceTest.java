@@ -171,4 +171,20 @@ class GameServiceTest {
         //THEN
         verify(gameRepoInterfaceMock).deleteById("88");
     }
+
+    @DirtiesContext
+    @Test
+    void editGame_ShouldReturnEditedGame_WhenValidIdProvided() {
+        //GIVEN
+        Game editedGame = new Game("1", "Same game new Style","","","");
+
+        when(gameRepoInterfaceMock.save(editedGame)).thenReturn(editedGame);
+
+        //WHEN
+        Game actual = gameService.editGame(editedGame);
+
+        //THEN
+        verify(gameRepoInterfaceMock).save(editedGame);
+        assertEquals(editedGame, actual);
+    }
 }
