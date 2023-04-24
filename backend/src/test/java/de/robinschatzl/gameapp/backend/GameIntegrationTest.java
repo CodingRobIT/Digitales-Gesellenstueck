@@ -171,14 +171,14 @@ class GameIntegrationTest {
     @Test
     void editGame_ById_shouldReturnEditedGame() throws Exception {
         mockMvc.perform(put("/api/games/465/update")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("""
-                        {
-                        "id": "465",
-                        "title": "ICO"
-                        }
-                        """
-                ))
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                {
+                                "id": "465",
+                                "title": "ICO"
+                                }
+                                """
+                        ))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         {
@@ -187,5 +187,22 @@ class GameIntegrationTest {
                         }
                         """
                 ));
+    }
+
+    @DirtiesContext
+    @Test
+    void editGame_ById_shouldReturnBadRequest() throws Exception {
+        mockMvc.perform(put("/api/games/32123/update")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(
+                        """
+                                {
+                                "id": "247",
+                                "title": "BadRequest Game"
+                                "note": "id stimmt nicht mit id in url überein, somit sollte Status 400 > BadRequest kommen"
+                                }
+                                """
+                ))
+                .andExpect(status().isBadRequest());
     }
 }
