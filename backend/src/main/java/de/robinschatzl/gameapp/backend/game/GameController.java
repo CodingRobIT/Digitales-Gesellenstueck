@@ -21,4 +21,9 @@ public class GameController {
     public Game addGame(@RequestBody Game gameToAdd) {
         return gameService.addGame(gameToAdd);
     }
+
+    @GetMapping("{id}")
+    public Game getGameById(@PathVariable String id) {
+        return gameService.getGameById(id);
+    }
 }

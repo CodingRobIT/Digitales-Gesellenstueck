@@ -104,4 +104,25 @@ class GameIntegrationTest {
                                 """
                 ));
     }
+
+    @Test
+    @DirtiesContext
+    void getGameById_ShouldReturnGameAddedGame() throws Exception {
+        Game testGame = new Game("42", "Die Antwort auf alles", "", "" ,"");
+        gameRepoInterface.save(testGame);
+
+        mockMvc.perform(get("/api/games/42"))
+                .andExpect(status().isOk())
+                .andExpect(content().json(
+                        """
+                                {
+                                "id": "42",
+                                "title": "Die Antwort auf alles",
+                                "publisher": "",
+                                "genre": "",
+                                "note": ""
+                                }
+                                """
+                ));
+    }
 }
