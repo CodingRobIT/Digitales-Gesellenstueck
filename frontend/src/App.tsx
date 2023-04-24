@@ -4,10 +4,11 @@ import './App.css';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import GameGallery from "./GameGallery";
 import useGames from "./useGames";
+import AddGame from "./AddGame";
 
 function App() {
 
-    const {games} = useGames()
+    const {games , addGame} = useGames()
 
     return (
         <BrowserRouter>
@@ -17,6 +18,8 @@ function App() {
                     <Route element={<Navigate to="/games"/>}/>
                     <Route path="/games"
                            element={<GameGallery games={games}/>}/>
+                    <Route path="/games/add"
+                    element={<AddGame addGame={addGame}/>}/>
                 </Routes>
             </div>
         </BrowserRouter>
