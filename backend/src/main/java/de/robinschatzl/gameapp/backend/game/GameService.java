@@ -18,4 +18,8 @@ public class GameService {
     public Game addGame(Game gameToAdd) {
         return gameRepoInterface.save(gameToAdd);
     }
+
+    public Game getGameById(String id) {
+        return gameRepoInterface.findById(id).orElseThrow();
+    }
 }
