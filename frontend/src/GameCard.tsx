@@ -20,7 +20,7 @@ export default function GameCard(props: GameProps) {
                         {props.game.note}
                     </Typography>
                 </CardContent>
-                <CardActions>
+                <CardActions sx={{ display: 'flex', justifyContent: 'center'}}>
                     <Button sx={{ color: '#fff', fontWeight: 'bold' }}
                             size="small"
                             onClick={() => navigate('/games/' + props.game.id)}>
