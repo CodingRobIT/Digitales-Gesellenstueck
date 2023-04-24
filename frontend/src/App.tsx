@@ -1,26 +1,26 @@
 import React from 'react';
-import logo from './logo.svg';
+import Header from "./Header"
 import './App.css';
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+import GameGallery from "./GameGallery";
+import useGames from "./useGames";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    const {games} = useGames()
+
+    return (
+        <BrowserRouter>
+            <div className="App">
+                <Header/>
+                <Routes>
+                    <Route element={<Navigate to="/games"/>}/>
+                    <Route path="/games"
+                           element={<GameGallery games={games}/>}/>
+                </Routes>
+            </div>
+        </BrowserRouter>
+    );
 }
 
 export default App;
