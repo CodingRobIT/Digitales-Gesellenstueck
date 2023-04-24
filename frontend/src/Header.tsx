@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
 import { AppBar, Toolbar, Typography, Button } from "@mui/material";
+import './Header.css'
 
 export default function Header() {
     return (
-        <AppBar position="static" sx={{ bgcolor: "#1E2432" }}>
+        <AppBar className="header" position="static" sx={{ bgcolor: "#1E2432" }}>
             <Toolbar sx={{ justifyContent: "center" }}>
                 <div>
                     <Typography variant="h6" component="div" align="center">
