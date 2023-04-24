@@ -6,6 +6,7 @@ import {Button, TextField} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { NewGame } from './Game';
 import Paper from "@material-ui/core/Paper";
+import './AddGame.css'
 
 type AddGameProps = {
     addGame: (newGame: NewGame) => void;
@@ -19,7 +20,7 @@ const FormContainer = styled('form')({
     display: 'flex',
     flexDirection: 'column',
     gap: '1rem',
-    maxWidth: '500px',
+    maxWidth: '400px',
     margin: '0 auto',
 });
 
@@ -71,7 +72,7 @@ export default function AddGame(props: AddGameProps) {
     }
 
     return (
-        <FormContainer onSubmit={onSaveGame}>
+        <FormContainer className="form-container" onSubmit={onSaveGame}>
             <TextField
                 label="Game Title"
                 required
