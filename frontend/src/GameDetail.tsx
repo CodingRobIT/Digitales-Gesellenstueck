@@ -1,14 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {Game} from "./Game";
-import {useNavigate, useParams} from "react-router-dom";
-import {Box, Button, Card, CardActions, CardContent, CardHeader, Typography} from "@mui/material";
-import axios from "axios";
-import {toast} from "react-toastify";
+import {useNavigate} from "react-router-dom";
+import {Box, Button, Card, CardContent, CardHeader, Typography} from "@mui/material";
 import useGameDetail from "./useGameDetail";
 
 export default function GameDetails() {
 
-    const {id} = useParams<{id: string}>()
     const navigate = useNavigate()
      const {game} = useGameDetail()
 
@@ -31,6 +26,18 @@ export default function GameDetails() {
                         <Typography variant="body2" color="text.secondary">
                             {game.note}
                         </Typography>
+                        <Box sx={{ display: "flex", justifyContent: "center", gap: 8 }}>
+                        <Button sx={{bgcolor: '#1E2432', color: '#fff', fontWeight: 'bold', minWidth: '80px' }}
+                                size="small"
+                                onClick={() => navigate('/')}>
+                            Hier kommt Edit
+                        </Button>
+                        <Button sx={{bgcolor: '#1E2432', color: '#fff', fontWeight: 'bold', minWidth: '80px' }}
+                                size="small"
+                                onClick={() => navigate('/')}>
+                            Hier kommt Löschen
+                        </Button>
+                    </Box>
                     </CardContent>
                 </Card>
             ) : (
