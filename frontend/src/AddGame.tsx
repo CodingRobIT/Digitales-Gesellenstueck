@@ -49,29 +49,32 @@ export default function AddGame(props: AddGameProps) {
             <TextField
                 label="Game Title"
                 required
-                variant="outlined"
+                variant="filled"
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
             />
 
             <TextField
                 label="Publisher"
-                variant="outlined"
+                variant="filled"
                 value={publisher}
                 onChange={(event) => setPublisher(event.target.value)}
             />
 
             <TextField
                 label="Genre"
-                variant="outlined"
+                variant="filled"
                 value={genre}
                 onChange={(event) => setGenre(event.target.value)}
             />
 
             <TextField
-                label="Note"
-                variant="outlined"
+                id="filled-multiline-static"
+                label="Notiz"
+                multiline
+                rows={10}
                 value={note}
+                variant="filled"
                 onChange={(event) => setNote(event.target.value)}
             />
 
