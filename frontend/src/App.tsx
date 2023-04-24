@@ -5,6 +5,7 @@ import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import GameGallery from "./GameGallery";
 import useGames from "./useGames";
 import AddGame from "./AddGame";
+import GameDetails from "./GameDetail";
 
 function App() {
 
@@ -20,6 +21,8 @@ function App() {
                            element={<GameGallery games={games}/>}/>
                     <Route path="/games/add"
                     element={<AddGame addGame={addGame}/>}/>
+                    <Route path="/games/:id"
+                           element={<GameDetails/>}/>
                 </Routes>
             </div>
         </BrowserRouter>

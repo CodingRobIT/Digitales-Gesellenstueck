@@ -23,31 +23,11 @@ export default function GameCard(props: GameProps) {
                 <CardActions>
                     <Button sx={{ color: '#fff', fontWeight: 'bold' }}
                             size="small"
-                            onClick={() => navigate('/')}>
-                        noch keine Details
+                            onClick={() => navigate('/games/' + props.game.id)}>
+                        Game Details
                     </Button>
                 </CardActions>
             </Card>
         </Box>
     );
 }
-
-
-// import {Game} from "./Game";
-// import {useNavigate} from "react-router-dom";
-//
-// type GameProps = {
-//     game: Game
-// }
-//
-// export default function GameCard(props: GameProps) {
-//
-//     const navigate = useNavigate()
-//
-//     return (
-//         <div className="Game-Card">
-//             {props.game.title}
-//             {props.game.id}
-//         </div>
-//     )
-// }
