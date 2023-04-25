@@ -1,6 +1,7 @@
 import {useNavigate} from "react-router-dom";
 import {Box, Button, Card, CardContent, CardHeader, TextField, Typography} from "@mui/material";
 import useGameDetail from "./useGameDetail";
+import {Game} from "./Game";
 
 type GameDetailProps = {
     deleteGame: (id: string) => void;
@@ -31,35 +32,45 @@ export default function GameDetails(props: GameDetailProps) {
                                 {game.publisher}
                             </Typography>
                         </Box>
-                        <Typography variant="body2" color="text.secondary">
+                        <Typography variant="body2" color="text.secondary" sx={{marginTop: 2, paddingBottom: 2, maxWidth: 600, mx: "auto"}}>
                             {game.note}
                         </Typography>
                         {editing ? (
                             <form onSubmit={handleFormSubmit}>
+                                <Box sx={{display: "flex", flexDirection: "column", paddingBottom: 2, gap: 2, maxWidth: 600, mx: "auto"}}>
                                 <TextField
                                     label="Title"
                                     name="title"
+                                    variant="filled"
                                     value={editedGame.title}
                                     onChange={gameInputChange}
                                 />
                                 <TextField
                                     label="Genre"
                                     name="genre"
+                                    variant="filled"
                                     value={editedGame.genre}
                                     onChange={gameInputChange}
                                 />
                                 <TextField
                                     label="Publisher"
                                     name="publisher"
+                                    variant="filled"
                                     value={editedGame.publisher}
                                     onChange={gameInputChange}
                                 />
                                 <TextField
+                                    id="filled-multiline-static"
                                     label="Note"
+                                    multiline
+                                    rows={10}
                                     name="note"
+                                    variant="filled"
                                     value={editedGame.note}
                                     onChange={gameInputChange}
                                 />
+                                </Box>
+
                                 <Box sx={{display: "flex", justifyContent: "center", gap: 8}}>
                                     <Button
                                         sx={{
@@ -87,7 +98,7 @@ export default function GameDetails(props: GameDetailProps) {
                                             },
                                         }}
                                         size="small"
-                                        onClick={() => navigate('/games')}
+                                        onClick={() => navigate(`/games/`)}
                                     >
                                         Cancel
                                     </Button>
