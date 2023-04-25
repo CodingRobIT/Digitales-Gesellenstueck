@@ -5,10 +5,11 @@
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
+    background-color: #282c34;
 
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 800px) {
     .game-gallery {
         gap: 10px;
     }
