@@ -198,7 +198,7 @@ class GameIntegrationTest {
                         """
                                 {
                                 "id": "247",
-                                "title": "BadRequest Game"
+                                "title": "BadRequest Game",
                                 "note": "id stimmt nicht mit id in url überein, somit sollte Status 400 > BadRequest kommen"
                                 }
                                 """

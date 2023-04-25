@@ -8,15 +8,20 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
 @SpringBootTest
@@ -26,6 +31,10 @@ class GameServiceTest {
 
     @Mock
     private GameRepoInterface gameRepoInterfaceMock;
+
+    @Autowired
+    private MockMvc mockMvc;
+
 
     @BeforeEach
     void setUp() {
@@ -186,5 +195,22 @@ class GameServiceTest {
         //THEN
         verify(gameRepoInterfaceMock).save(editedGame);
         assertEquals(editedGame, actual);
+    }
+
+    @DirtiesContext
+    @Test
+    void editGame_WithMismatchingIds_ShouldReturnBadRequest() throws Exception {
+        mockMvc.perform(put("/api/games/32123/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(
+                                """
+                                        {
+                                        "id": "247",
+                                        "title": "BadRequest Game",
+                                        "note": "id stimmt nicht mit id in url überein, somit sollte Status 400 > BadRequest kommen"
+                                        }
+                                        """
+                        ))
+                .andExpect(status().isBadRequest());
     }
 }
