@@ -9,7 +9,7 @@ import GameDetails from "./GameDetail";
 
 function App() {
 
-    const {games , addGame} = useGames()
+    const {games , addGame, deleteGame} = useGames()
 
     return (
         <BrowserRouter>
@@ -22,7 +22,7 @@ function App() {
                     <Route path="/games/add"
                     element={<AddGame addGame={addGame}/>}/>
                     <Route path="/games/:id"
-                           element={<GameDetails/>}/>
+                           element={<GameDetails deleteGame={deleteGame}/>}/>
                 </Routes>
             </div>
         </BrowserRouter>

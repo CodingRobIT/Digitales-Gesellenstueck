@@ -124,14 +124,14 @@ class GameServiceTest {
         //GIVEN
         Game gameTest1 = new Game("0815", "Kein Plan", "Robin Schatzl", "Lost in Java", "");
 
-        when(gameRepoInterfaceMock.findById("1")).thenReturn(Optional.of(gameTest1));
+        when(gameRepoInterfaceMock.findById("0815")).thenReturn(Optional.of(gameTest1));
 
         //WHEN
-        Game actual = gameService.getGameById("1");
+        Game actual = gameService.getGameById("0815");
 
         //THEN
         Game expected = new Game("0815", "Kein Plan", "Robin Schatzl", "Lost in Java", "");
-        verify(gameRepoInterfaceMock).findById("1");
+        verify(gameRepoInterfaceMock).findById("0815");
         assertEquals(expected, actual);
     }
 
@@ -156,5 +156,19 @@ class GameServiceTest {
     @Test
     void getGameByID_ShouldReturnException_WhenGameDoseNotExist_Alternate_Version() {
         Assertions.assertThrows(NoSuchElementException.class, () -> gameService.getGameById("1"));
+    }
+
+    @DirtiesContext
+    @Test
+    void deleteGameById_shouldDeleteGameById() {
+        //GIVEN
+        Game testGameToDelete = new Game("88" ,"Delete me","","", "");
+        gameRepoInterfaceMock.save(testGameToDelete);
+
+        //WHEN
+        gameService.deleteGame("88");
+
+        //THEN
+        verify(gameRepoInterfaceMock).deleteById("88");
     }
 }

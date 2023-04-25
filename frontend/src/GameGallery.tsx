@@ -20,12 +20,12 @@ export default function GameGallery(props: GameGalleryProps) {
     return (
         <div className="game-gallery">
             <div className="searchbar">
-                <TextField id="outlined-basic" label="Search for a Game..." variant="outlined" value={searchTerm}
+                <TextField id="outlined-basic" label="Games Suchen..." variant="filled" value={searchTerm}
                            onChange={(e) => setSearchTerm(e.target.value)}/>
-            <div className="game-cards">  {filteredGames.map((card: Game) => (
-                <GameCard key={card.id} game={card}/>
-            ))}
-            </div>
+                <div className="game-cards">  {filteredGames.map((card: Game) => (
+                    <GameCard key={card.id} game={card}/>
+                ))}
+                </div>
             </div>
         </div>
     )

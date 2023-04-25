@@ -1,6 +1,7 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {Game, NewGame} from "./Game"
+import {toast} from "react-toastify";
 export default function useGames() {
 
     const [games , setGames] = useState<Game[]>([])
@@ -26,6 +27,17 @@ export default function useGames() {
             .catch(() => console.error("post on /api/games not successful!!!"))
     }
 
-    return {games: filteredGames, searchTerm, addGame}
+    function deleteGame(id: string) {
+        axios.delete('/api/games/' + id)
+            .then(() => {
+                setGames(games.filter((game ) => game.id !== id))
+                toast.success("Game wurde erfolgreich gelöscht")
+            })
+            .catch((error) => {
+            console.error(error)
+        })
+    }
+
+    return {games: filteredGames, searchTerm, addGame , deleteGame}
 
 }
