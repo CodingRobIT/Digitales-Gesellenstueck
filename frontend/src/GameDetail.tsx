@@ -1,6 +1,7 @@
 import {useNavigate} from "react-router-dom";
 import {Box, Button, Card, CardContent, CardHeader, TextField, Typography} from "@mui/material";
 import useGameDetail from "./useGameDetail";
+import {Game} from "./Game";
 
 type GameDetailProps = {
     deleteGame: (id: string) => void;
@@ -87,7 +88,7 @@ export default function GameDetails(props: GameDetailProps) {
                                             },
                                         }}
                                         size="small"
-                                        onClick={editOnClick}
+                                        onClick={() => navigate('/games')}
                                     >
                                         Cancel
                                     </Button>
