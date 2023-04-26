@@ -10,7 +10,6 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.mock.web.MockHttpServletRequest;
-import org.springframework.mock.web.MockHttpServletResponse;
 
 class ReactRoutingForwardingTest {
 
@@ -23,7 +22,6 @@ class ReactRoutingForwardingTest {
         var resourcePath = "/non-existing/file.html";
         var location = new ClassPathResource("static/");
         var mockHttpServletRequest = mock(MockHttpServletRequest.class);
-        var mockHttpServletResponse = mock(MockHttpServletResponse.class);
         when(mockHttpServletRequest.getRequestURI()).thenReturn(resourcePath);
 
         // when
