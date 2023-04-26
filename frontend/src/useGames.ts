@@ -5,7 +5,7 @@ import {toast} from "react-toastify";
 export default function useGames() {
 
     const [games , setGames] = useState<Game[]>([])
-    const [searchTerm , setSearchTerm] = useState('');
+    const [searchTerm] = useState('');
     const filteredGames = games.filter((game) => game.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
     useEffect(() => {
