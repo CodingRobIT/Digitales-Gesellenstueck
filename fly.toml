@@ -1,0 +1,4 @@
+# fly.toml file generated for gameapprs on 2023-04-25T16:58:17+02:00
+
+app = "gameapprs"
+primary_region = "ams"

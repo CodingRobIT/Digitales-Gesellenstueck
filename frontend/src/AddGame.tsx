@@ -45,7 +45,7 @@ export default function AddGame(props: AddGameProps) {
     }
 
     return (
-        <FormContainer className="form-container" onSubmit={onSaveGame}>
+        <FormContainer className="form-container" onSubmit={onSaveGame} sx={{maxWidth: 600, mx: "auto"}}>
             <TextField
                 label="Game Title"
                 required

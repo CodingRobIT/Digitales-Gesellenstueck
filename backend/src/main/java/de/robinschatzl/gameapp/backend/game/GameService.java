@@ -27,4 +27,8 @@ public class GameService {
     public void deleteGame(String id) {
         gameRepoInterface.deleteById(id);
     }
+
+    public Game editGame(Game gameToEdit) {
+        return gameRepoInterface.save(gameToEdit);
+    }
 }

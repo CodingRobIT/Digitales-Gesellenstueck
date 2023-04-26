@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background-color: #282c34;
 }
 
 .App-logo {
@@ -38,7 +39,7 @@
 }
 
 body{
-  color: seashell;
-  background-image: url("./Background.jpg");
+  color: #282c34;
+  /*background-image: url("./Background.jpg");*/
   background-size: cover;
 }
