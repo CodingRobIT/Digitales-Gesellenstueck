@@ -1,8 +1,12 @@
 # Hallo, hier entsteht im Mai mein digitales Gesellenstück.
 
-Da ich mich noch im Trainee-Programm des BootCamps befinde, ist mein digitales Gesellenstück noch nicht verfügbar.
+Zur Zeit bin ich noch im Trainee-Programm des BootCamps von neueFische.
 
-Spätestens Ende Mai (25.05.2023) wird es hier zu finden sein.
+Da ich mit Continuous Deployment arbeite, sind alle aktuellen Features auf der folgenden Seite integriert.
 
-Mit freundlichen Grüßen 
-Robin Schatzl 
+
+https://gameapprs.fly.dev
+
+Spätestens Ende Mai (25.05.2023) sollte es fertig sein.
+
+Mit freundlichen Grüßen Robin Schatzl
