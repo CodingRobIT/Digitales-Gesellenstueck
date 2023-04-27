@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {Game, NewGame} from "./Game"
+import {Game, NewGame} from "../model/Game"
 import {toast} from "react-toastify";
 export default function useGames() {
 

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Game} from "./Game";
+import {Game} from "../model/Game";
 import axios from "axios";
 import {toast} from "react-toastify";
 import {useParams} from "react-router-dom";

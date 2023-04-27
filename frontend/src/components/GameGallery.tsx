@@ -1,6 +1,6 @@
-import {Game} from "./Game";
+import {Game} from "../model/Game";
 import {useState} from "react";
-import useGames from "./useGames";
+import useGames from "../customHooks/useGames";
 import GameCard from "./GameCard";
 import {TextField} from "@mui/material";
 import './GameGallery.css'

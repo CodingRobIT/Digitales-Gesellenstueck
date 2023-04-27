@@ -1,6 +1,6 @@
 import { Box, Card, CardHeader, CardContent, CardActions, Typography, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { Game } from './Game';
+import { Game } from '../model/Game';
 import './GameCard.css'
 
 type GameProps = {
