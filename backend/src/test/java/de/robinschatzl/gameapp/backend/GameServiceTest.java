@@ -46,8 +46,8 @@ class GameServiceTest {
     @DirtiesContext
     void testGetAllGames() {
         //GIVEN
-        Game game1 = new Game("1", "FFXI" ,"Square Enix", "MMORPG", "PC and PS4");
-        Game game2 = new Game("2", "Doom", "N/A", "Shooter","");
+        Game game1 = new Game("1", "FFXI" ,"Square Enix", "MMORPG", "PC and PS4","");
+        Game game2 = new Game("2", "Doom", "N/A", "Shooter","","");
 
         List<Game> expectedGames = Arrays.asList(game1, game2);
 
@@ -68,11 +68,11 @@ class GameServiceTest {
     @DirtiesContext
     void testGetAllGamesWithBiggerLibrary() {
         //GIVEN
-        Game game1 = new Game("1", "FFXI" ,"Square Enix", "MMORPG", "PC and PS4");
-        Game game2 = new Game("2", "Doom", "N/A", "Shooter","");
-        Game game3 = new Game("3" , "Mario World", "Nintendo" , "Jump'n run", "");
-        Game game4 = new Game("4" , "Mario & Luigi", "Nintendo" , "Jump'n run", "");
-        Game game5 = new Game("5" , "Super Mario Land", "Nintendo" , "Jump'n run", "");
+        Game game1 = new Game("1", "FFXI" ,"Square Enix", "MMORPG", "PC and PS4","");
+        Game game2 = new Game("2", "Doom", "N/A", "Shooter","","");
+        Game game3 = new Game("3" , "Mario World", "Nintendo" , "Jump'n run", "","");
+        Game game4 = new Game("4" , "Mario & Luigi", "Nintendo" , "Jump'n run", "","");
+        Game game5 = new Game("5" , "Super Mario Land", "Nintendo" , "Jump'n run", "","");
 
         List<Game> expectedGames = Arrays.asList(game1, game2, game3, game4, game5);
 
@@ -115,7 +115,7 @@ class GameServiceTest {
         final GameRepoInterface gameRepoInterface = mock(GameRepoInterface.class);
         final GameService gameService = new GameService(gameRepoInterface);
 
-        Game doom = new Game("666", "Doom", "id Software", "Ego-Shooter", "wurde am 10. Dezember 1993 erstmals von id Software veröffentlicht");
+        Game doom = new Game("666", "Doom", "id Software", "Ego-Shooter", "wurde am 10. Dezember 1993 erstmals von id Software veröffentlicht","");
         when(gameRepoInterface.save(doom))
                 .thenReturn(doom);
 
@@ -131,7 +131,7 @@ class GameServiceTest {
     @Test
     void getGameById_ShoueldReturnOneGame_WhenOneGameIsAdded() {
         //GIVEN
-        Game gameTest1 = new Game("0815", "Kein Plan", "Robin Schatzl", "Lost in Java", "");
+        Game gameTest1 = new Game("0815", "Kein Plan", "Robin Schatzl", "Lost in Java", "","");
 
         when(gameRepoInterfaceMock.findById("0815")).thenReturn(Optional.of(gameTest1));
 
@@ -139,7 +139,7 @@ class GameServiceTest {
         Game actual = gameService.getGameById("0815");
 
         //THEN
-        Game expected = new Game("0815", "Kein Plan", "Robin Schatzl", "Lost in Java", "");
+        Game expected = new Game("0815", "Kein Plan", "Robin Schatzl", "Lost in Java", "","");
         verify(gameRepoInterfaceMock).findById("0815");
         assertEquals(expected, actual);
     }
@@ -171,7 +171,7 @@ class GameServiceTest {
     @Test
     void deleteGameById_shouldDeleteGameById() {
         //GIVEN
-        Game testGameToDelete = new Game("88" ,"Delete me","","", "");
+        Game testGameToDelete = new Game("88" ,"Delete me","","", "","");
         gameRepoInterfaceMock.save(testGameToDelete);
 
         //WHEN
@@ -185,7 +185,7 @@ class GameServiceTest {
     @Test
     void editGame_ShouldReturnEditedGame_WhenValidIdProvided() {
         //GIVEN
-        Game editedGame = new Game("1", "Same game new Style","","","");
+        Game editedGame = new Game("1", "Same game new Style","","","","");
 
         when(gameRepoInterfaceMock.save(editedGame)).thenReturn(editedGame);
 

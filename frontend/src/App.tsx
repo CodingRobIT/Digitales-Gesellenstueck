@@ -2,8 +2,8 @@ import React from 'react';
 import Header from "./Header"
 import './App.css';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-import GameGallery from "./GameGallery";
-import useGames from "./useGames";
+import GameGallery from "./components/GameGallery";
+import useGames from "./customHooks/useGames";
 import AddGame from "./AddGame";
 import GameDetails from "./GameDetail";
 

@@ -1,6 +1,6 @@
-import { Box, Card, CardHeader, CardContent, CardActions, Typography, Button } from '@mui/material';
+import { Box, Card, CardHeader, CardContent, CardActions, Button } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { Game } from './Game';
+import { Game } from '../model/Game';
 import './GameCard.css'
 
 type GameProps = {
@@ -15,13 +15,18 @@ export default function GameCard(props: GameProps) {
             <Card sx={{ maxWidth: 345, bgcolor: '#2E3B55', color: '#fff', margin: '16px' }}>
                 <CardHeader title={props.game.title} />
                 <CardContent>
-                    <Typography variant="body2"
-                                color="text.secondary">
-                        {props.game.note}
-                    </Typography>
+                    <img src={props.game.imageUrl}
+                         alt="Ohne Bild"
+                         width="150"
+                         height="150" />
                 </CardContent>
-                <CardActions sx={{ display: 'flex', justifyContent: 'center'}}>
-                    <Button sx={{ color: '#fff', fontWeight: 'bold' }}
+                <CardActions sx={{
+                    display: 'flex',
+                    justifyContent: 'center'
+                }}>
+                    <Button sx={{
+                        color: '#fff',
+                        fontWeight: 'bold' }}
                             size="small"
                             onClick={() => navigate('/games/' + props.game.id)}>
                         Game Details

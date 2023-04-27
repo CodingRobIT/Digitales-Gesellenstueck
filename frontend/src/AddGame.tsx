@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {Button, TextField} from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { NewGame } from './Game';
+import { NewGame } from './model/Game';
 import './AddGame.css'
 
 type AddGameProps = {
@@ -23,6 +23,7 @@ export default function AddGame(props: AddGameProps) {
     const [publisher, setPublisher] = useState<string>('');
     const [genre, setGenre] = useState<string>('');
     const [note, setNote] = useState<string>('');
+    const [imageUrl, setImageUrl] = useState<string>('');
 
     function onSaveGame(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -37,6 +38,7 @@ export default function AddGame(props: AddGameProps) {
             publisher: publisher,
             genre: genre,
             note: note,
+            imageUrl: imageUrl,
         };
 
         props.addGame(newGame);
@@ -52,6 +54,8 @@ export default function AddGame(props: AddGameProps) {
                 variant="filled"
                 value={title}
                 onChange={(event) => setTitle(event.target.value)}
+                InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
+                InputLabelProps={{sx: {color: "Snow"}}}
             />
 
             <TextField
@@ -59,6 +63,8 @@ export default function AddGame(props: AddGameProps) {
                 variant="filled"
                 value={publisher}
                 onChange={(event) => setPublisher(event.target.value)}
+                InputProps={{sx: {color: "cadetblue"}}}
+                InputLabelProps={{sx: {color: "Snow"}}}
             />
 
             <TextField
@@ -66,6 +72,17 @@ export default function AddGame(props: AddGameProps) {
                 variant="filled"
                 value={genre}
                 onChange={(event) => setGenre(event.target.value)}
+                InputProps={{sx: {color: "cadetblue"}}}
+                InputLabelProps={{sx: {color: "Snow"}}}
+            />
+
+            <TextField
+                label="Bild-Link"
+                variant="filled"
+                value={imageUrl}
+                onChange={(event) => setImageUrl(event.target.value)}
+                InputProps={{sx: {color: "cadetblue"}}}
+                InputLabelProps={{sx: {color: "Snow"}}}
             />
 
             <TextField
@@ -76,10 +93,23 @@ export default function AddGame(props: AddGameProps) {
                 value={note}
                 variant="filled"
                 onChange={(event) => setNote(event.target.value)}
+                InputProps={{sx: {color: "cadetblue"}}}
+                InputLabelProps={{sx: {color: "Snow"}}}
             />
 
-            <Button variant="contained" type="submit">
-                Save Game
+            <Button variant="contained"
+                    type="submit"
+                    sx={{
+                        bgcolor: "black",
+                        color: "green",
+                        fontWeight: "bold",
+                        minWidth: "80px",
+                        "&:hover": {
+                            color: "snow",
+                            bgcolor: "#119D13"
+                        },
+                    }}>
+                Spiel Speichern
             </Button>
         </FormContainer>
     );

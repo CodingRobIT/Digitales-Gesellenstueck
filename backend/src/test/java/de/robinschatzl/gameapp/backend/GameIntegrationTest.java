@@ -42,11 +42,11 @@ class GameIntegrationTest {
     @DirtiesContext
     @Test
     void getGame_ShouldReturnAllGamesAdded() throws Exception {
-        Game game1 = new Game("1", "FFXI", "Square Enix", "MMORPG", "PC and PS2");
+        Game game1 = new Game("1", "FFXI", "Square Enix", "MMORPG", "PC and PS2","");
         gameRepoInterface.save(game1);
-        Game game2 = new Game("2", "Doom", "N/A", "N/A", "");
+        Game game2 = new Game("2", "Doom", "N/A", "N/A", "","");
         gameRepoInterface.save(game2);
-        Game game3 = new Game("3", "Mario World", "Nintendo", "Jump'n run", "");
+        Game game3 = new Game("3", "Mario World", "Nintendo", "Jump'n run", "","");
         gameRepoInterface.save(game3);
 
         mockMvc.perform(get("/api/games"))
@@ -59,21 +59,24 @@ class GameIntegrationTest {
                                 "title": "FFXI",
                                 "publisher": "Square Enix",
                                 "genre": "MMORPG",
-                                "note": "PC and PS2"
+                                "note": "PC and PS2",
+                                "imageUrl": ""
                                 },
                                 {
                                 "id": "2",
                                 "title": "Doom",
                                 "publisher": "N/A",
                                 "genre": "N/A",
-                                "note": ""
+                                "note": "",
+                                "imageUrl": ""
                                 },
                                 {
                                 "id": "3",
                                 "title": "Mario World",
                                 "publisher": "Nintendo",
                                 "genre": "Jump'n run",
-                                "note": ""
+                                "note": "",
+                                "imageUrl": ""
                                 }
                                 ]
                                 """
@@ -91,7 +94,8 @@ class GameIntegrationTest {
                                 "title": "MGS",
                                 "publisher": "Hideo Kojima",
                                 "genre": "N/A",
-                                "note": "Nice"
+                                "note": "Nice",
+                                "imageUrl": ""
                                 }
                                 """
                         ))
@@ -103,7 +107,8 @@ class GameIntegrationTest {
                                 "title": "MGS",
                                 "publisher": "Hideo Kojima",
                                 "genre": "N/A",
-                                "note": "Nice"
+                                "note": "Nice",
+                                "imageUrl": ""
                                 }
                                 """
                 ));
@@ -113,7 +118,7 @@ class GameIntegrationTest {
     @DirtiesContext
     @Test
     void getGameById_ShouldReturnAddedGame() throws Exception {
-        Game testGame = new Game("42", "Die Antwort auf alles", "", "", "");
+        Game testGame = new Game("42", "Die Antwort auf alles", "", "", "","");
         gameRepoInterface.save(testGame);
 
         mockMvc.perform(get("/api/games/42"))
@@ -125,7 +130,8 @@ class GameIntegrationTest {
                                 "title": "Die Antwort auf alles",
                                 "publisher": "",
                                 "genre": "",
-                                "note": ""
+                                "note": "",
+                                "imageUrl": ""
                                 }
                                 """
                 ));
@@ -144,7 +150,8 @@ class GameIntegrationTest {
                                                 "title": "Die Antwort auf alles",
                                                 "publisher": "",
                                                 "genre": "",
-                                                "note": ""
+                                                "note": "",
+                                                "imageUrl": ""
                                                 }
                                                 """
                                 )
