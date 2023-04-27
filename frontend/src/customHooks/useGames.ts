@@ -22,12 +22,7 @@ export default function useGames() {
                 console.error(error)
             })
     }
-    //
-    // function  addGame(newGame: NewGame) {
-    //     axios.post("/api/games", newGame)
-    //         .then(() => loadAllGames())
-    //         .catch(() => console.error("post on /api/games not successful!!!"))
-    // }
+
     function addGame(newGame: NewGame) {
         axios.post('/api/games', newGame)
             .then(() => {
