@@ -2,6 +2,8 @@ import {useEffect, useState} from "react";
 import axios from "axios";
 import {Game, NewGame} from "../model/Game"
 import {toast} from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 export default function useGames() {
 
     const [games , setGames] = useState<Game[]>([])
@@ -20,11 +22,22 @@ export default function useGames() {
                 console.error(error)
             })
     }
-
-    function  addGame(newGame: NewGame) {
-        axios.post("/api/games", newGame)
-            .then(() => loadAllGames())
-            .catch(() => console.error("post on /api/games not successful!!!"))
+    //
+    // function  addGame(newGame: NewGame) {
+    //     axios.post("/api/games", newGame)
+    //         .then(() => loadAllGames())
+    //         .catch(() => console.error("post on /api/games not successful!!!"))
+    // }
+    function addGame(newGame: NewGame) {
+        axios.post('/api/games', newGame)
+            .then(() => {
+                loadAllGames();
+                toast.success('Game wurde erfolgreich hinzugefügt!');
+            })
+            .catch((error) => {
+                console.error('POST auf /api/games nicht erfolgreich!!!', error);
+                toast.error('Es gab ein Problem beim Hinzufügen des Spiels!');
+            });
     }
 
     function deleteGame(id: string) {

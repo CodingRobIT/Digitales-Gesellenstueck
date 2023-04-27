@@ -4,6 +4,7 @@ import {Button, TextField} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { NewGame } from './model/Game';
 import './AddGame.css'
+import {ToastContainer} from "react-toastify";
 
 type AddGameProps = {
     addGame: (newGame: NewGame) => void;

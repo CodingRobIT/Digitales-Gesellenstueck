@@ -1,9 +1,10 @@
 import {Game} from "../model/Game";
-import {useState} from "react";
+import React, {useState} from "react";
 import useGames from "../customHooks/useGames";
 import GameCard from "./GameCard";
 import {TextField} from "@mui/material";
 import './GameGallery.css'
+import {ToastContainer} from "react-toastify";
 
 type GameGalleryProps = {
     games: Game[],
@@ -17,6 +18,8 @@ export default function GameGallery(props: GameGalleryProps) {
         game.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+
+
     return (
         <div className="game-gallery">
             <div className="searchbar">
@@ -26,6 +29,18 @@ export default function GameGallery(props: GameGalleryProps) {
                     <GameCard key={card.id} game={card}/>
                 ))}
                 </div>
+                <ToastContainer
+                    position="top-right"
+                    autoClose={5000}
+                    hideProgressBar={false}
+                    newestOnTop={false}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss
+                    draggable
+                    pauseOnHover
+                    theme="dark"
+                />
             </div>
         </div>
     )
