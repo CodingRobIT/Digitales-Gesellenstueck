@@ -14,6 +14,7 @@ export default function useGameDetail() {
         publisher: "",
         genre: "",
         note: "",
+        imageUrl: "",
     });
 
     useEffect(() => {
@@ -30,7 +31,7 @@ export default function useGameDetail() {
                 setGame(response.data);
                 setEditedGame(response.data);
             })
-            .catch((error) => {
+            .catch(() => {
                 toast.error("Game dose not exist");
             });
     }
@@ -57,7 +58,7 @@ export default function useGameDetail() {
                 window.location.reload();
                 toast.success("Game updated successfully");
             })
-            .catch((error) => {
+            .catch(() => {
                 toast.error("Failed to update Game");
             });
     }

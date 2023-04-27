@@ -4,10 +4,12 @@ export type Game = {
     publisher: string,
     genre: string,
     note: string,
+    imageUrl: string,
 }
 export type NewGame = {
     title: string,
     publisher: string,
     genre: string,
     note: string,
+    imageUrl: string,
 }

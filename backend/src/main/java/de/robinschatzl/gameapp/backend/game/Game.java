@@ -13,6 +13,7 @@ public record Game(
         String title,
         String publisher,
         String genre,
-        String note
+        String note,
+        String imageUrl
 ) {
 }

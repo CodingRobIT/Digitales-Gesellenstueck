@@ -10,6 +10,7 @@ type GameGalleryProps = {
     games: Game[],
 }
 
+//eslint-disable-next-line
 export default function GameGallery(props: GameGalleryProps) {
     const {games} = useGames()
     const [searchTerm, setSearchTerm] = useState("")
@@ -18,15 +19,19 @@ export default function GameGallery(props: GameGalleryProps) {
         game.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-
-
     return (
         <div className="game-gallery">
             <div className="searchbar">
-                <TextField id="outlined-basic" label="Games Suchen..." variant="filled" value={searchTerm}
+                <TextField id="outlined-basic"
+                           label="Games Suchen..."
+                           variant="filled"
+                           value={searchTerm}
+                           InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
+                           InputLabelProps={{sx: {color: "Snow"}}}
                            onChange={(e) => setSearchTerm(e.target.value)}/>
                 <div className="game-cards">  {filteredGames.map((card: Game) => (
-                    <GameCard key={card.id} game={card}/>
+                    <GameCard key={card.id}
+                              game={card}/>
                 ))}
                 </div>
                 <ToastContainer
