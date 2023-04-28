@@ -31,6 +31,7 @@ class GameIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void getAllGames_ShouldReturnAllGames() throws Exception {
         mockMvc.perform(get("/api/games"))
                 .andExpect(status().isOk())
@@ -43,6 +44,14 @@ class GameIntegrationTest {
 
     @DirtiesContext
     @Test
+    void getAllGames_Unauthorized_ShouldReturnStatusCode401() throws Exception {
+        mockMvc.perform(get("/api/games"))
+                .andExpect(status().isUnauthorized());
+    }
+
+    @DirtiesContext
+    @Test
+    @WithMockUser
     void getGame_ShouldReturnAllGamesAdded() throws Exception {
         Game game1 = new Game("1", "FFXI", "Square Enix", "MMORPG", "PC and PS2", "");
         gameRepoInterface.save(game1);
@@ -85,6 +94,8 @@ class GameIntegrationTest {
                 ));
     }
 
+
+
     @DirtiesContext
     @Test
     @WithMockUser
@@ -118,7 +129,6 @@ class GameIntegrationTest {
                                 """
                 ));
     }
-
 
     @DirtiesContext
     @Test
