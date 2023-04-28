@@ -94,8 +94,6 @@ class GameIntegrationTest {
                 ));
     }
 
-
-
     @DirtiesContext
     @Test
     @WithMockUser
@@ -111,8 +109,7 @@ class GameIntegrationTest {
                                 "note": "Nice",
                                 "imageUrl": ""
                                 }
-                                """
-                        )
+                                """)
                         .with(csrf())
                 )
                 .andExpect(status().isOk())
