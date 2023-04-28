@@ -1,5 +1,6 @@
 package de.robinschatzl.gameapp.backend.game;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +21,7 @@ public class GameController {
     }
 
     @PostMapping
-    public Game addGame(@RequestBody Game gameToAdd) {
+    public Game addGame(@RequestBody @Valid Game gameToAdd) {
         return gameService.addGame(gameToAdd);
     }
 
@@ -35,7 +36,7 @@ public class GameController {
     }
 
     @PutMapping(path = {"{id}/update", "{id}"})
-    public Game editGame(@PathVariable String id,@RequestBody Game gameToEdit) {
+    public Game editGame(@PathVariable String id,@RequestBody @Valid Game gameToEdit) {
         if (!gameToEdit.id().equals(id)) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The Game does not exist");
         }
