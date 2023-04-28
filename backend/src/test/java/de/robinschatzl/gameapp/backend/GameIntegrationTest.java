@@ -229,10 +229,27 @@ class GameIntegrationTest {
 
     @Test
     @DirtiesContext
-    void editGame_ById_expect401_whenAnonymousUser() throws Exception {
-        mockMvc.perform(put("/api/games/add")
+    void addGame_expect401_whenAnonymousUser() throws Exception {
+        mockMvc.perform(post("/api/games/add")
                         .with(csrf())
                 )
                 .andExpect(status().isUnauthorized());
+    }
+
+    @DirtiesContext
+    @Test
+    void editGame_ById_ShouldReturnForbidden_becauseAnonymousUser() throws Exception {
+        mockMvc.perform(put("/api/games/32123/update")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(
+                                """
+                                        {
+                                        "id": "247",
+                                        "title": "Forbidden Game",
+                                        "note": "AnonymousUser kann nicht editieren somit status Code 403"
+                                        }
+                                        """
+                        ))
+                .andExpect(status().isForbidden());
     }
 }
