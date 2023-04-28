@@ -10,7 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.security.test.context.support.WithMockUser;
 
+import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.csrf;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
@@ -42,11 +44,11 @@ class GameIntegrationTest {
     @DirtiesContext
     @Test
     void getGame_ShouldReturnAllGamesAdded() throws Exception {
-        Game game1 = new Game("1", "FFXI", "Square Enix", "MMORPG", "PC and PS2","");
+        Game game1 = new Game("1", "FFXI", "Square Enix", "MMORPG", "PC and PS2", "");
         gameRepoInterface.save(game1);
-        Game game2 = new Game("2", "Doom", "N/A", "N/A", "","");
+        Game game2 = new Game("2", "Doom", "N/A", "N/A", "", "");
         gameRepoInterface.save(game2);
-        Game game3 = new Game("3", "Mario World", "Nintendo", "Jump'n run", "","");
+        Game game3 = new Game("3", "Mario World", "Nintendo", "Jump'n run", "", "");
         gameRepoInterface.save(game3);
 
         mockMvc.perform(get("/api/games"))
@@ -85,6 +87,7 @@ class GameIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void addGame_shouldReturnAddedgame() throws Exception {
         mockMvc.perform(post("/api/games")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -98,7 +101,9 @@ class GameIntegrationTest {
                                 "imageUrl": ""
                                 }
                                 """
-                        ))
+                        )
+                        .with(csrf())
+                )
                 .andExpect(status().isOk())
                 .andExpect(content().json(
                         """
@@ -117,8 +122,9 @@ class GameIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void getGameById_ShouldReturnAddedGame() throws Exception {
-        Game testGame = new Game("42", "Die Antwort auf alles", "", "", "","");
+        Game testGame = new Game("42", "Die Antwort auf alles", "", "", "", "");
         gameRepoInterface.save(testGame);
 
         mockMvc.perform(get("/api/games/42"))
@@ -139,6 +145,7 @@ class GameIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void deleteById_shouldExpectSuccessfulDelete() throws Exception {
         String saveResult = mockMvc.perform(
                         post("/api/games")
@@ -155,6 +162,7 @@ class GameIntegrationTest {
                                                 }
                                                 """
                                 )
+                                .with(csrf())
                 )
                 .andReturn()
                 .getResponse()
@@ -163,7 +171,8 @@ class GameIntegrationTest {
         Game saveResultGame = objectMapper.readValue(saveResult, Game.class);
         String id = saveResultGame.id();
 
-        mockMvc.perform(delete("/api/games/" + id))
+        mockMvc.perform(delete("/api/games/" + id)
+                        .with(csrf()))
                 .andExpect(status().isOk());
 
         mockMvc.perform(get("/api/games"))
@@ -176,6 +185,7 @@ class GameIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void editGame_ById_shouldReturnEditedGame() throws Exception {
         mockMvc.perform(put("/api/games/465/update")
                         .contentType(MediaType.APPLICATION_JSON)
@@ -185,7 +195,8 @@ class GameIntegrationTest {
                                 "title": "ICO"
                                 }
                                 """
-                        ))
+                        )
+                        .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         {
@@ -198,18 +209,30 @@ class GameIntegrationTest {
 
     @DirtiesContext
     @Test
+    @WithMockUser
     void editGame_ById_shouldReturnBadRequest() throws Exception {
         mockMvc.perform(put("/api/games/32123/update")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content(
-                        """
-                                {
-                                "id": "247",
-                                "title": "BadRequest Game",
-                                "note": "id stimmt nicht mit id in url überein, somit sollte Status 400 > BadRequest kommen"
-                                }
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(
                                 """
-                ))
+                                        {
+                                        "id": "247",
+                                        "title": "BadRequest Game",
+                                        "note": "id stimmt nicht mit id in url überein, somit sollte Status 400 > BadRequest kommen"
+                                        }
+                                        """
+                        )
+                        .with(csrf())
+                )
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    @DirtiesContext
+    void editGame_ById_expect401_whenAnonymousUser() throws Exception {
+        mockMvc.perform(put("/api/games/add")
+                        .with(csrf())
+                )
+                .andExpect(status().isUnauthorized());
     }
 }
