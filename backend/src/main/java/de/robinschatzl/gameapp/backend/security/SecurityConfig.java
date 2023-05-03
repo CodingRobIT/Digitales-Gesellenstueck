@@ -24,7 +24,7 @@ public class SecurityConfig {
                         .build(),
                 User.builder()
                         .username("Robin")
-                        .password("$argon2id$v=19$m=16384,t=2,p=1$DxasBe3TzKqOJUUtbd3hcQ$fuYWxxi9Iu8DVa06V+cl/kKUxnXFVqmpT2UNOpz8Bmw")
+                        .password("$argon2id$v=19$m=16384,t=2,p=1$W7wQEYYfoan8j2FuEdrayA$LYbRYSTZtpcj8c0UvjVWCIFdDn0IyHR0Env8l/y/BZ0")
                         .roles()
                         .build()
         );
