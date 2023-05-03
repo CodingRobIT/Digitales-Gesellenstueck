@@ -245,7 +245,7 @@ class GameIntegrationTest {
 
     @DirtiesContext
     @Test
-    void editGame_ById_ShouldReturnForbidden_becauseAnonymousUser() throws Exception {
+    void editGame_ById_ShouldReturn401SinceSecurityUpdate_becauseAnonymousUser() throws Exception {
         mockMvc.perform(put("/api/games/32123/update")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(
@@ -257,6 +257,6 @@ class GameIntegrationTest {
                                         }
                                         """
                         ))
-                .andExpect(status().isForbidden());
+                .andExpect(status().isUnauthorized());
     }
 }
