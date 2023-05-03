@@ -4,31 +4,18 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.argon2.Argon2PasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestAttributeHandler;
 
 @EnableWebSecurity
 @Configuration
 public class SecurityConfig {
-
-    @Bean
-    public InMemoryUserDetailsManager userDetailsService() {
-        return new InMemoryUserDetailsManager(
-                User.builder()
-                        .username("jule")
-                        .password("test")
-                        .roles()
-                        .build(),
-                User.builder()
-                        .username("robin")
-                        .password("$argon2id$v=19$m=16384,t=2,p=1$UUtVDj4g61qLqsYrnYSXSQ$wI/Fc+j5g5SpbYg45VfwW3gOyZ5utnWj3Lor5RmTh0w")
-                        .roles()
-                        .build()
-        );
-    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -37,13 +24,21 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        CsrfTokenRequestAttributeHandler requestHandler = new CsrfTokenRequestAttributeHandler();
+        requestHandler.setCsrfRequestAttributeName(null);
+
         return http
-                .csrf().disable()
+                .csrf(csrf -> csrf
+                        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
+                        .csrfTokenRequestHandler(requestHandler))
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .httpBasic().and()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/user").permitAll()
+                .requestMatchers("/api/users").authenticated()
                 .requestMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
+                .and()
+                .formLogin()
                 .and().build();
     }
 }
