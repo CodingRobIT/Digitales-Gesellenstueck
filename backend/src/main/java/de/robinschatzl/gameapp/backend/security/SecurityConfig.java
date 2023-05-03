@@ -18,13 +18,13 @@ public class SecurityConfig {
     public InMemoryUserDetailsManager userDetailsService() {
         return new InMemoryUserDetailsManager(
                 User.builder()
-                        .username("Jule")
-                        .password("$argon2id$v=19$m=16384,t=2,p=1$DxasBe3TzKqOJUUtbd3hcQ$fuYWxxi9Iu8DVa06V+cl/kKUxnXFVqmpT2UNOpz8Bmw")
+                        .username("jule")
+                        .password("test")
                         .roles()
                         .build(),
                 User.builder()
-                        .username("Robin")
-                        .password("$argon2id$v=19$m=16384,t=2,p=1$W7wQEYYfoan8j2FuEdrayA$LYbRYSTZtpcj8c0UvjVWCIFdDn0IyHR0Env8l/y/BZ0")
+                        .username("robin")
+                        .password("$argon2id$v=19$m=16384,t=2,p=1$UUtVDj4g61qLqsYrnYSXSQ$wI/Fc+j5g5SpbYg45VfwW3gOyZ5utnWj3Lor5RmTh0w")
                         .roles()
                         .build()
         );
@@ -44,8 +44,6 @@ public class SecurityConfig {
                 .requestMatchers("/api/user").permitAll()
                 .requestMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
-                .and()
-                .formLogin()
                 .and().build();
     }
 }
