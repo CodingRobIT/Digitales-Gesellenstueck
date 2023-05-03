@@ -20,12 +20,12 @@ public class SecurityConfig {
         return new InMemoryUserDetailsManager(
                 User.builder()
                         .username("Jule")
-                        .password("test")
+                        .password("$argon2id$v=19$m=16384,t=2,p=1$DxasBe3TzKqOJUUtbd3hcQ$fuYWxxi9Iu8DVa06V+cl/kKUxnXFVqmpT2UNOpz8Bmw")
                         .roles()
                         .build(),
                 User.builder()
                         .username("Robin")
-                        .password("test")
+                        .password("$argon2id$v=19$m=16384,t=2,p=1$DxasBe3TzKqOJUUtbd3hcQ$fuYWxxi9Iu8DVa06V+cl/kKUxnXFVqmpT2UNOpz8Bmw")
                         .roles()
                         .build()
         );
