@@ -20,12 +20,12 @@ public class SecurityConfig {
                 User.builder()
                         .username("Jule")
                         .password("test")
-                        .roles("BASIC")
+                        .roles()
                         .build(),
                 User.builder()
                         .username("Robin")
                         .password("test")
-                        .roles("ADMIN")
+                        .roles()
                         .build()
         );
     }
