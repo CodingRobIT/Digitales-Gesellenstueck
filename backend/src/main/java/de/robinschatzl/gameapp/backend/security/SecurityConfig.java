@@ -18,7 +18,7 @@ public class SecurityConfig {
     public InMemoryUserDetailsManager userDetailsService() {
         return new InMemoryUserDetailsManager(
                 User.builder()
-                        .username("backup")
+                        .username("Jule")
                         .password("test")
                         .roles("BASIC")
                         .build(),
