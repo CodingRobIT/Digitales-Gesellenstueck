@@ -30,6 +30,7 @@ function App() {
                                element={<AddGame addGame={addGame}/>}/>
                         <Route path="/games/:id"
                                element={<GameDetails deleteGame={deleteGame}/>}/>
+                        <Route path="/"/>
                     </Route>
                 </Routes>
             </div>
