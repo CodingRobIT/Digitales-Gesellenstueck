@@ -57,8 +57,8 @@ export default function LoginPage(props: Props) {
                         maxWidth: "200px",
                         mx: "auto",
                         "&:hover": {
-                            color: "snow",
-                            bgcolor: "#119D13"
+                            color: "black",
+                            bgcolor: "deepskyblue"
                         },
                     }}>
                 Login
