@@ -2,7 +2,6 @@ import {Alert, Button, TextField} from "@mui/material";
 import {styled} from "@mui/material/styles";
 import React, {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {toast} from "react-toastify";
 import useUser from "../customHooks/useUser";
 
 const FormContainer = styled('form')({

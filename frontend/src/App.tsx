@@ -13,7 +13,7 @@ import {LoginPage} from "./components/LoginPage";
 
 function App() {
 
-    const {login, isLoggedIn} = useUser();
+    const {login, isLoggedIn, user} = useUser();
     const {games, addGame, deleteGame} = useGames();
 
 
@@ -24,7 +24,7 @@ function App() {
                 <Routes>
                     <Route path="/login" element={<LoginPage onLogin={login}/>}/>
 
-                    <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn}/>}>
+                    <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
                         <Route element={<Navigate to="/games"/>}/>
                         <Route path="/games"
                                element={<GameGallery games={games}/>}/>
