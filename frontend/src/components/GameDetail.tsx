@@ -1,6 +1,6 @@
 import {useNavigate} from "react-router-dom";
 import {Box, Button, Card, CardContent, CardHeader, TextField, Typography} from "@mui/material";
-import useGameDetail from "./customHooks/useGameDetail";
+import useGameDetail from "../customHooks/useGameDetail";
 
 type GameDetailProps = {
     deleteGame: (id: string) => void;

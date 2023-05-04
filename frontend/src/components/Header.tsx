@@ -1,6 +1,6 @@
 import {Link} from "react-router-dom";
 import {AppBar, Toolbar, Typography, Button} from "@mui/material";
-import './Header.css'
+import '../Header.css'
 
 export default function Header() {
     return (

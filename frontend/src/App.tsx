@@ -1,14 +1,14 @@
 import React from 'react';
-import Header from "./Header"
+import Header from "./components/Header"
 import './App.css';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import GameGallery from "./components/GameGallery";
 import useGames from "./customHooks/useGames";
-import AddGame from "./AddGame";
-import GameDetails from "./GameDetail";
-import LoginPage from "./LoginPage";
+import AddGame from "./components/AddGame";
+import GameDetails from "./components/GameDetail";
+import LoginPage from "./components/LoginPage";
 import useUser from "./customHooks/useUser";
-import ProtectedRoutes from "./ProtectedRoutes";
+import ProtectedRoutes from "./components/ProtectedRoutes";
 
 function App() {
 
