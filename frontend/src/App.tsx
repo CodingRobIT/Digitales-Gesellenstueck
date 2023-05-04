@@ -8,11 +8,12 @@ import AddGame from "./AddGame";
 import GameDetails from "./GameDetail";
 import LoginPage from "./LoginPage";
 import useUser from "./customHooks/useUser";
+import ProtectedRoutes from "./ProtectedRoutes";
 
 function App() {
 
-    const {login} = useUser()
-    const {games , addGame, deleteGame} = useGames()
+    const {user, login} = useUser()
+    const {games, addGame, deleteGame} = useGames()
 
     return (
         <BrowserRouter>
@@ -20,13 +21,16 @@ function App() {
                 <Header/>
                 <Routes>
                     <Route path="/login" element={<LoginPage onLogin={login}/>}/>
-                    <Route element={<Navigate to="/games"/>}/>
-                    <Route path="/games"
-                           element={<GameGallery games={games}/>}/>
-                    <Route path="/games/add"
-                    element={<AddGame addGame={addGame}/>}/>
-                    <Route path="/games/:id"
-                           element={<GameDetails deleteGame={deleteGame}/>}/>
+
+                    <Route element={<ProtectedRoutes user={user}/>}>
+                        <Route element={<Navigate to="/games"/>}/>
+                        <Route path="/games"
+                               element={<GameGallery games={games}/>}/>
+                        <Route path="/games/add"
+                               element={<AddGame addGame={addGame}/>}/>
+                        <Route path="/games/:id"
+                               element={<GameDetails deleteGame={deleteGame}/>}/>
+                    </Route>
                 </Routes>
             </div>
         </BrowserRouter>
