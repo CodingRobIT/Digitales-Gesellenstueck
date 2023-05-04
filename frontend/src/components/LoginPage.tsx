@@ -10,10 +10,10 @@ const FormContainer = styled('form')({
 });
 
 type Props = {
-    onLogin: (username: string, password: string) => Promise<void>
+    onLogin: (username: string, password: string) => Promise<boolean>
 }
 
-export default function LoginPage(props: Props) {
+export const LoginPage = (props: Props) => {
 
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')

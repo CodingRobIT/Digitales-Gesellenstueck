@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Header from "./components/Header"
 import './App.css';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
@@ -8,12 +8,14 @@ import AddGame from "./components/AddGame";
 import GameDetails from "./components/GameDetail";
 import useUser from "./customHooks/useUser";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-import LoginPage from "./components/LoginPage";
+import {LoginPage} from "./components/LoginPage";
+
 
 function App() {
 
-    const {user, login} = useUser()
-    const {games, addGame, deleteGame} = useGames()
+    const {login, isLoggedIn} = useUser();
+    const {games, addGame, deleteGame, loadAllGames} = useGames();
+
 
     return (
         <BrowserRouter>
@@ -22,7 +24,7 @@ function App() {
                 <Routes>
                     <Route path="/login" element={<LoginPage onLogin={login}/>}/>
 
-                    <Route element={<ProtectedRoutes user={user}/>}>
+                    <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn}/>}>
                         <Route element={<Navigate to="/games"/>}/>
                         <Route path="/games"
                                element={<GameGallery games={games}/>}/>
@@ -30,7 +32,7 @@ function App() {
                                element={<AddGame addGame={addGame}/>}/>
                         <Route path="/games/:id"
                                element={<GameDetails deleteGame={deleteGame}/>}/>
-                        <Route path="/"/>
+                        <Route path="/" element={<Navigate to="/games"/>}/>
                     </Route>
                 </Routes>
             </div>
