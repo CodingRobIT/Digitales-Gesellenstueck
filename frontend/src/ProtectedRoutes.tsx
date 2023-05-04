@@ -1,7 +1,7 @@
 import {Navigate, Outlet} from "react-router-dom";
 
 type Props = {
-    user: string
+    user: string | undefined
 }
 
 export default function ProtectedRoutes(props: Props) {
