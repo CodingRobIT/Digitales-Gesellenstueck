@@ -1,4 +1,3 @@
-import React, {useEffect} from 'react';
 import Header from "./components/Header"
 import './App.css';
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
@@ -13,7 +12,7 @@ import {LoginPage} from "./components/LoginPage";
 
 function App() {
 
-    const {login, isLoggedIn, user} = useUser();
+    const {login, isLoggedIn} = useUser();
     const {games, addGame, deleteGame} = useGames();
 
 

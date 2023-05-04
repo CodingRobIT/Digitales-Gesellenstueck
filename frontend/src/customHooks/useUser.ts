@@ -1,12 +1,11 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {toast} from "react-toastify";
 import {User} from "../model/User";
 
 export default function useUser() {
     const [user, setUser] = useState<User>()
     const [error, setError] = useState<boolean>();
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [username , setUsername] = useState("");
 
 
@@ -21,12 +20,10 @@ export default function useUser() {
                 setIsLoggedIn(true)
                 setUsername(username)
                 return true;
-                toast.success("Erfolgreich eingeloggt")
             })
             .catch((error) => {
                 console.error(error);
                 return false;
-                toast.error("Login fehlgeschlagen!");
             })
     }
 
