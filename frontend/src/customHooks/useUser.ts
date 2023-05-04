@@ -8,7 +8,6 @@ export default function useUser() {
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const [username , setUsername] = useState("");
 
-
     const login = async (username: string, password: string)=> {
         return await axios.post("/api/users/login", undefined, {
             withCredentials: true,

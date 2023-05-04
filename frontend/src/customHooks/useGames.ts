@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export default function useGames() {
 
-    const [games , setGames] = useState<Game[]>([])
+    const [games , setGames] = useState<Game[]>([]);
     const [searchTerm] = useState('');
     const filteredGames = games.filter((game) =>
         game.title.toLowerCase().includes(searchTerm.toLowerCase()));
@@ -18,7 +18,7 @@ export default function useGames() {
             })
             .catch((error) => {
                 console.error(error)
-            })
+            });
     }
 
     function addGame(newGame: NewGame) {

@@ -1,6 +1,5 @@
 package de.robinschatzl.gameapp.backend.security;
 
-import jakarta.servlet.http.HttpSession;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
