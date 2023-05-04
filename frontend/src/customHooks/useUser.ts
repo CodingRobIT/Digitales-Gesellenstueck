@@ -1,5 +1,7 @@
 import {useState} from "react";
 import axios from "axios";
+import {toast} from "react-toastify";
+import error = toast.error;
 
 
 export default function useUser() {
@@ -9,6 +11,11 @@ export default function useUser() {
         return axios.post("/api/users/login", undefined, {auth: {username, password}})
             .then(response => {
                 setUser(response.data)
+                toast.success("Erfolgreich eingeloggt")
+            })
+            .catch((error) => {
+                console.error('Login fehlgeschlagen', error);
+                toast.error("Login fehlgeschlagen!");
             })
     }
 
