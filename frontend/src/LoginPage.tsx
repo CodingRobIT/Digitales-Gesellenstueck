@@ -30,7 +30,7 @@ export default function LoginPage(props: Props) {
     return (
         <FormContainer className="form-container" onSubmit={onSubmit} sx={{maxWidth: 400, mx: "auto"}}>
             <TextField id="input-with-sx"
-                       label="Username"
+                       label="Username (enter test as dummy user)"
                        variant="filled"
                        value={username}
                        InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
@@ -39,7 +39,7 @@ export default function LoginPage(props: Props) {
             />
 
             <TextField
-                label="Password"
+                label="Password (enter test as dummy password)"
                 variant="filled"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
@@ -63,6 +63,7 @@ export default function LoginPage(props: Props) {
                     }}>
                 Login
             </Button>
+
         </FormContainer>
 
     )
