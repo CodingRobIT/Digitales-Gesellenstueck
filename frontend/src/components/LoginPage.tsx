@@ -72,7 +72,7 @@ export const LoginPage = (props: Props) => {
                 Login
             </Button>
             {error &&
-                <Alert severity="error" className="no-book-found">
+                <Alert severity="error" className="no-game-found">
                     <h3>Passwort oder Username ungültig!</h3>
                 </Alert>
             }
