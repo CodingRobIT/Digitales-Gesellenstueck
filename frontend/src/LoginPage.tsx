@@ -1,22 +1,23 @@
-import {Box, TextField} from "@mui/material";
+import {Box, Button, TextField} from "@mui/material";
 import {AccountCircle} from "@mui/icons-material";
 import {styled} from "@mui/material/styles";
-import {FormEvent, useState} from "react";
+import React, {FormEvent, useState} from "react";
 import axios from "axios";
 
 const FormContainer = styled('form')({
     display: 'flex',
     flexDirection: 'column',
     gap: '1rem',
-    maxWidth: '400px',
-    margin: '0 auto',
+    // maxWidth: '800px',
+    // margin: '0 auto',
 });
+
 export default function LoginPage() {
 
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
-    function onSubmit(event: FormEvent<HTMLFormElement>){
+    function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
         axios.post("/api/user/login", undefined, {auth: {username, password}})
@@ -26,24 +27,44 @@ export default function LoginPage() {
     }
 
     return (
+        <FormContainer className="form-container" onSubmit={onSubmit} sx={{maxWidth: 400, mx: "auto"}}>
+            {/*<Box sx={{display: 'flex', alignItems: 'flex-end', mx: "auto"}}>*/}
+            {/*<AccountCircle sx={{color: 'snow', mr: 0, my: 2}}/>*/}
+            <TextField id="input-with-sx"
+                       label="Username"
+                       variant="filled"
+                       value={username}
+                       InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
+                       InputLabelProps={{sx: {color: "Snow"}}}
+                       onChange={(event) => setUsername(event.target.value)}
+            />
+                {/*</Box>*/}
 
-        <form onSubmit={onSubmit}>
-            <input value={username} placeholder='username' type='text' onChange={e => setUsername(e.target.value)}/>
-            <input value={password} placeholder='password' type='password' onChange={e => setPassword(e.target.value)}/>
-            <button type='submit'>Login</button>
-        </form>
+            <TextField
+                label="Password"
+                variant="filled"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
+                InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}, type: "password"}}
+                InputLabelProps={{sx: {color: "Snow"}}}
+            />
 
-        // <FormContainer className="form-container" onSubmit={onsubmit} sx={{maxWidth: 600, mx: "auto"}}>
-        //     <Box sx={{display: 'flex', alignItems: 'flex-end'}}>
-        //         <AccountCircle sx={{color: 'action.active', mr: 1, my: 0.5}}/>
-        //         <TextField id="input-with-sx"
-        //                    label="User Name"
-        //                    variant="filled"
-        //                    InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
-        //                    InputLabelProps={{sx: {color: "Snow"}}}
-        //                    onSubmit={}
-        //         />
-        //     </Box>
-        // </FormContainer>
+            <Button variant="contained"
+                    type="submit"
+                    sx={{
+                        bgcolor: "black",
+                        color: "green",
+                        fontWeight: "bold",
+                        minWidth: "100px",
+                        maxWidth: "200px",
+                        mx: "auto",
+                        "&:hover": {
+                            color: "snow",
+                            bgcolor: "#119D13"
+                        },
+                    }}>
+                Login
+            </Button>
+        </FormContainer>
     )
 }
