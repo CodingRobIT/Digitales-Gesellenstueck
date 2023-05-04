@@ -26,7 +26,7 @@ export default function useGames() {
     function addGame(newGame: NewGame) {
         axios.post('/api/games', newGame)
             .then(() => {
-                setGames(games.filter((games) => newGame))
+                setGames(games.filter(() => newGame))
                 loadAllGames();
                 toast.success('Game wurde erfolgreich hinzugefügt!');
             })
