@@ -7,9 +7,11 @@ import useGames from "./customHooks/useGames";
 import AddGame from "./AddGame";
 import GameDetails from "./GameDetail";
 import LoginPage from "./LoginPage";
+import useUser from "./customHooks/useUser";
 
 function App() {
 
+    const {login} = useUser()
     const {games , addGame, deleteGame} = useGames()
 
     return (
@@ -17,7 +19,7 @@ function App() {
             <div className="App">
                 <Header/>
                 <Routes>
-                    <Route path="/login" element={<LoginPage />}/>
+                    <Route path="/login" element={<LoginPage onLogin={login}/>}/>
                     <Route element={<Navigate to="/games"/>}/>
                     <Route path="/games"
                            element={<GameGallery games={games}/>}/>
