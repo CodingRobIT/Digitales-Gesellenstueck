@@ -1,7 +1,7 @@
 import {Button, TextField} from "@mui/material";
 import {styled} from "@mui/material/styles";
 import React, {FormEvent, useState} from "react";
-import axios from "axios";
+import {useNavigate} from "react-router-dom";
 
 const FormContainer = styled('form')({
     display: 'flex',
@@ -9,18 +9,22 @@ const FormContainer = styled('form')({
     gap: '1rem',
 });
 
-export default function LoginPage() {
+type Props = {
+    onLogin: (username: string, password: string) => Promise<void>
+}
+
+export default function LoginPage(props: Props) {
 
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
+    const  navigate = useNavigate()
+
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
 
-        axios.post("/api/user/login", undefined, {auth: {username, password}})
-            .then(response => {
-                console.log(response.data)
-            })
+        props.onLogin(username, password)
+            .then(() => {navigate("/games")})
     }
 
     return (
