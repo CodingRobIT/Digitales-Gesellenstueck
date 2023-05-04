@@ -1,5 +1,4 @@
-import {Box, Button, TextField} from "@mui/material";
-import {AccountCircle} from "@mui/icons-material";
+import {Button, TextField} from "@mui/material";
 import {styled} from "@mui/material/styles";
 import React, {FormEvent, useState} from "react";
 import axios from "axios";
@@ -8,8 +7,6 @@ const FormContainer = styled('form')({
     display: 'flex',
     flexDirection: 'column',
     gap: '1rem',
-    // maxWidth: '800px',
-    // margin: '0 auto',
 });
 
 export default function LoginPage() {
@@ -28,8 +25,6 @@ export default function LoginPage() {
 
     return (
         <FormContainer className="form-container" onSubmit={onSubmit} sx={{maxWidth: 400, mx: "auto"}}>
-            {/*<Box sx={{display: 'flex', alignItems: 'flex-end', mx: "auto"}}>*/}
-            {/*<AccountCircle sx={{color: 'snow', mr: 0, my: 2}}/>*/}
             <TextField id="input-with-sx"
                        label="Username"
                        variant="filled"
@@ -38,7 +33,6 @@ export default function LoginPage() {
                        InputLabelProps={{sx: {color: "Snow"}}}
                        onChange={(event) => setUsername(event.target.value)}
             />
-                {/*</Box>*/}
 
             <TextField
                 label="Password"
@@ -66,5 +60,6 @@ export default function LoginPage() {
                 Login
             </Button>
         </FormContainer>
+
     )
 }
