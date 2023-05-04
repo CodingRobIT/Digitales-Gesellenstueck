@@ -1,10 +1,11 @@
 import {Game} from "../model/Game";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import useGames from "../customHooks/useGames";
 import GameCard from "./GameCard";
 import {TextField} from "@mui/material";
 import './GameGallery.css'
 import {ToastContainer} from "react-toastify";
+import useUser from "../customHooks/useUser";
 
 type GameGalleryProps = {
     games: Game[],
@@ -12,12 +13,21 @@ type GameGalleryProps = {
 
 //eslint-disable-next-line
 export default function GameGallery(props: GameGalleryProps) {
-    const {games} = useGames()
+    const {isLoggedIn} = useUser();
+    const {games,loadAllGames} = useGames()
     const [searchTerm, setSearchTerm] = useState("")
 
     const filteredGames = games.filter((game) =>
         game.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    useEffect(() => {
+        loadAllGames().catch(
+            (response) => {
+                console.error(response)
+            }
+        )
+    }, [isLoggedIn]);
 
     return (
         <div className="game-gallery">

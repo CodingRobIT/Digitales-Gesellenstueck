@@ -5,6 +5,7 @@ import {User} from "../model/User";
 
 export default function useUser() {
     const [user, setUser] = useState<User>()
+    const [error, setError] = useState<boolean>();
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username , setUsername] = useState("");
 
@@ -47,10 +48,10 @@ export default function useUser() {
         loadUser(username).catch((e) => console.error(e));
     }, [username]);
 
-    // useEffect(() => {
-    //
-    //     console.log(user?.id);
-    // }, [user]);
+    useEffect(() => {
+
+        console.log(user?.id);
+    }, [user]);
 
     const loadUser = async (username: string) => {
         return await axios.get(`http://localhost:8080/api/users/${username}`, {
@@ -63,6 +64,6 @@ export default function useUser() {
         })
     }
 
-    return {user, login, isLoggedIn}
+    return {user, login, isLoggedIn, error, setError}
 
 }

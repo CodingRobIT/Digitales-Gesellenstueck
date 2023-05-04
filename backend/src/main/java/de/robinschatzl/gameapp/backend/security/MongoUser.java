@@ -13,7 +13,6 @@ public record MongoUser(
         @NotBlank
         @Size(min = 2, max = 40)
         String username,
-
         @NotBlank
         @Size(min = 4, max = 128)
         String password

@@ -36,10 +36,4 @@ public class UserController {
                 .getName();
     }
 
-    @PostMapping("/logout")
-    public void logout(HttpSession httpSession) {
-        httpSession.invalidate();
-        SecurityContextHolder
-                .clearContext();
-    }
 }

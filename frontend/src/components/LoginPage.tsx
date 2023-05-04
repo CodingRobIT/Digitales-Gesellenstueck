@@ -1,7 +1,9 @@
-import {Button, TextField} from "@mui/material";
+import {Alert, Button, TextField} from "@mui/material";
 import {styled} from "@mui/material/styles";
 import React, {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import {toast} from "react-toastify";
+import useUser from "../customHooks/useUser";
 
 const FormContainer = styled('form')({
     display: 'flex',
@@ -17,14 +19,21 @@ export const LoginPage = (props: Props) => {
 
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-
+    const {error, setError} = useUser();
     const  navigate = useNavigate()
 
     function onSubmit(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-
+        event.preventDefault();
         props.onLogin(username, password)
-            .then(() => {navigate("/games")})
+            .then((s) => {
+                if (s) {
+                    navigate("/games");
+
+                } else {
+                    setError(true);
+                    console.log("invalid")
+                }
+            })
     }
 
     return (
@@ -63,7 +72,11 @@ export const LoginPage = (props: Props) => {
                     }}>
                 Login
             </Button>
-
+            {error &&
+                <Alert severity="error" className="no-book-found">
+                    <h3>Passwort oder Username ungültig!</h3>
+                </Alert>
+            }
         </FormContainer>
 
     )

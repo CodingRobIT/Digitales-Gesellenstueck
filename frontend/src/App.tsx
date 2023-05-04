@@ -14,7 +14,7 @@ import {LoginPage} from "./components/LoginPage";
 function App() {
 
     const {login, isLoggedIn} = useUser();
-    const {games, addGame, deleteGame, loadAllGames} = useGames();
+    const {games, addGame, deleteGame} = useGames();
 
 
     return (

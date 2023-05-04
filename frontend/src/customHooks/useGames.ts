@@ -8,12 +8,10 @@ export default function useGames() {
 
     const [games , setGames] = useState<Game[]>([])
     const [searchTerm] = useState('');
-    const filteredGames = games.filter((game) => game.title.toLowerCase().includes(searchTerm.toLowerCase()));
+    const filteredGames = games.filter((game) =>
+        game.title.toLowerCase().includes(searchTerm.toLowerCase()));
 
-    useEffect(() => {
-        loadAllGames()
-    }, [])
-    function loadAllGames() {
+    const loadAllGames = async () => {
         axios.get("/api/games")
             .then((getAllGamesResponse) => {
                 setGames(getAllGamesResponse.data)
@@ -22,6 +20,17 @@ export default function useGames() {
                 console.error(error)
             })
     }
+
+    // const loadAllGames = async () => {
+    //     axios.get("/api/games", {
+    //         withCredentials: true
+    //     }).then((response) => {
+    //         setGames(response.data)
+    //     })
+    //         .catch((error) => {
+    //             console.error(error);
+    //         })
+    // };
 
     function addGame(newGame: NewGame) {
         axios.post('/api/games', newGame)
