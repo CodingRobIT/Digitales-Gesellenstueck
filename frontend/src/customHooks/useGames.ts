@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useState} from "react";
 import axios from "axios";
 import {Game, NewGame} from "../model/Game"
 import {toast} from "react-toastify";
@@ -20,17 +20,6 @@ export default function useGames() {
                 console.error(error)
             })
     }
-
-    // const loadAllGames = async () => {
-    //     axios.get("/api/games", {
-    //         withCredentials: true
-    //     }).then((response) => {
-    //         setGames(response.data)
-    //     })
-    //         .catch((error) => {
-    //             console.error(error);
-    //         })
-    // };
 
     function addGame(newGame: NewGame) {
         axios.post('/api/games', newGame)
