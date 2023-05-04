@@ -33,7 +33,7 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.ALWAYS))
                 .httpBasic().and()
                 .authorizeHttpRequests()
-                .requestMatchers("/api/users").authenticated()
+                .requestMatchers("/api/users/login").permitAll()
                 .requestMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
                 .and().build();
