@@ -6,9 +6,9 @@ import GameGallery from "./components/GameGallery";
 import useGames from "./customHooks/useGames";
 import AddGame from "./components/AddGame";
 import GameDetails from "./components/GameDetail";
-import LoginPage from "./components/LoginPage";
 import useUser from "./customHooks/useUser";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import LoginPage from "./components/LoginPage";
 
 function App() {
 
