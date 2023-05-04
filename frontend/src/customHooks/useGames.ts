@@ -47,6 +47,6 @@ export default function useGames() {
         })
     }
 
-    return {games: filteredGames, searchTerm, addGame , deleteGame}
+    return {games: filteredGames, searchTerm, addGame , deleteGame, loadAllGames}
 
 }
