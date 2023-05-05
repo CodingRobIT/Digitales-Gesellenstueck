@@ -27,6 +27,7 @@ export default function GameGallery(props: GameGalleryProps) {
                 console.error(response)
             }
         )
+        //eslint-disable-next-line
     }, [isLoggedIn]);
 
     return (
