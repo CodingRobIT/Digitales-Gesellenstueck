@@ -33,8 +33,16 @@ export default function useGames() {
         }
     }
 
-    function handleAddGame(newGame: NewGame) {
-        addGame(newGame);
+    async function handleAddGame(newGame: NewGame) {
+        try {
+            await addGame(newGame);
+            setGames(games.filter(() => newGame));
+            loadAllGames();
+            toast.success('Game wurde erfolgreich hinzugefügt!');
+        } catch (error) {
+            console.error('POST auf /api/games nicht erfolgreich!!!', error);
+            toast.error('Es gab ein Problem beim Hinzufügen des Spiels!');
+        }
     }
 
     function deleteGame(id: string) {
