@@ -12,7 +12,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 function App() {
 
     const {login, isLoggedIn} = useUser();
-    const {games,deleteGame, handleAddGame} = useGames();
+    const {games,deleteGame, addGame} = useGames();
 
 
     return (
@@ -27,7 +27,7 @@ function App() {
                         <Route path="/games"
                                element={<GameGallery games={games}/>}/>
                         <Route path="/games/add"
-                               element={<AddGame addGame={handleAddGame}/>}/>
+                               element={<AddGame addGame={addGame}/>}/>
                         <Route path="/games/:id"
                                element={<GameDetails deleteGame={deleteGame}/>}/>
                         <Route path="/" element={<Navigate to="/games"/>}/>
