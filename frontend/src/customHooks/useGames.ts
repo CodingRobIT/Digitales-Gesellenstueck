@@ -25,12 +25,16 @@ export default function useGames() {
         try {
             await axios.post('/api/games', newGame);
             setGames(games.filter(() => newGame));
-            loadAllGames();
+            await loadAllGames();
             toast.success('Game wurde erfolgreich hinzugefügt!');
         } catch (error) {
             console.error('POST auf /api/games nicht erfolgreich!!!', error);
             toast.error('Es gab ein Problem beim Hinzufügen des Spiels!');
         }
+    }
+
+    function handleAddGame(newGame: NewGame) {
+        addGame(newGame);
     }
 
     function deleteGame(id: string) {
@@ -44,6 +48,6 @@ export default function useGames() {
         })
     }
 
-    return {games: filteredGames, searchTerm, addGame , deleteGame, loadAllGames}
+    return {games: filteredGames, searchTerm, addGame , deleteGame, loadAllGames, handleAddGame}
 
 }

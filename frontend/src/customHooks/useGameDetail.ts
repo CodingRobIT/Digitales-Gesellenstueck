@@ -59,7 +59,7 @@ export default function useGameDetail() {
             await axios.put("/api/games/" + id, editedGame);
             setGames(games.filter(() => editedGame));
             setEditing(false);
-            loadAllGames();
+            await loadAllGames();
             toast.success("Game updated successfully");
             navigate('/games');
         } catch (error) {
