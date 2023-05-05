@@ -21,18 +21,19 @@ export const LoginPage = (props: Props) => {
     const {error, setError} = useUser();
     const  navigate = useNavigate()
 
-    function onSubmit(event: FormEvent<HTMLFormElement>) {
+    async function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        props.onLogin(username, password)
-            .then((s) => {
-                if (s) {
-                    navigate("/games");
-
-                } else {
-                    setError(true);
-                    console.log("invalid")
-                }
-            })
+        try {
+            const success = await props.onLogin(username, password);
+            if (success) {
+                navigate("/games");
+            } else {
+                setError(true);
+                console.log("invalid");
+            }
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (

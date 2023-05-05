@@ -53,23 +53,20 @@ export default function useGameDetail() {
         }))
     }
 
-    function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        axios
-            .put("/api/games/" + id, editedGame)
-            .then(() => {
-                setGames(games.filter(() => editedGame));
-                setEditing(false);
-                loadAllGames();
-                toast.success("Game updated successfully");
-                navigate('/games');
-            })
-            .catch(() => {
-                toast.error("Failed to update Game");
-                navigate('/games');
-            });
-
-
+        try {
+            await axios.put("/api/games/" + id, editedGame);
+            setGames(games.filter(() => editedGame));
+            setEditing(false);
+            loadAllGames();
+            toast.success("Game updated successfully");
+            navigate('/games');
+        } catch (error) {
+            console.error(error);
+            toast.error("Failed to update Game");
+            navigate('/games');
+        }
     }
 
     return {game, editedGame, editing, handleFormSubmit, editOnClick, gameInputChange}

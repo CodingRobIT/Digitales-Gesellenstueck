@@ -21,17 +21,16 @@ export default function useGames() {
             });
     }
 
-    function addGame(newGame: NewGame) {
-        axios.post('/api/games', newGame)
-            .then(() => {
-                setGames(games.filter(() => newGame))
-                loadAllGames();
-                toast.success('Game wurde erfolgreich hinzugefügt!');
-            })
-            .catch((error) => {
-                console.error('POST auf /api/games nicht erfolgreich!!!', error);
-                toast.error('Es gab ein Problem beim Hinzufügen des Spiels!');
-            });
+    async function addGame(newGame: NewGame) {
+        try {
+            await axios.post('/api/games', newGame);
+            setGames(games.filter(() => newGame));
+            loadAllGames();
+            toast.success('Game wurde erfolgreich hinzugefügt!');
+        } catch (error) {
+            console.error('POST auf /api/games nicht erfolgreich!!!', error);
+            toast.error('Es gab ein Problem beim Hinzufügen des Spiels!');
+        }
     }
 
     function deleteGame(id: string) {
