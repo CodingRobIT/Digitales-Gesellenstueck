@@ -2,7 +2,7 @@ import React, { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {Button, TextField} from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { NewGame } from './model/Game';
+import { NewGame } from '../model/Game';
 import './AddGame.css'
 
 type AddGameProps = {

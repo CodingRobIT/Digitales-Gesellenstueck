@@ -2,9 +2,14 @@ import React, {useEffect, useState} from "react";
 import {Game} from "../model/Game";
 import axios from "axios";
 import {toast} from "react-toastify";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import useGames from "./useGames";
 
 export default function useGameDetail() {
+
+    const navigate = useNavigate();
+    const {loadAllGames} = useGames()
+    const [games , setGames] = useState<Game[]>([])
     const [game, setGame] = useState<Game>();
     const {id} = useParams<{ id: string }>();
     const [editing, setEditing] = useState(false);
@@ -48,19 +53,20 @@ export default function useGameDetail() {
         }))
     }
 
-    function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
+    async function handleFormSubmit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        axios
-            .put("/api/games/" + id, editedGame)
-            .then((response) => {
-                setGame(response.data);
-                setEditing(false);
-                window.location.reload();
-                toast.success("Game updated successfully");
-            })
-            .catch(() => {
-                toast.error("Failed to update Game");
-            });
+        try {
+            await axios.put("/api/games/" + id, editedGame);
+            setGames(games.filter(() => editedGame));
+            setEditing(false);
+            await loadAllGames();
+            toast.success("Game updated successfully");
+            navigate('/games');
+        } catch (error) {
+            console.error(error);
+            toast.error("Failed to update Game");
+            navigate('/games');
+        }
     }
 
     return {game, editedGame, editing, handleFormSubmit, editOnClick, gameInputChange}
