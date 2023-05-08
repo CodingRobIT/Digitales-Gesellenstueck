@@ -1,5 +1,6 @@
 package de.robinschatzl.gameapp.backend.security;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +34,12 @@ public class UserController {
                 .getContext()
                 .getAuthentication()
                 .getName();
+    }
+
+    @PostMapping("/logout")
+    public void logout(HttpSession httpSession) {
+        httpSession.invalidate();
+        SecurityContextHolder.clearContext();
     }
 
 }

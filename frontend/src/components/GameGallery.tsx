@@ -5,7 +5,6 @@ import GameCard from "./GameCard";
 import {TextField} from "@mui/material";
 import './GameGallery.css'
 import {ToastContainer} from "react-toastify";
-import useUser from "../customHooks/useUser";
 
 type GameGalleryProps = {
     games: Game[],
@@ -13,7 +12,6 @@ type GameGalleryProps = {
 
 //eslint-disable-next-line
 export default function GameGallery(props: GameGalleryProps) {
-    const {isLoggedIn} = useUser();
     const {games,loadAllGames} = useGames()
     const [searchTerm, setSearchTerm] = useState("")
 
@@ -28,7 +26,7 @@ export default function GameGallery(props: GameGalleryProps) {
             }
         )
         //eslint-disable-next-line
-    }, [isLoggedIn]);
+    }, []);
 
     return (
         <div className="game-gallery">

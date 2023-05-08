@@ -1,8 +1,25 @@
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {AppBar, Toolbar, Typography, Button} from "@mui/material";
 import '../Header.css'
+import {useState} from "react";
 
-export default function Header() {
+type Props = {
+    onLogout: () => Promise<void>;
+};
+
+export default function Header(props: Props) {
+
+    const [, setIsLoading] = useState(false);
+    const navigate = useNavigate();
+
+    function handleLogout() {
+        setIsLoading(true);
+        props
+            .onLogout()
+            .then(() => {
+                navigate("/login");
+            })
+    }
     return (
         <AppBar className="header" position="static" sx={{bgcolor: "#1E2432"}}>
             <Toolbar sx={{justifyContent: "center"}}>
@@ -20,6 +37,9 @@ export default function Header() {
                             </Button>
                             <Button color="inherit" component={Link} to="/login">
                                 Login
+                            </Button>
+                            <Button color="inherit" onClick={handleLogout}>
+                                Logout
                             </Button>
                         </Typography>
 

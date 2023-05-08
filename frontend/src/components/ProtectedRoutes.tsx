@@ -1,12 +1,26 @@
-import {Navigate, Outlet} from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
+import {CircularProgress} from "@mui/material";
 
 type Props = {
-    isLoggedIn: boolean
-}
+    user?: string;
+    isLoading: boolean;
+};
 
-export default function ProtectedRoutes(props: Props) {
+export default function ProtectedRoutes({ user, isLoading }: Props) {
+    if (isLoading) {
+        return (
+            <div
+                style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    height: "100vh",
+                }}
+            >
+                <CircularProgress />
+            </div>
+        );
+    }
 
-    return (
-        props.isLoggedIn ? <Outlet /> : <Navigate to={"/login"} />
-    )
+    return user ? <Outlet /> : <Navigate to="/login" />;
 }
