@@ -20,6 +20,7 @@ export default function Header(props: Props) {
                 navigate("/login");
             })
     }
+
     return (
         <AppBar className="header" position="static" sx={{bgcolor: "#1E2432"}}>
             <Toolbar sx={{justifyContent: "center"}}>
@@ -39,7 +40,6 @@ export default function Header(props: Props) {
                                 Logout
                             </Button>
                         </Typography>
-
                     </div>
                 </div>
             </Toolbar>
