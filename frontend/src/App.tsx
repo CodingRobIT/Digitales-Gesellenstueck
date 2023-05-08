@@ -9,7 +9,7 @@ import useUser from "./customHooks/useUser";
 import {LoginPage} from "./components/LoginPage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import {useCallback, useEffect} from "react";
-import LogoutPage from "./components/LogoutPage";
+
 
 function App() {
 
@@ -41,12 +41,11 @@ function App() {
     return (
         <BrowserRouter>
             <div className="App">
-                <Header/>
+                <Header onLogout={handleLogout}/>
                 <Routes>
                     <Route path="/login" element={<LoginPage onLogin={handleLogin}/>}/>
 
                     <Route element={<ProtectedRoutes user={user} isLoading={isLoading} />}>
-                        <Route path="/logout" element={<LogoutPage onLogout={handleLogout} />} />
                         <Route element={<Navigate to="/games"/>}/>
                         <Route path="/games"
                                element={<GameGallery games={games}/>}/>
