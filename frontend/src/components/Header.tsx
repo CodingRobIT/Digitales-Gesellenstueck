@@ -21,6 +21,9 @@ export default function Header() {
                             <Button color="inherit" component={Link} to="/login">
                                 Login
                             </Button>
+                            <Button color="inherit" component={Link} to="/logout">
+                                Logout
+                            </Button>
                         </Typography>
 
                     </div>

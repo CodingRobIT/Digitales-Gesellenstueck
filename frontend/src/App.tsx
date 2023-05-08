@@ -8,21 +8,45 @@ import GameDetails from "./components/GameDetail";
 import useUser from "./customHooks/useUser";
 import {LoginPage} from "./components/LoginPage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
+import {useCallback, useEffect} from "react";
+import LogoutPage from "./components/LogoutPage";
 
 function App() {
 
-    const {login, isLoggedIn} = useUser();
-    const {games,deleteGame, addGame} = useGames();
+    const {games,deleteGame, addGame, loadAllGames} = useGames();
 
+    const memoizedLoadAllGames = useCallback(loadAllGames, [loadAllGames]);
+
+    const { user, login, logout, isLoading } = useUser(memoizedLoadAllGames);
+    useEffect(() => {
+        if (user) {
+
+            loadAllGames();
+        }
+    }, [user,loadAllGames]);
+
+    function handleLogout() {
+        return new Promise<void>((resolve) => {
+            logout();
+            resolve();
+        });
+    }
+
+    function handleLogin(username: string, password: string) {
+        return login(username, password).catch((error) => {
+            console.error('An error occurred during login:', error);
+        });
+    }
 
     return (
         <BrowserRouter>
             <div className="App">
                 <Header/>
                 <Routes>
-                    <Route path="/login" element={<LoginPage onLogin={login}/>}/>
+                    <Route path="/login" element={<LoginPage onLogin={handleLogin}/>}/>
 
-                    <Route element={<ProtectedRoutes isLoggedIn={isLoggedIn} />}>
+                    <Route element={<ProtectedRoutes user={user} isLoading={isLoading} />}>
+                        <Route path="/logout" element={<LogoutPage onLogout={handleLogout} />} />
                         <Route element={<Navigate to="/games"/>}/>
                         <Route path="/games"
                                element={<GameGallery games={games}/>}/>
