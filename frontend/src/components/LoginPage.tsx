@@ -1,8 +1,7 @@
-import {Alert, Button, TextField} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import {styled} from "@mui/material/styles";
 import React, {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import useUser from "../customHooks/useUser";
 
 const FormContainer = styled('form')({
     display: 'flex',
@@ -11,29 +10,22 @@ const FormContainer = styled('form')({
 });
 
 type Props = {
-    onLogin: (username: string, password: string) => Promise<boolean>
+    onLogin: (username: string, password: string) => Promise<void>
 }
 
 export const LoginPage = (props: Props) => {
 
     const [username, setUsername] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-    const {error, setError} = useUser();
+
     const  navigate = useNavigate()
 
-    async function onSubmit(event: FormEvent<HTMLFormElement>) {
+    function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        try {
-            const success = await props.onLogin(username, password);
-            if (success) {
-                navigate("/games");
-            } else {
-                setError(true);
-                console.log("invalid");
-            }
-        } catch (error) {
-            console.error(error);
-        }
+
+        props.onLogin(username, password).then(() => {
+            navigate("/games");
+        });
     }
 
     return (
@@ -72,11 +64,6 @@ export const LoginPage = (props: Props) => {
                     }}>
                 Login
             </Button>
-            {error &&
-                <Alert severity="error" className="no-game-found">
-                    <h3>Passwort oder Username ungültig!</h3>
-                </Alert>
-            }
         </FormContainer>
 
     )
