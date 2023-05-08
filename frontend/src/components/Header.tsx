@@ -35,9 +35,6 @@ export default function Header(props: Props) {
                             <Button color="inherit" component={Link} to="/games/add">
                                 Neues Game Hinzufügen
                             </Button>
-                            <Button color="inherit" component={Link} to="/login">
-                                Login
-                            </Button>
                             <Button color="inherit" onClick={handleLogout}>
                                 Logout
                             </Button>
