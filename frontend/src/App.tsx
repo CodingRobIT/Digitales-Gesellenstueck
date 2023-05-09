@@ -14,8 +14,8 @@ import {useEffect} from "react";
 function App() {
 
     const {games,deleteGame, addGame, loadAllGames} = useGames();
-
     const { user, login, logout, isLoading } = useUser(loadAllGames);
+
     useEffect(() => {
         if (user) {
 
