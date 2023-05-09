@@ -21,6 +21,7 @@ function App() {
 
             loadAllGames();
         }
+        //eslint-disable-next-line
     }, []);
 
     function handleLogout() {
