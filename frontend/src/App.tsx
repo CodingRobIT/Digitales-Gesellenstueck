@@ -8,22 +8,20 @@ import GameDetails from "./components/GameDetail";
 import useUser from "./customHooks/useUser";
 import {LoginPage} from "./components/LoginPage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
-import {useCallback, useEffect} from "react";
+import {useEffect} from "react";
 
 
 function App() {
 
     const {games,deleteGame, addGame, loadAllGames} = useGames();
 
-    const memoizedLoadAllGames = useCallback(loadAllGames, [loadAllGames]);
-
-    const { user, login, logout, isLoading } = useUser(memoizedLoadAllGames);
+    const { user, login, logout, isLoading } = useUser(loadAllGames);
     useEffect(() => {
         if (user) {
 
             loadAllGames();
         }
-    }, [user,loadAllGames]);
+    }, []);
 
     function handleLogout() {
         return new Promise<void>((resolve) => {
