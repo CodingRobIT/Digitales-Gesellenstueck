@@ -37,7 +37,7 @@ export default function useGameDetail() {
                 setEditedGame(response.data);
             })
             .catch(() => {
-                toast.error("Game dose not exist");
+                toast.error("Spiel existiert nicht");
             });
     }
 
@@ -60,11 +60,11 @@ export default function useGameDetail() {
             setGames(games.filter(() => editedGame));
             setEditing(false);
             await loadAllGames();
-            toast.success("Game updated successfully");
+            toast.success("Game erfolgreich bearbeitet");
             navigate('/games');
         } catch (error) {
             console.error(error);
-            toast.error("Failed to update Game");
+            toast.error("Fehler beim update");
             navigate('/games');
         }
     }

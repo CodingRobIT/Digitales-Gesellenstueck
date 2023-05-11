@@ -28,6 +28,8 @@ export default function Header(props: Props) {
                     <Typography variant="h6" component="div" align="center">
                         Die Video Game Library
                     </Typography>
+                    <br/>
+                    <br/>
                     <div>
                         <Typography component="div" align="center">
                             <Button color="inherit" component={Link} to="/games">
