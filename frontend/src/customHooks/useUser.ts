@@ -17,7 +17,7 @@ export default function useUser(loadAllGames: () => void) {
                     }
                 })
                 .catch(() => {
-                    toast.error("Error checking logged-in user:");
+                    toast.error("Kein User gefunden");
                 })
                 .finally(() => {
                     setIsLoading(false);
