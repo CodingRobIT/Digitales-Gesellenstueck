@@ -45,7 +45,6 @@ function App() {
                     <Route path="/login" element={<LoginPage onLogin={handleLogin}/>}/>
 
                     <Route element={<ProtectedRoutes user={user} isLoading={isLoading} />}>
-                        <Route element={<Navigate to="/games"/>}/>
                         <Route path="/games"
                                element={<GameGallery games={games}/>}/>
                         <Route path="/games/add"
