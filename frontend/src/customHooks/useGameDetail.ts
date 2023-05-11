@@ -61,7 +61,7 @@ export default function useGameDetail() {
             setEditing(false);
             await loadAllGames();
             toast.success("Game erfolgreich bearbeitet");
-            navigate('/games');
+            window.location.reload();
         } catch (error) {
             console.error(error);
             toast.error("Fehler beim update");

@@ -136,7 +136,7 @@ export default function GameDetails(props: GameDetailProps) {
                                             },
                                         }}
                                         size="small"
-                                        onClick={() => navigate(`/games/`)}
+                                        onClick={() => window.location.reload()}
                                     >
                                         Abbrechen
                                     </Button>
