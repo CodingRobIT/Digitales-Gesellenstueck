@@ -9,12 +9,13 @@ import useUser from "./customHooks/useUser";
 import {LoginPage} from "./components/LoginPage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import {useEffect} from "react";
+import {SignUpPage} from "./components/SignUpPage";
 
 
 function App() {
 
     const {games,deleteGame, addGame, loadAllGames} = useGames();
-    const { user, login, logout, isLoading } = useUser(loadAllGames);
+    const { user, login, logout, isLoading, createUser } = useUser(loadAllGames);
 
     useEffect(() => {
         if (user) {
@@ -43,6 +44,7 @@ function App() {
                 <Header onLogout={handleLogout}/>
                 <Routes>
                     <Route path="/login" element={<LoginPage onLogin={handleLogin}/>}/>
+                    <Route path="/signup" element={<SignUpPage createUser={createUser}/>}/>
 
                     <Route element={<ProtectedRoutes user={user} isLoading={isLoading} />}>
                         <Route path="/games"

@@ -44,7 +44,7 @@ public class UserController {
         SecurityContextHolder.clearContext();
     }
 
-    @PostMapping("/signin")
+    @PostMapping("/signup")
     //eslint-disable-next-line
     public MongoUser signIn(@RequestBody @Valid MongoUser user) {
         String errorMessage = "Username already exists!";
