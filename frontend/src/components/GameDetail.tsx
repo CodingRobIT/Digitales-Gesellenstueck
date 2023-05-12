@@ -25,18 +25,26 @@ export default function GameDetails(props: GameDetailProps) {
                     <CardContent>
                         <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "row", alignItems: "center", gap: 5, marginBottom: '16px' }}>
                             <Box>
-                                <Typography variant="body1" color="text.secondary" sx={{ fontWeight: "bold", color: "snow" }}>
+                                <Typography variant="body1"
+                                            color="text.secondary"
+                                            sx={{ fontWeight: "bold", color: "snow" }}>
                                     Genre
                                 </Typography>
-                                <Typography variant="body1" color="text.secondary" sx={{color: "snow"}}>
+                                <Typography variant="body1"
+                                            color="text.secondary"
+                                            sx={{color: "snow"}}>
                                     {game.genre}
                                 </Typography>
                             </Box>
                             <Box>
-                                <Typography variant="body1" color="text.secondary" sx={{ fontWeight: "bold", color: "snow"  }}>
+                                <Typography variant="body1"
+                                            color="text.secondary"
+                                            sx={{ fontWeight: "bold", color: "snow"  }}>
                                     Publisher
                                 </Typography>
-                                <Typography variant="body1" color="text.secondary" sx={{color: "snow"}}>
+                                <Typography variant="body1"
+                                            color="text.secondary"
+                                            sx={{color: "snow"}}>
                                     {game.publisher}
                                 </Typography>
                             </Box>
