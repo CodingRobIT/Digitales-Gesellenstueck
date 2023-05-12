@@ -38,7 +38,7 @@ export default function useGameDetail() {
             })
             .catch(() => {
                 toast.error("Spiel existiert nicht");
-            });
+            })
     }
 
     function editOnClick() {
