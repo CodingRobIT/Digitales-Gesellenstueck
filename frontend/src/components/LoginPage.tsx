@@ -1,7 +1,7 @@
 import {Button, TextField} from "@mui/material";
 import {styled} from "@mui/material/styles";
 import React, {FormEvent, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 const FormContainer = styled('form')({
     display: 'flex',
@@ -64,7 +64,23 @@ export const LoginPage = (props: Props) => {
                     }}>
                 Login
             </Button>
-            <Link to='/signup'>Signup</Link>
+            <Button
+                sx={{
+                    bgcolor: "black",
+                    color: "deepskyblue",
+                    fontWeight: "bold",
+                    minWidth: "100px",
+                    maxWidth: "200px",
+                    mx: "auto",
+                    "&:hover": {
+                        color: "black", bgcolor: "deepskyblue"
+                    },
+                }}
+                size="small"
+                onClick={() => navigate(`/signup`)}
+            >
+                Anmelden
+            </Button>
         </FormContainer>
 
     )

@@ -4,7 +4,7 @@ import { toast } from "react-toastify";
 import {UserModel} from "../model/User";
 
 //eslint-disable-next-line
-export default function useUser(loadAllGames: () => void) {
+export default function useUser() {
     const [user, setUser] = useState();
     const [isLoading, setIsLoading] = useState(true);
 

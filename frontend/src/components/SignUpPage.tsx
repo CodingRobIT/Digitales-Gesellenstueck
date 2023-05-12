@@ -1,4 +1,4 @@
-import {Button,TextField} from "@mui/material";
+import {Button, TextField} from "@mui/material";
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {UserModel} from "../model/User";
@@ -48,29 +48,41 @@ export const SignUpPage = (props: createUserProps) => {
     return (
 
         <FormContainer className="form-container" onSubmit={onSubmit} sx={{maxWidth: 400, mx: "auto"}}>
-                    <TextField
-                        name="username"
-                        type="text"
-                        required
-                        label="Username"
-                        value={user.username}
-                        onChange={onChange}
-                        placeholder="UserName"
-                        style={{marginBottom: '10px'}}
-                    />
-                    <TextField
-                        name="password"
-                        type="password"
-                        required
-                        label="Password"
-                        value={user.password}
-                        onChange={onChange}
-                        placeholder="Password"
-                        style={{marginBottom: '10px'}}
-                    />
-                    <Button variant="contained" type="submit" size="small">
-                        Sign Up
-                    </Button>
+            <TextField id="input-with-sx"
+                       required
+                       label="Username"
+                       variant="filled"
+                       value={user.username}
+                       InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
+                       InputLabelProps={{sx: {color: "Snow"}}}
+                       onChange={onChange}
+
+            />
+            <TextField
+                required
+                variant="filled"
+                label="Password"
+                value={user.password}
+                InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
+                InputLabelProps={{sx: {color: "Snow"}}}
+                onChange={onChange}
+            />
+            <Button variant="contained"
+                    type="submit"
+                    sx={{
+                        bgcolor: "deepskyblue",
+                        color: "black",
+                        fontWeight: "bold",
+                        minWidth: "100px",
+                        maxWidth: "200px",
+                        mx: "auto",
+                        "&:hover": {
+                            color: "green",
+                            bgcolor: "black"
+                        },
+                    }}>
+                Anmelden
+            </Button>
         </FormContainer>
     );
 

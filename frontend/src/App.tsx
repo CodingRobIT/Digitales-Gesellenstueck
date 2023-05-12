@@ -15,12 +15,12 @@ import {SignUpPage} from "./components/SignUpPage";
 function App() {
 
     const {games,deleteGame, addGame, loadAllGames} = useGames();
-    const { user, login, logout, isLoading, createUser } = useUser(loadAllGames);
+    const { user, login, logout, isLoading, createUser } = useUser();
 
     useEffect(() => {
         if (user) {
-
-            loadAllGames();
+            //eslint-disable-next-line
+            loadAllGames(), useGames();
         }
         //eslint-disable-next-line
     }, []);
