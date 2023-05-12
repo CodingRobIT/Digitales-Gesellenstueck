@@ -52,6 +52,7 @@ export const SignUpPage = (props: createUserProps) => {
                        required
                        label="Username"
                        variant="filled"
+                       name="username"
                        value={user.username}
                        InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
                        InputLabelProps={{sx: {color: "Snow"}}}
@@ -61,6 +62,8 @@ export const SignUpPage = (props: createUserProps) => {
             <TextField
                 required
                 variant="filled"
+                name="password"
+                type="password"
                 label="Password"
                 value={user.password}
                 InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
