@@ -83,6 +83,24 @@ export const SignUpPage = (props: createUserProps) => {
                     }}>
                 Anmelden
             </Button>
+            <Button variant="contained"
+                    sx={{
+                        bgcolor: "black",
+                        color: "red",
+                        fontWeight: "bold",
+                        minWidth: "100px",
+                        maxWidth: "200px",
+                        mx: "auto",
+                        "&:hover": {
+                            color: "snow",
+                            bgcolor: "#9D1911"
+                        },
+                    }}
+                    size="small"
+                    onClick={() => navigate(`/login`)}
+            >
+                Abbrechen
+            </Button>
         </FormContainer>
     );
 
