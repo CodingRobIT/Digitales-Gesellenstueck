@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 import java.util.UUID;
@@ -20,11 +21,13 @@ class UserServiceTest {
     private UserService userService;
     @Mock
     private MongoUserRepository mongoUserRepository;
+    @Mock
+    private PasswordEncoder encoder;
 
 
     @BeforeEach
     void setup() {
-        userService = new UserService(mongoUserRepository);
+        userService = new UserService(mongoUserRepository, encoder);
     }
 
     @Test
