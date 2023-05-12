@@ -46,7 +46,7 @@ public class UserController {
 
     @PostMapping("/signup")
     //eslint-disable-next-line
-    public MongoUser signIn(@RequestBody @Valid MongoUser user) {
+    public MongoUser signUp(@RequestBody @Valid MongoUser user) {
         String errorMessage = "Username already exists!";
 
         if (mongoUserRepository.findMongoUserByUsername(user.username()).isPresent()) {
