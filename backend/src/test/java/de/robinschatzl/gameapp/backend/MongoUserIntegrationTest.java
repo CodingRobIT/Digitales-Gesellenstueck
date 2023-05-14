@@ -1,5 +1,6 @@
 package de.robinschatzl.gameapp.backend;
 
+import de.robinschatzl.gameapp.backend.security.MongoUserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -19,6 +20,9 @@ class MongoUserIntegrationTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @Autowired
+    MongoUserRepository mongoUserRepository;
 
     @Test
     @WithMockUser(username = "testUser")
@@ -45,7 +49,44 @@ class MongoUserIntegrationTest {
     @Test
     @WithMockUser
     void logout_shouldReturnStatusOk() throws Exception {
-        mockMvc.perform(post("/api/users/logout").with(csrf()))
+        mockMvc.perform(post("/api/users/logout")
+                        .with(csrf()))
                 .andExpect(status().isOk());
     }
+
+    @Test
+    @WithMockUser(username = "testUser")
+    void login_shouldFail_whenUserIsUnauthorized() throws Exception {
+        mockMvc.perform(post("/api/users/login"))
+                .andExpect(status().isForbidden())
+                .andExpect(content().string(""));
+    }
+
+
+    @Test
+    @WithMockUser(username = "testUser")
+    void logout_shouldLogoutUser() throws Exception {
+        mockMvc.perform(post("/api/users/logout")
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(content().string(""));
+    }
+
+    @Test
+    @WithMockUser
+    void signIn_shouldReturnANewUser() throws Exception {
+        mockMvc.perform(post("/api/users/signup")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content("""
+                                { "username": "testUser", "password": "1234abc"}
+                                 """)
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(content().json("""
+                        {"username":  "testUser"}
+                        """))
+                .andExpect(jsonPath("$.id").isNotEmpty())
+                .andExpect(jsonPath("$.password").isNotEmpty());
+    }
+
 }

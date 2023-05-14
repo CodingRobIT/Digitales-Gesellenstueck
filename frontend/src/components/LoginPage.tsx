@@ -64,6 +64,23 @@ export const LoginPage = (props: Props) => {
                     }}>
                 Login
             </Button>
+            <Button
+                sx={{
+                    bgcolor: "black",
+                    color: "deepskyblue",
+                    fontWeight: "bold",
+                    minWidth: "100px",
+                    maxWidth: "200px",
+                    mx: "auto",
+                    "&:hover": {
+                        color: "black", bgcolor: "deepskyblue"
+                    },
+                }}
+                size="small"
+                onClick={() => navigate(`/signup`)}
+            >
+                Anmelden
+            </Button>
         </FormContainer>
 
     )

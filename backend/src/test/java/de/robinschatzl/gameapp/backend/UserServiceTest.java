@@ -21,7 +21,6 @@ class UserServiceTest {
     @Mock
     private MongoUserRepository mongoUserRepository;
 
-
     @BeforeEach
     void setup() {
         userService = new UserService(mongoUserRepository);

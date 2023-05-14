@@ -26,7 +26,7 @@ export default function Header(props: Props) {
             <Toolbar sx={{justifyContent: "center"}}>
                 <div>
                     <Typography variant="h6" component="div" align="center">
-                        Hier entsteht meine Video Game Library
+                        Die Video Game Library
                     </Typography>
                     <div>
                         <Typography component="div" align="center">

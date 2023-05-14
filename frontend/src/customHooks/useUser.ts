@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import {UserModel} from "../model/User";
 
 //eslint-disable-next-line
-export default function useUser(loadAllGames: () => void) {
+export default function useUser() {
     const [user, setUser] = useState();
     const [isLoading, setIsLoading] = useState(true);
 
@@ -17,7 +18,7 @@ export default function useUser(loadAllGames: () => void) {
                     }
                 })
                 .catch(() => {
-                    toast.error("Error checking logged-in user:");
+                    toast.error("Kein User gefunden");
                 })
                 .finally(() => {
                     setIsLoading(false);
@@ -46,9 +47,21 @@ export default function useUser(loadAllGames: () => void) {
                 setUser(undefined);
             })
             .catch(() => {
-                toast.error("Logout hat nicht funktioniert:");
+                console.log("error")
             });
     }
 
-    return { user, login, logout, isLoading };
+    const createUser = async (newUser: UserModel) => {
+        return await axios.post("/api/users/signup", newUser, {
+            withCredentials: true
+        }).then((response) => {
+            setUser(response.data)
+            return true;
+        }).catch((error) => {
+            console.error(error);
+            return false;
+        })
+    }
+
+    return { user, login, logout, isLoading, createUser };
 }

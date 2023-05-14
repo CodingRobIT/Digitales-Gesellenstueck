@@ -9,16 +9,16 @@ import useUser from "./customHooks/useUser";
 import {LoginPage} from "./components/LoginPage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import {useEffect} from "react";
+import {SignUpPage} from "./components/SignUpPage";
 
 
 function App() {
 
     const {games,deleteGame, addGame, loadAllGames} = useGames();
-    const { user, login, logout, isLoading } = useUser(loadAllGames);
+    const { user, login, logout, isLoading, createUser } = useUser();
 
     useEffect(() => {
         if (user) {
-
             loadAllGames();
         }
         //eslint-disable-next-line
@@ -43,9 +43,9 @@ function App() {
                 <Header onLogout={handleLogout}/>
                 <Routes>
                     <Route path="/login" element={<LoginPage onLogin={handleLogin}/>}/>
+                    <Route path="/signup" element={<SignUpPage createUser={createUser}/>}/>
 
                     <Route element={<ProtectedRoutes user={user} isLoading={isLoading} />}>
-                        <Route element={<Navigate to="/games"/>}/>
                         <Route path="/games"
                                element={<GameGallery games={games}/>}/>
                         <Route path="/games/add"
