@@ -106,5 +106,4 @@ export const SignUpPage = (props: createUserProps) => {
             </Button>
         </FormContainer>
     );
-
 }

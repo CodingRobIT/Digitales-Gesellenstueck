@@ -19,8 +19,8 @@ function App() {
 
     useEffect(() => {
         if (user) {
-            //eslint-disable-next-line
-            loadAllGames(), useGames();
+            loadAllGames()
+            useGames();
         }
         //eslint-disable-next-line
     }, []);

@@ -51,18 +51,19 @@ export default function useUser() {
             });
     }
 
-    const createUser = async (newUser: UserModel) => {
-        return await axios.post("/api/users/signup", newUser, {
-            withCredentials: true
-        }).then((response) => {
-            setUser(response.data)
-            return true;
-        }).catch((error) => {
-            console.error(error);
-            return false;
-        })
-    }
-
+    const createUser = (newUser: UserModel, successCallback: () => void) => {
+        axios
+            .post("/api/users/signup", newUser, {
+                withCredentials: true
+            })
+            .then((response) => {
+                setUser(response.data);
+                successCallback();
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
 
     return { user, login, logout, isLoading, createUser };
 }
