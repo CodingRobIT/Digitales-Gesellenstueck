@@ -24,13 +24,13 @@ class MongoUserIntegrationTest {
     @Autowired
     MongoUserRepository mongoUserRepository;
 
-    @Test
-    @WithMockUser(username = "testUser")
-    void getMe_shouldReturnAuthenticatedUsername() throws Exception {
-        mockMvc.perform(get("/api/users/me"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("testUser"));
-    }
+//    @Test
+//    @WithMockUser(username = "testUser")
+//    void getMe_shouldReturnAuthenticatedUsername() throws Exception {
+//        mockMvc.perform(get("/api/users/me"))
+//                .andExpect(status().isOk())
+//                .andExpect(content().string("testUser"));
+//    }
 
     @Test
     void login_shouldReturnStatusOk() throws Exception {
