@@ -40,7 +40,7 @@ public class GameService {
         List<Game> games = new ArrayList<>();
         MongoUser mongoUser = mongoUserDetailsService.getAuthenticatedUser();
         for (Game game : gameRepoInterface.findAll()) {
-            if (mongoUser.id().equals(game.UserId())) {
+            if (mongoUser.id().equals(game.userId())) {
                 games.add(game);
             }
         }
