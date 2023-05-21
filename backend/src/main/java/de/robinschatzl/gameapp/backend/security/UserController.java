@@ -3,6 +3,7 @@ package de.robinschatzl.gameapp.backend.security;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -18,11 +19,9 @@ public class UserController {
 
 
     @GetMapping("/me")
-    public String getMe() {
-        return SecurityContextHolder
-                .getContext()
-                .getAuthentication()
-                .getName();
+    public MongoUser getMyUserData(Authentication authentication) {
+        String username = authentication.getName();
+        return userService.findUserByUsername(username);
     }
 
     @GetMapping("/{username}")
