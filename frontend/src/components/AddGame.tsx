@@ -31,6 +31,7 @@ export default function AddGame(props: AddGameProps) {
             .then((response) => response.json())
             .then((data) => setUserId(data.id))
             .catch((error) => console.error('Error fetching user ID:', error));
+        //eslint-disable-next-line
     }, []);
 
     function onSaveGame(event: FormEvent<HTMLFormElement>) {
