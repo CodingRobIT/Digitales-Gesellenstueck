@@ -3,6 +3,7 @@ package de.robinschatzl.gameapp.backend;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.robinschatzl.gameapp.backend.game.Game;
 import de.robinschatzl.gameapp.backend.game.GameRepoInterface;
+import de.robinschatzl.gameapp.backend.security.MongoUser;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,11 +30,13 @@ class GameIntegrationTest {
     @Autowired
     ObjectMapper objectMapper;
 
+
     @DirtiesContext
     @Test
-    @WithMockUser
+    @WithMockUser()
     void getAllGames_ShouldReturnAllGames() throws Exception {
-        mockMvc.perform(get("/api/games"))
+        mockMvc.perform(get("/api/games")
+                        .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(content().json(
                         """
@@ -188,6 +191,7 @@ class GameIntegrationTest {
                 .andExpect(status().isOk());
 
         mockMvc.perform(get("/api/games"))
+
                 .andExpect(status().isOk())
                 .andExpect(content().json(
                         """
