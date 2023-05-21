@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Typography, Box, Divider } from '@mui/material';
+import { Typography, Box} from '@mui/material';
 import { styled } from '@mui/material/styles';
 
 interface User {
