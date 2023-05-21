@@ -12,4 +12,5 @@ export type NewGame = {
     genre: string,
     note: string,
     imageUrl: string,
+    userId: string,
 }

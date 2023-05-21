@@ -13,6 +13,7 @@ type Props = {
     onLogin: (username: string, password: string) => Promise<void>
 }
 
+
 export const LoginPage = (props: Props) => {
 
     const [username, setUsername] = useState<string>('')
@@ -23,9 +24,11 @@ export const LoginPage = (props: Props) => {
     function onSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
 
-        props.onLogin(username, password).then(() => {
-            navigate("/games");
-        });
+        props.onLogin(username, password)
+            .then(() => {navigate("/games")})
+            .catch((error) =>{
+                console.error("Error occurred:", error)
+            })
     }
 
     return (

@@ -1,4 +1,4 @@
-import React, { FormEvent, useState } from 'react';
+import React, {FormEvent, useEffect, useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import {Button, TextField} from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -24,6 +24,15 @@ export default function AddGame(props: AddGameProps) {
     const [genre, setGenre] = useState<string>('');
     const [note, setNote] = useState<string>('');
     const [imageUrl, setImageUrl] = useState<string>('');
+    const [userId, setUserId] = useState<string>('');
+
+    useEffect(() => {
+        fetch('/api/users/me')
+            .then((response) => response.json())
+            .then((data) => setUserId(data.id))
+            .catch((error) => console.error('Error fetching user ID:', error));
+        //eslint-disable-next-line
+    }, []);
 
     function onSaveGame(event: FormEvent<HTMLFormElement>) {
         event.preventDefault();
@@ -39,6 +48,7 @@ export default function AddGame(props: AddGameProps) {
             genre: genre,
             note: note,
             imageUrl: imageUrl,
+            userId: userId,
         };
 
         props.addGame(newGame);

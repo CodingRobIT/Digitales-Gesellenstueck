@@ -10,6 +10,7 @@ import {LoginPage} from "./components/LoginPage";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import {useEffect} from "react";
 import {SignUpPage} from "./components/SignUpPage";
+import UserDetails from "./components/UserDetails";
 
 
 function App() {
@@ -53,6 +54,8 @@ function App() {
                         <Route path="/games/:id"
                                element={<GameDetails deleteGame={deleteGame}/>}/>
                         <Route path="/" element={<Navigate to="/games"/>}/>
+                        <Route path="/user/me"
+                            element={<UserDetails/>} />
                     </Route>
                 </Routes>
             </div>

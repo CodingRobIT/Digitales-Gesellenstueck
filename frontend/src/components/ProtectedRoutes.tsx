@@ -14,7 +14,7 @@ export default function ProtectedRoutes({ user, isLoading }: Props) {
                     display: "flex",
                     justifyContent: "center",
                     alignItems: "center",
-                    height: "100vh",
+                    height: "30vh",
                 }}
             >
                 <CircularProgress />

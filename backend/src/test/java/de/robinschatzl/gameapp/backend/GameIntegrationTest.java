@@ -3,6 +3,7 @@ package de.robinschatzl.gameapp.backend;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.robinschatzl.gameapp.backend.game.Game;
 import de.robinschatzl.gameapp.backend.game.GameRepoInterface;
+import de.robinschatzl.gameapp.backend.security.MongoUser;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -29,11 +30,13 @@ class GameIntegrationTest {
     @Autowired
     ObjectMapper objectMapper;
 
+
     @DirtiesContext
     @Test
-    @WithMockUser
+    @WithMockUser()
     void getAllGames_ShouldReturnAllGames() throws Exception {
-        mockMvc.perform(get("/api/games"))
+        mockMvc.perform(get("/api/games")
+                        .with(csrf()))
                 .andExpect(status().isOk())
                 .andExpect(content().json(
                         """
@@ -53,11 +56,11 @@ class GameIntegrationTest {
     @Test
     @WithMockUser
     void getGame_ShouldReturnAllGamesAdded() throws Exception {
-        Game game1 = new Game("1", "FFXI", "Square Enix", "MMORPG", "PC and PS2", "");
+        Game game1 = new Game("1", "FFXI", "Square Enix", "MMORPG", "PC and PS2", "","01");
         gameRepoInterface.save(game1);
-        Game game2 = new Game("2", "Doom", "N/A", "N/A", "", "");
+        Game game2 = new Game("2", "Doom", "N/A", "N/A", "", "","01");
         gameRepoInterface.save(game2);
-        Game game3 = new Game("3", "Mario World", "Nintendo", "Jump'n run", "", "");
+        Game game3 = new Game("3", "Mario World", "Nintendo", "Jump'n run", "", "","01");
         gameRepoInterface.save(game3);
 
         mockMvc.perform(get("/api/games"))
@@ -71,7 +74,8 @@ class GameIntegrationTest {
                                 "publisher": "Square Enix",
                                 "genre": "MMORPG",
                                 "note": "PC and PS2",
-                                "imageUrl": ""
+                                "imageUrl": "",
+                                "userId": "01"                                
                                 },
                                 {
                                 "id": "2",
@@ -79,7 +83,8 @@ class GameIntegrationTest {
                                 "publisher": "N/A",
                                 "genre": "N/A",
                                 "note": "",
-                                "imageUrl": ""
+                                "imageUrl": "",
+                                "userId": "01"
                                 },
                                 {
                                 "id": "3",
@@ -87,7 +92,8 @@ class GameIntegrationTest {
                                 "publisher": "Nintendo",
                                 "genre": "Jump'n run",
                                 "note": "",
-                                "imageUrl": ""
+                                "imageUrl": "",
+                                "userId": "01"
                                 }
                                 ]
                                 """
@@ -131,7 +137,7 @@ class GameIntegrationTest {
     @Test
     @WithMockUser
     void getGameById_ShouldReturnAddedGame() throws Exception {
-        Game testGame = new Game("42", "Die Antwort auf alles", "", "", "", "");
+        Game testGame = new Game("42", "Die Antwort auf alles", "", "", "", "","01");
         gameRepoInterface.save(testGame);
 
         mockMvc.perform(get("/api/games/42"))
@@ -144,7 +150,8 @@ class GameIntegrationTest {
                                 "publisher": "",
                                 "genre": "",
                                 "note": "",
-                                "imageUrl": ""
+                                "imageUrl": "",
+                                "userId": "01"
                                 }
                                 """
                 ));
@@ -165,7 +172,8 @@ class GameIntegrationTest {
                                                 "publisher": "",
                                                 "genre": "",
                                                 "note": "",
-                                                "imageUrl": ""
+                                                "imageUrl": "",
+                                                "userId": "01"
                                                 }
                                                 """
                                 )
@@ -183,6 +191,7 @@ class GameIntegrationTest {
                 .andExpect(status().isOk());
 
         mockMvc.perform(get("/api/games"))
+
                 .andExpect(status().isOk())
                 .andExpect(content().json(
                         """

@@ -16,9 +16,8 @@ export default function GameCard(props: GameProps) {
                 <CardHeader title={props.game.title} />
                 <CardContent>
                     <img src={props.game.imageUrl}
-                         alt="Ohne Bild"
-                         width="150"
-                         height="150" />
+                        alt="Ohne Bild"
+                         style={{ objectFit: 'cover', width: '100%', height: '100%' }} />
                 </CardContent>
                 <CardActions sx={{
                     display: 'flex',

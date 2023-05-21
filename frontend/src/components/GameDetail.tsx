@@ -49,7 +49,9 @@ export default function GameDetails(props: GameDetailProps) {
                                 </Typography>
                             </Box>
                         </Box>
-                        <img src={game.imageUrl} alt="Ohne Bild" width="300" height="300" />
+                        <img src={game.imageUrl}
+                             alt="Ohne Bild"
+                             style={{ objectFit: 'cover', maxWidth: '700px', maxHeight: '700px', width: '100%', height: '100%' }}/>
                         <Typography variant="body2" color="text.secondary"
                                     sx={{marginTop: 2, paddingBottom: 2, maxWidth: 600, mx: "auto", color: "snow" }}>
                             {game.note}
