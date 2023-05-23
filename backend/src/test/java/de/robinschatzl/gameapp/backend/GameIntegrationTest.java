@@ -3,7 +3,7 @@ package de.robinschatzl.gameapp.backend;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.robinschatzl.gameapp.backend.game.Game;
 import de.robinschatzl.gameapp.backend.game.GameRepoInterface;
-import de.robinschatzl.gameapp.backend.security.MongoUser;
+import de.robinschatzl.gameapp.backend.game.GameService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -18,6 +18,19 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 
+
+import org.mockito.Mock;
+
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+
+import java.util.Arrays;
+import java.util.List;
+
+import static org.mockito.Mockito.*;
+
+
 @SpringBootTest
 @AutoConfigureMockMvc
 class GameIntegrationTest {
@@ -30,7 +43,26 @@ class GameIntegrationTest {
     @Autowired
     ObjectMapper objectMapper;
 
+    @Mock
+    GameService gameService;
 
+    @Test
+    @DirtiesContext
+    @WithMockUser
+    public void getAllGamesByUserId_ShouldReturnAllGames() throws Exception {
+
+        List<Game> expectedGames = Arrays.asList();
+        when(gameService.getAllGamesByUserId()).thenReturn(expectedGames);
+
+        MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/api/games")
+                        .with(csrf()))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+                .andReturn();
+
+        verify(gameService, times(1)).getAllGamesByUserId();
+
+    }
 //    @DirtiesContext
 //    @Test
 //    @WithMockUser()
