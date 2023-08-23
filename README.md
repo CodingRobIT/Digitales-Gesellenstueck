@@ -1,10 +1,10 @@
-# Hallo, das ist mein digitales Gesellenstück, das ich im Bootcamp Neue Fische gemacht habe.
+# Hallo, das ist mein digitales Gesellenstück, welches ich im Bootcamp NeueFische gemacht habe.
 
 Da ich mit Continuous Deployment arbeite, sind alle aktuellen Features auf der folgenden Seite integriert.
 
 
 https://gameapprs.fly.dev/login 
-## Diese Seite ist momentan leider nicht verfügbar. Ich bin derzeit auf der Suche nach einem neuen Hosting-Anbieter.
+### Sorry diese Seite ist momentan leider nicht verfügbar. Ich bin derzeit auf der Suche nach einem neuen Hosting-Anbieter.
 
 ### Die Datenbank funktioniert jedoch einwandfrei. Wenn Sie den Code in einer IDE ausführen, 
 ### haben Sie die Möglichkeit, das Frontend (React) sowie das Backend (Java) vollständig zu testen. 
