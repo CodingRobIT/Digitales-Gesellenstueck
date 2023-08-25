@@ -6,5 +6,6 @@ export type User = {
 
 export type UserModel = {
     username: string,
-    password: string
+    password: string,
+    confirmPassword: string
 }

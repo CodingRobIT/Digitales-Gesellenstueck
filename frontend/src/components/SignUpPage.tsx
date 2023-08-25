@@ -17,9 +17,12 @@ const FormContainer = styled('form')({
 export const SignUpPage = (props: createUserProps) => {
 
     const initial: UserModel = {
-        username: "", password: ""
+        username: "",
+        password: "",
+        confirmPassword: "",
     }
     const [user, setUser] = useState<UserModel>(initial);
+    const [passwordsMatch, setPasswordsMatch] = useState(true);
     const navigate = useNavigate();
 
     function onChange(event: ChangeEvent<HTMLInputElement>) {
@@ -32,10 +35,10 @@ export const SignUpPage = (props: createUserProps) => {
     }
 
     function onSubmit(event: FormEvent<HTMLFormElement>) {
-        if (user.username && user.password) {
+        if (user.username && user.password && user.password === user.confirmPassword) {
             event.preventDefault();
-            props.createUser(user).then((s) => {
-                if (s) {
+            props.createUser(user).then((success) => {
+                if (success) {
                     setUser(initial);
                     navigate('/login');
                 } else {
@@ -69,6 +72,19 @@ export const SignUpPage = (props: createUserProps) => {
                 InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
                 InputLabelProps={{sx: {color: "Snow"}}}
                 onChange={onChange}
+            />
+            <TextField
+                required
+                variant="filled"
+                name="confirmPassword"
+                type="password"
+                label="Confirm Password"
+                value={user.confirmPassword}
+                onChange={onChange}
+                error={!passwordsMatch}
+                helperText={!passwordsMatch && "Passwords don't match"}
+                InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
+                InputLabelProps={{sx: {color: "Snow"}}}
             />
             <Button variant="contained"
                     type="submit"
