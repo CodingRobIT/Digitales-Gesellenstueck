@@ -22,7 +22,7 @@ export const SignUpPage = (props: createUserProps) => {
         confirmPassword: "",
     }
     const [user, setUser] = useState<UserModel>(initial);
-    const [passwordsMatch, setPasswordsMatch] = useState(true);
+    const [passwordsMatch] = useState(true);
     const navigate = useNavigate();
 
     function onChange(event: ChangeEvent<HTMLInputElement>) {
