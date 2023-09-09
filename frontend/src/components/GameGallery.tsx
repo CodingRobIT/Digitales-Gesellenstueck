@@ -38,7 +38,7 @@ export default function GameGallery(props: GameGalleryProps) {
                            InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
                            InputLabelProps={{sx: {color: "Snow"}}}
                            onChange={(e) => setSearchTerm(e.target.value)}/>
-                <div className="game-cards">  {filteredGames.map((card: Game) => (
+                <div className="game-cards">  {filteredGames.reverse().map((card: Game) => (
                     <GameCard key={card.id}
                               game={card}/>
                 ))}
