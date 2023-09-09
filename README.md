@@ -19,18 +19,15 @@ Mein Gesellenstück ist eine Webanwendung, die darauf abzielt, die Gaming-Erfahr
 
 https://gameapprs.fly.dev/login
 
-Leider ist die Anwendung derzeit nicht erreichbar, da ich auf der Suche nach einem neuen Hosting-Anbieter bin. Ich arbeite daran, sie schnellstmöglich wieder online zu bringen.
-
-## Funktionalitäten
-
-- Die Datenbank der Anwendung ist Online, funktioniert einwandfrei und enthält alle relevanten Daten.
-- Sie haben die Möglichkeit, den gesamten Code in Ihrer bevorzugten IDE auszuführen. Dadurch können Sie das Frontend (React) sowie das Backend (Java) umfassend testen.
-- Für die Entwicklung und Tests nutze ich IntelliJ Ultimate.
+Leider ist die Anwendung derzeit nicht oder nur eingeschränkt verfügbar. Ich arbeite daran, sie so schnell wie möglich wieder online zu stellen.
 
 ## Aktueller Stand
 
-Da die Anwendung vorübergehend offline ist, bitte ich um Verständnis und Geduld während ich nach einem neuen Hosting-Anbieter suche. 
-Ich arbeite daran, die Anwendung so schnell wie möglich wieder zugänglich zu machen.
+Wahrscheinlich ist es nur ein Hostingproblem mit zu wenig Speicher, das immer wieder zu einem Absturz führt.
+Der Testbenutzer mit Testpasswort ist in der DB hinterlegt und die Kommunikation zwischen Applikation und DB funktioniert auch recht gut.
+Aber vermutlich macht mein Speicherproblem hier einen Strich durch die Rechnung und man bekommt einen Status 500 Code.
+
+Ich bitte um Geduld, da ich dieses Projekt alleine leite und das eigentliche Problem lokalisieren muss.
 
 ## Kontakt
 
