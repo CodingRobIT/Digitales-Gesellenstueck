@@ -37,9 +37,15 @@ export default function GameDetails(props: GameDetailProps) {
                                             sx={{fontWeight: "bold", color: "snow"}}>
                                     Genre
                                 </Typography>
-                                <Typography variant="body1"
+                                <Typography variant="body2"
                                             color="text.secondary"
-                                            sx={{color: "snow"}}>
+                                            sx={{
+                                                color: "snow",
+                                                maxWidth: 250,
+                                                whiteSpace: 'nowrap', // Limit text to one line
+                                                overflow: 'hidden',   // Cut off text if too long
+                                                textOverflow: 'ellipsis', // ... Show when text is truncated
+                                            }}>
                                     {game.genre}
                                 </Typography>
                             </Box>
@@ -49,9 +55,15 @@ export default function GameDetails(props: GameDetailProps) {
                                             sx={{fontWeight: "bold", color: "snow"}}>
                                     Publisher
                                 </Typography>
-                                <Typography variant="body1"
+                                <Typography variant="body2"
                                             color="text.secondary"
-                                            sx={{color: "snow"}}>
+                                            sx={{
+                                                color: "snow",
+                                                maxWidth: 250,
+                                                whiteSpace: 'nowrap', // Limit text to one line
+                                                overflow: 'hidden',   // Cut off text if too long
+                                                textOverflow: 'ellipsis', // ... Show when text is truncated
+                                            }}>
                                     {game.publisher}
                                 </Typography>
                             </Box>
@@ -60,8 +72,8 @@ export default function GameDetails(props: GameDetailProps) {
                              alt="Ohne Bild"
                              style={{
                                  objectFit: 'cover',
-                                 maxWidth: '700px',
-                                 maxHeight: '700px',
+                                 maxWidth: '1000px',
+                                 maxHeight: '1000px',
                                  width: '100%',
                                  height: '100%'
                              }}/>
@@ -74,9 +86,8 @@ export default function GameDetails(props: GameDetailProps) {
                                 maxWidth: 600,
                                 mx: "auto",
                                 color: "snow",
-                                whiteSpace: 'pre-line', // Zeilenumbrüche anzeigen
-                            }}
-                        >
+                                whiteSpace: 'pre-line', // Shows the line breaks (you should pay attention to Multiline/RichText)
+                            }}>
                             {game.note}
                         </Typography>
 
