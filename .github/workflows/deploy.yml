@@ -50,10 +50,12 @@ jobs:
     env:
       FLY_API_TOKEN: ${{ secrets.FLY_API_KEY }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
+      - uses: actions/checkout@v2
+      - uses: actions/download-artifact@v2
         with:
           name: gameapprs.jar
           path: backend/target
       - uses: superfly/flyctl-actions/setup-flyctl@master
+      - name: Configure Swap Size                     # Test for memory size
+        run: echo "swap_size_mb = 512" >> ~/.flyrc    # included this line to
       - run: flyctl deploy
