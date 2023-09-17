@@ -2,6 +2,8 @@ import {Button, TextField} from "@mui/material";
 import {styled} from "@mui/material/styles";
 import React, {FormEvent, useState} from "react";
 import {useNavigate} from "react-router-dom";
+import Paper from '@mui/material/Paper';
+import Typography from '@mui/material/Typography';
 
 const FormContainer = styled('form')({
     display: 'flex',
@@ -34,7 +36,7 @@ export const LoginPage = (props: Props) => {
     return (
         <FormContainer className="form-container" onSubmit={onSubmit} sx={{maxWidth: 400, mx: "auto"}}>
             <TextField id="input-with-sx"
-                       label="Username (enter test as dummy user)"
+                       label="Username"
                        variant="filled"
                        value={username}
                        InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
@@ -43,7 +45,7 @@ export const LoginPage = (props: Props) => {
             />
 
             <TextField
-                label="Password (enter test as dummy password)"
+                label="Password"
                 variant="filled"
                 value={password}
                 onChange={(event) => setPassword(event.target.value)}
@@ -84,6 +86,36 @@ export const LoginPage = (props: Props) => {
             >
                 Anmelden
             </Button>
+            <Paper elevation={7}
+                   sx={{
+                       bgcolor: "darkgrey",
+                       color: "black"
+                   }}>
+                <Typography variant="h6">Willkommen auf meiner Website.</Typography>
+                <Typography>
+                    Damit Sie sich nicht erst einloggen müssen, können Sie sich hier anmelden,
+                </Typography>
+                <Typography>Username: test</Typography>
+                <Typography>und Passwort: test</Typography>
+                <Typography>einloggen, um zu sehen, wie die Seite aufgebaut ist.</Typography>
+            </Paper>
+            <Paper elevation={7}
+                   sx={{
+                       bgcolor: "#f8a100"}}
+            >
+                <Typography>
+                    Leider muss ich mich immer noch dafür entschuldigen, dass die Seite gelegentlich Login-Probleme hat.
+                    <br/>
+                    <br/>
+                    Anscheinend hängt das mit dem Speicher der Hosting-Seite zusammen.
+                    <br/>
+                    <br/>
+                    Ich habe diesen bereits verdoppelt und konnte feststellen, dass es deutlich weniger Probleme gibt, aber dennoch welche auftreten.
+                    <br/>
+                    <br/>
+                    Vor allem ab 18 Uhr wenn sich viele User einloggen oder aktiv an ihrer Gallery oder Game Cards arbeiten.
+                </Typography>
+            </Paper>
         </FormContainer>
 
     )
