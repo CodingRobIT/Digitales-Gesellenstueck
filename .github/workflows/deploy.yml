@@ -50,8 +50,8 @@ jobs:
     env:
       FLY_API_TOKEN: ${{ secrets.FLY_API_KEY }}
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/download-artifact@v2
+      - uses: actions/checkout@v3
+      - uses: actions/download-artifact@v3
         with:
           name: gameapprs.jar
           path: backend/target
