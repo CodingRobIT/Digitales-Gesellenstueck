@@ -86,8 +86,11 @@ export const LoginPage = (props: Props) => {
             >
                 Anmelden
             </Button>
-            <Paper elevation={7} sx={{
-                bgcolor: "darkgrey"}}>
+            <Paper elevation={7}
+                   sx={{
+                       bgcolor: "darkgrey",
+                       color: "black"
+                   }}>
                 <Typography variant="h6">Willkommen auf meiner Website.</Typography>
                 <Typography>
                     Damit Sie sich nicht erst einloggen müssen, können Sie sich hier anmelden,
@@ -95,6 +98,23 @@ export const LoginPage = (props: Props) => {
                 <Typography>Username: test</Typography>
                 <Typography>und Passwort: test</Typography>
                 <Typography>einloggen, um zu sehen, wie die Seite aufgebaut ist.</Typography>
+            </Paper>
+            <Paper elevation={7}
+                   sx={{
+                       bgcolor: "#f8a100"}}
+            >
+                <Typography>
+                    Leider muss ich mich immer noch dafür entschuldigen, dass die Seite gelegentlich Login-Probleme hat.
+                    <br/>
+                    <br/>
+                    Anscheinend hängt das mit dem Speicher der Hosting-Seite zusammen.
+                    <br/>
+                    <br/>
+                    Ich habe diesen bereits verdoppelt und konnte feststellen, dass es deutlich weniger Probleme gibt, aber dennoch welche auftreten.
+                    <br/>
+                    <br/>
+                    Vor allem ab 18 Uhr wenn sich viele User einloggen oder aktiv an ihrer Gallery oder Game Cards arbeiten.
+                </Typography>
             </Paper>
         </FormContainer>
 
