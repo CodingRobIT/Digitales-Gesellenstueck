@@ -93,17 +93,22 @@ export const LoginPage = (props: Props) => {
                    }}>
                 <Typography variant="h6">Willkommen auf meiner Website.</Typography>
                 <Typography>
-                    Damit Sie sich nicht erst einloggen müssen, können Sie sich hier anmelden,
+                    Damit Sie sich nicht erst Registrieren müssen, <br/>
+                    können Sie sich hier zum testen der seite mit dem <br/>
+                    test Konto anmelden,
                 </Typography>
+                <br/>
                 <Typography>Username: test</Typography>
                 <Typography>und Passwort: test</Typography>
-                <Typography>einloggen, um zu sehen, wie die Seite aufgebaut ist.</Typography>
             </Paper>
             <Paper elevation={7}
                    sx={{
                        bgcolor: "#f8a100"}}
             >
                 <Typography>
+                    Update: Problem könnte behoben sein
+                    <br/>
+                    <br/>
                     Leider muss ich mich immer noch dafür entschuldigen, dass die Seite gelegentlich Login-Probleme hat.
                     <br/>
                     <br/>
