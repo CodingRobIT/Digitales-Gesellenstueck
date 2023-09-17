@@ -23,11 +23,18 @@ export default function GameDetails(props: GameDetailProps) {
                 <Card sx={{bgcolor: "transparent", boxShadow: "none"}}>
                     <CardHeader title={game.title} sx={{fontWeight: "bold", color: "lightBlue"}}/>
                     <CardContent>
-                        <Box sx={{ display: "flex", justifyContent: "center", flexDirection: "row", alignItems: "center", gap: 5, marginBottom: '16px' }}>
+                        <Box sx={{
+                            display: "flex",
+                            justifyContent: "center",
+                            flexDirection: "row",
+                            alignItems: "center",
+                            gap: 5,
+                            marginBottom: '16px'
+                        }}>
                             <Box>
                                 <Typography variant="body1"
                                             color="text.secondary"
-                                            sx={{ fontWeight: "bold", color: "snow" }}>
+                                            sx={{fontWeight: "bold", color: "snow"}}>
                                     Genre
                                 </Typography>
                                 <Typography variant="body1"
@@ -39,7 +46,7 @@ export default function GameDetails(props: GameDetailProps) {
                             <Box>
                                 <Typography variant="body1"
                                             color="text.secondary"
-                                            sx={{ fontWeight: "bold", color: "snow"  }}>
+                                            sx={{fontWeight: "bold", color: "snow"}}>
                                     Publisher
                                 </Typography>
                                 <Typography variant="body1"
@@ -51,11 +58,28 @@ export default function GameDetails(props: GameDetailProps) {
                         </Box>
                         <img src={game.imageUrl}
                              alt="Ohne Bild"
-                             style={{ objectFit: 'cover', maxWidth: '700px', maxHeight: '700px', width: '100%', height: '100%' }}/>
-                        <Typography variant="body2" color="text.secondary"
-                                    sx={{marginTop: 2, paddingBottom: 2, maxWidth: 600, mx: "auto", color: "snow" }}>
+                             style={{
+                                 objectFit: 'cover',
+                                 maxWidth: '700px',
+                                 maxHeight: '700px',
+                                 width: '100%',
+                                 height: '100%'
+                             }}/>
+                        <Typography
+                            variant="body2"
+                            color="text.secondary"
+                            sx={{
+                                marginTop: 2,
+                                paddingBottom: 2,
+                                maxWidth: 600,
+                                mx: "auto",
+                                color: "snow",
+                                whiteSpace: 'pre-line', // Zeilenumbrüche anzeigen
+                            }}
+                        >
                             {game.note}
                         </Typography>
+
                         {editing ? (
                             <form onSubmit={handleFormSubmit}>
                                 <Box sx={{
