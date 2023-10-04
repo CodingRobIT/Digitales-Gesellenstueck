@@ -1,39 +1,40 @@
-# fly.toml file generated for purple-flower-5473 on 2023-04-26T11:14:34+02:00
+# fly.toml app configuration file generated for gameapprs on 2023-09-20T19:43:59+02:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
 
 app = "gameapprs"
-kill_signal = "SIGINT"
-kill_timeout = 5
 primary_region = "cdg"
-processes = []
-
-[env]
-PORT = "8080"
+kill_signal = "SIGINT"
+kill_timeout = "5s"
 
 [experimental]
-auto_rollback = true
+  auto_rollback = true
+
+[build]
+
+[env]
+  PORT = "8080"
 
 [[services]]
-http_checks = []
-internal_port = 8080
-processes = ["app"]
-protocol = "tcp"
-script_checks = []
-[services.concurrency]
-hard_limit = 25
-soft_limit = 20
-type = "connections"
+  protocol = "tcp"
+  internal_port = 8080
+  processes = ["app"]
 
-[[services.ports]]
-force_https = true
-handlers = ["http"]
-port = 80
+  [[services.ports]]
+    port = 80
+    handlers = ["http"]
+    force_https = true
 
-[[services.ports]]
-handlers = ["tls", "http"]
-port = 443
+  [[services.ports]]
+    port = 443
+    handlers = ["tls", "http"]
+  [services.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
 
-[[services.tcp_checks]]
-grace_period = "1s"
-interval = "15s"
-restart_limit = 0
-timeout = "2s"
+  [[services.tcp_checks]]
+    interval = "15s"
+    timeout = "2s"
+    grace_period = "1s"
