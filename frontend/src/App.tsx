@@ -41,7 +41,10 @@ function App() {
     return (
         <BrowserRouter>
             <div className="App">
-                <Header onLogout={handleLogout}/>
+                {/*This line displays the header only after successful login*/}
+                {window.location.pathname !== '/login' && window.location.pathname !== '/signup' && <Header onLogout={handleLogout} />}
+                {/*This line always displays the header*/}
+                {/*<Header onLogout={handleLogout}/>*/}
                 <Routes>
                     <Route path="/login" element={<LoginPage onLogin={handleLogin}/>}/>
                     <Route path="/signup" element={<SignUpPage createUser={createUser}/>}/>
