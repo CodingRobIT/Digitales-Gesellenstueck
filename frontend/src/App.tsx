@@ -42,7 +42,7 @@ function App() {
         <BrowserRouter>
             <div className="App">
                 {/*This line displays the header only after successful login*/}
-                {window.location.pathname !== '/login' && window.location.pathname !== '/signup' && <Header onLogout={handleLogout} />}
+                {window.location.pathname !== '/login' && window.location.pathname !== '/signup' && window.location.pathname !== '/' && <Header onLogout={handleLogout} />}
                 {/*This line always displays the header*/}
                 {/*<Header onLogout={handleLogout}/>*/}
                 <Routes>
