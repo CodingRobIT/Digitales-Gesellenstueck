@@ -14,7 +14,6 @@ public record Game(
         String publisher,
         String genre,
         String note,
-        String imageUrl,
-        Integer fake
+        String imageUrl
 ) {
 }

@@ -15,7 +15,6 @@ public record MongoUser(
         String username,
         @NotBlank
         @Size(min = 4, max = 128)
-        String password,
-        Integer fakeId
+        String password
 ) {
 }
