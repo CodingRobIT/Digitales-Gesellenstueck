@@ -18,9 +18,9 @@ public class GameService {
     private final GameRepoInterface gameRepoInterface;
     private final MongoUserDetailsService mongoUserDetailsService;
 
-    public List<Game> getAllGames() {
-        return gameRepoInterface.findAll();
-    }
+//    public List<Game> getAllGames() {
+//        return gameRepoInterface.findAll();
+//    }
 
     public Game addGame(Game gameToAdd) {
         return gameRepoInterface.save(gameToAdd);
