@@ -16,7 +16,7 @@ import java.util.NoSuchElementException;
 public class GameService {
 
     private final GameRepoInterface gameRepoInterface;
-    private final MongoUserDetailsService mongoUserDetailsService
+    private final MongoUserDetailsService mongoUserDetailsService;
 
     public Game addGame(Game gameToAdd) {
         return gameRepoInterface.save(gameToAdd);
