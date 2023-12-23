@@ -37,9 +37,9 @@ public class GameController {
 
     @PutMapping(path = {"{id}/update", "{id}"})
     public Game editGame(@PathVariable String id,@RequestBody @Valid Game gameToEdit) {
-        if (!gameToEdit.id().equals(id)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The Game does not exist");
-        }
+//        if (!gameToEdit.id().equals(id)) {
+//            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "The Game does not exist");
+//        }
         return gameService.editGame(gameToEdit);
     }
 }
