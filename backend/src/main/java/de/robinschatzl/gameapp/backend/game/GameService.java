@@ -16,47 +16,72 @@ import java.util.NoSuchElementException;
 public class GameService {
 
     private final GameRepoInterface gameRepoInterface;
-    private final MongoUserDetailsService mongoUserDetailsService;
-
-//    public List<Game> getAllGames() {
-//        return gameRepoInterface.findAll();
-//    }
+    private final MongoUserDetailsService mongoUserDetailsService
 
     public Game addGame(Game gameToAdd) {
         return gameRepoInterface.save(gameToAdd);
     }
 
-    public Game getGameById(String id) {
-        return gameRepoInterface.findById(id).orElseThrow(() -> new NoSuchElementException("Game with id " + id + " not found"));
+    public Game getGameById(String gameId) {
+        MongoUser mongoUser = mongoUserDetailsService.getAuthenticatedUser();
+
+        Game game = gameRepoInterface.findById(gameId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Spiel nicht gefunden."));
+
+        if (!mongoUser.id().equals(game.userId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Zugriff verweigert.");
+        }
+
+        return game;
     }
 
-    public void deleteGame(String id) {
-        gameRepoInterface.deleteById(id);
+    public void deleteGame(String gameId) {
+        MongoUser mongoUser = mongoUserDetailsService.getAuthenticatedUser();
+
+        Game game = gameRepoInterface.findById(gameId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Spiel nicht gefunden."));
+
+        if (!mongoUser.id().equals(game.userId())) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN, "Nicht autorisiert, dieses Spiel zu löschen.");
+        }
+
+        gameRepoInterface.delete(game);
     }
 
-//    public Game editGame(Game gameToEdit) {
-//        return gameRepoInterface.save(gameToEdit);
-//    }
-public Game editGame(Game gameToEdit) {
-    // check if games with ID exist if not throws an exception
-    gameRepoInterface.findById(gameToEdit.id())
-            .orElseThrow(() -> new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "The game with the specified ID does not exist."));
+    public Game editGame(Game gameToEdit) {
+        // check if games with ID exist if not throws an exception
+        gameRepoInterface.findById(gameToEdit.id())
+                .orElseThrow(() -> new ResponseStatusException(
+                        HttpStatus.BAD_REQUEST, "The game with the specified ID does not exist."));
 
-    // if game with id exist it returns teh game
-    return gameRepoInterface.save(gameToEdit);
-}
-
-
+        // if game with id exist it returns teh game
+        return gameRepoInterface.save(gameToEdit);
+    }
 
     public List<Game> getAllGamesByUserId() {
-        List<Game> games = new ArrayList<>();
+        // get authenticated user
         MongoUser mongoUser = mongoUserDetailsService.getAuthenticatedUser();
+
+        // checks if user is authenticated
+        if (mongoUser == null) {
+            throw new ResponseStatusException(
+                    HttpStatus.UNAUTHORIZED, "No authenticated user found.");
+        }
+
+        List<Game> games = new ArrayList<>();
         for (Game game : gameRepoInterface.findAll()) {
             if (mongoUser.id().equals(game.userId())) {
                 games.add(game);
             }
         }
+
+        // checks if game is from user
+        if (games.isEmpty()) {
+            throw new ResponseStatusException(
+                    HttpStatus.NOT_FOUND, "No game fpr user found.");
+        }
+
         return games;
     }
+
 }
