@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: game-app-backend
+    env: java
+    buildCommand: "cd backend && mvn package"
+    startCommand: "java -jar backend/target/gameapprs.jar"
+    envVars:
+      - key: JAVA_VERSION
+        value: "19"
+
+  - type: static-site
+    name: game-app-frontend
+    buildCommand: "cd frontend && npm install && npm run build"
+    publishDir: "frontend/build"
