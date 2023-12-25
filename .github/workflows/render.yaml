@@ -8,7 +8,7 @@ services:
       - key: JAVA_VERSION
         value: "19"
 
-  - type: static
+  - type: web
     name: game-app-frontend
     buildCommand: "cd frontend && npm install && npm run build"
     publishDir: "frontend/build"
