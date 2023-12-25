@@ -12,23 +12,19 @@
 #CMD ["sh", "-c", "java -jar /gameapprs.jar"]
 
 
-# Benutzerdefiniertes Image mit JDK 19 und Maven
+# Verwende das Java 19 Image
 FROM openjdk:19
-
-# Installiere Maven
-RUN apt-get update && \
-    apt-get install -y maven
 
 # Setze das Arbeitsverzeichnis im Docker-Container
 WORKDIR /app
 
-# Kopiere die Maven-Konfigurationsdateien (pom.xml) und den Quellcode
-COPY backend/pom.xml .
-COPY backend/src ./src
+# Kopiere die gebaute jar-Datei in den Container
+COPY backend/target/gameapprs.jar gameapprs.jar
 
-# Baue das Projekt und erstelle die jar-Datei
-RUN mvn package
+# Expose den Port, auf dem deine Anwendung läuft (falls erforderlich)
+EXPOSE 8080
 
 # Starte die Anwendung
 CMD ["java", "-jar", "gameapprs.jar"]
+
 
