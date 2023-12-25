@@ -1,18 +1,11 @@
 services:
   - type: web
     name: game-app-backend
-    env: jvm
-    buildCommand: "cd backend && mvn package"
-    startCommand: "java -jar backend/target/gameapprs.jar"
-    envVars:
-      - key: JAVA_VERSION
-        value: "19"
+    env: docker
+    dockerfilePath: ./Dockerfile
 
   - type: web
     name: game-app-frontend
     env: node
     buildCommand: "cd frontend && npm install && npm run build"
-    startCommand: "npx serve -s frontend/build"
-    envVars:
-      - key: NODE_VERSION
-        value: "16"
+    startCommand: "n
