@@ -24,7 +24,7 @@ COPY pom.xml .
 RUN mvn dependency:go-offline
 
 # Kopiere den Quellcode
-COPY src ./src
+COPY backend/src ./src
 
 # Baue das Projekt und erstelle die jar-Datei
 RUN mvn package
