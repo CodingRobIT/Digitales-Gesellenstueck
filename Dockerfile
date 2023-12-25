@@ -11,8 +11,9 @@
 #
 #CMD ["sh", "-c", "java -jar /gameapprs.jar"]
 
-# Schritt 1: Baue die Anwendung mit Maven
-FROM maven:3.8.1-jdk-11 as builder
+# Schritt 1: Baue die Anwendung mit einer Maven-Version, die Java 19 unterstützt
+# Ersetze dieses Image durch ein geeignetes, das Java 19 und Maven enthält
+FROM maven:3.8.1-jdk-19 as builder
 
 # Setze das Arbeitsverzeichnis im Docker-Container
 WORKDIR /app
@@ -30,7 +31,7 @@ COPY backend/src ./src
 # Baue das Projekt und erstelle die jar-Datei
 RUN mvn package
 
-# Schritt 2: Erstelle das endgültige Docker-Image
+# Schritt 2: Erstelle das endgültige Docker-Image mit Java 19
 FROM openjdk:19
 
 # Umgebungsvariable setzen
