@@ -11,4 +11,7 @@ services:
   - type: web
     name: game-app-frontend
     buildCommand: "cd frontend && npm install && npm run build"
-    publishDir: "frontend/build"
+    startCommand: "npx serve -s frontend/build"
+    envVars:
+      - key: NODE_VERSION
+        value: "16"
