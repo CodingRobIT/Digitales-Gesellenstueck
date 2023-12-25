@@ -1,7 +1,7 @@
 services:
   - type: web
     name: game-app-backend
-    env: java
+    env: jvm
     buildCommand: "cd backend && mvn package"
     startCommand: "java -jar backend/target/gameapprs.jar"
     envVars:
@@ -10,6 +10,7 @@ services:
 
   - type: web
     name: game-app-frontend
+    env: node
     buildCommand: "cd frontend && npm install && npm run build"
     startCommand: "npx serve -s frontend/build"
     envVars:
