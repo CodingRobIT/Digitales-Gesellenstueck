@@ -2,10 +2,14 @@ services:
   - type: web
     name: game-app-backend
     env: docker
+    # Stelle sicher, dass dein Dockerfile im Root-Verzeichnis deines Projekts ist
     dockerfilePath: ./Dockerfile
 
   - type: web
     name: game-app-frontend
     env: node
     buildCommand: "cd frontend && npm install && npm run build"
-    startCommand: "n
+    startCommand: "npx serve -s frontend/build"
+    envVars:
+      - key: NODE_VERSION
+        value: "16"
