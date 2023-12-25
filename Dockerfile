@@ -13,7 +13,8 @@
 
 # Schritt 1: Baue die Anwendung mit einer Maven-Version, die Java 19 unterstützt
 # Ersetze dieses Image durch ein geeignetes, das Java 19 und Maven enthält
-FROM maven:3.8.1-jdk-19 as builder
+#FROM maven:3.8.1-jdk-19 as builder
+FROM openjdk:19
 
 # Setze das Arbeitsverzeichnis im Docker-Container
 WORKDIR /app
