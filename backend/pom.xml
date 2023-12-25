@@ -17,7 +17,8 @@
         <java.version>19</java.version>
         <sonar.organization>codingrobit</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.coverage.exclusions>backend/src/main/java/de/robinschatzl/gameapp/backend/ReactRoutingForwarding.java</sonar.coverage.exclusions>
+        <sonar.coverage.exclusions>backend/src/main/java/de/robinschatzl/gameapp/backend/ReactRoutingForwarding.java
+        </sonar.coverage.exclusions>
     </properties>
     <dependencies>
 
@@ -67,6 +68,11 @@
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15on</artifactId>
             <version>1.70</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mongodb</groupId>
+            <artifactId>mongodb-driver-sync</artifactId>
         </dependency>
 
     </dependencies>
