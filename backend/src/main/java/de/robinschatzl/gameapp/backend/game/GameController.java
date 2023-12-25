@@ -37,4 +37,5 @@ public class GameController {
     public Game editGame(@PathVariable String id,@RequestBody @Valid Game gameToEdit) {
         return gameService.editGame(gameToEdit);
     }
+
 }
