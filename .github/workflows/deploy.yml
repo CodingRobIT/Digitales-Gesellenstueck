@@ -17,10 +17,11 @@ jobs:
           cd frontend
           npm install
           npm run build
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4  # Speichert das gebaute Frontend als Artifact
         with:
           name: frontend-build
           path: frontend/build/
+
   build-backend:
     runs-on: ubuntu-latest
     needs: build-frontend
@@ -31,16 +32,17 @@ jobs:
         with:
           java-version: '19'
           distribution: 'adopt'
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4  # Lädt das gebaute Frontend herunter
         with:
           name: frontend-build
           path: backend/src/main/resources/static
-      - name: Build with maven
+      - name: Build with Maven
         run: mvn -B package --file backend/pom.xml
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4  # Speichert das gebaute Backend als Artifact
         with:
           name: gameapprs.jar
           path: backend/target/gameapprs.jar
+
   deploy-fly:
     runs-on: ubuntu-latest
     needs: build-backend
@@ -51,11 +53,11 @@ jobs:
       FLY_API_TOKEN: ${{ secrets.FLY_API_KEY }}
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4  # Lädt das Backend-Artifact herunter
         with:
           name: gameapprs.jar
           path: backend/target
       - uses: superfly/flyctl-actions/setup-flyctl@master
-      - name: Configure Swap Size                     # Test for memory size
-        run: echo "swap_size_mb = 512" >> ~/.flyrc    # included this line to
-      - run: flyctl deploy
+      - name: Configure Swap Size  # Test für Speichergröße
+        run: echo "swap_size_mb = 512" >> ~/.flyrc
+      - run: flyctl deploy  # Deployment auf Fly.io starten
