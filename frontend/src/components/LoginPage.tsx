@@ -106,9 +106,6 @@ export const LoginPage = (props: Props) => {
                        bgcolor: "#f8a100"}}
             >
                 <Typography>
-                    Update: Problem könnte behoben sein
-                    <br/>
-                    <br/>
                     Leider muss ich mich immer noch dafür entschuldigen, dass die Seite gelegentlich Login-Probleme hat.
                     <br/>
                     <br/>
@@ -116,9 +113,6 @@ export const LoginPage = (props: Props) => {
                     <br/>
                     <br/>
                     Ich habe diesen bereits verdoppelt und konnte feststellen, dass es deutlich weniger Probleme gibt, aber dennoch welche auftreten.
-                    <br/>
-                    <br/>
-                    Vor allem ab 18 Uhr wenn sich viele User einloggen oder aktiv an ihrer Gallery oder Game Cards arbeiten.
                 </Typography>
             </Paper>
         </FormContainer>
