@@ -38,9 +38,3 @@ Vielen Dank für Ihr Interesse an meinem Gesellenstück!
 Mit freundlichen Grüßen,
 
 Robin Schatzl
-
-
-[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=codingrobit_Digitales-Gesellenstueck-backend&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=codingrobit_Digitales-Gesellenstueck-backend)
-<br/>
-[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=codingrobit_Digitales-Gesellenstueck-backend&metric=sqale_index)](https://sonarcloud.io/summary/new_code?id=codingrobit_Digitales-Gesellenstueck-backend)
-
