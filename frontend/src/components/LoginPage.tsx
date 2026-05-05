@@ -101,20 +101,6 @@ export const LoginPage = (props: Props) => {
                 <Typography>Username: test</Typography>
                 <Typography>und Passwort: test</Typography>
             </Paper>
-            <Paper elevation={7}
-                   sx={{
-                       bgcolor: "#f8a100"}}
-            >
-                <Typography>
-                    Leider muss ich mich immer noch dafür entschuldigen, dass die Seite gelegentlich Login-Probleme hat.
-                    <br/>
-                    <br/>
-                    Anscheinend hängt das mit dem Speicher der Hosting-Seite zusammen.
-                    <br/>
-                    <br/>
-                    Ich habe diesen bereits verdoppelt und konnte feststellen, dass es deutlich weniger Probleme gibt, aber dennoch welche auftreten.
-                </Typography>
-            </Paper>
         </FormContainer>
 
     )
