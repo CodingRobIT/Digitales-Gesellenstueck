@@ -69,6 +69,9 @@ jobs:
 
       - uses: superfly/flyctl-actions/setup-flyctl@master
 
+      - name: Check jar exists
+        run: ls -la backend/target
+
       - name: Deploy Production
         if: github.ref == 'refs/heads/main'
         run: flyctl deploy --local-only --app gameapprs
