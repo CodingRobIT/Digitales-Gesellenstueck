@@ -14,7 +14,7 @@
     <name>backend</name>
     <description>backend</description>
     <properties>
-        <java.version>19</java.version>
+    <java.version>21</java.version>
         <sonar.organization>codingrobit</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.coverage.exclusions>backend/src/main/java/de/robinschatzl/gameapp/backend/ReactRoutingForwarding.java
@@ -53,7 +53,8 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <version>1.18.32</version>
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
