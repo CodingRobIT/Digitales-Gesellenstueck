@@ -8,7 +8,6 @@ import Typography from "@mui/material/Typography";
 const FormContainer = styled("form")({
     display: "flex",
     flexDirection: "column",
-    gap: "1rem",
     minHeight: "100vh",
     padding: "2rem",
     boxSizing: "border-box",
@@ -40,81 +39,83 @@ export const LoginPage = (props: Props) => {
     return (
         <>
             <FormContainer className="form-container" onSubmit={onSubmit} sx={{maxWidth: 400, mx: "auto"}}>
-                <TextField
-                    id="input-with-sx"
-                    label="Username"
-                    variant="filled"
-                    value={username}
-                    InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
-                    InputLabelProps={{sx: {color: "Snow"}}}
-                    onChange={(event) => setUsername(event.target.value)}
-                />
+                <div style={{display: "flex", flexDirection: "column", gap: "1rem"}}>
+                    <TextField
+                        id="input-with-sx"
+                        label="Username"
+                        variant="filled"
+                        value={username}
+                        InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
+                        InputLabelProps={{sx: {color: "Snow"}}}
+                        onChange={(event) => setUsername(event.target.value)}
+                    />
 
-                <TextField
-                    label="Password"
-                    variant="filled"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}, type: "password"}}
-                    InputLabelProps={{sx: {color: "Snow"}}}
-                />
+                    <TextField
+                        label="Password"
+                        variant="filled"
+                        value={password}
+                        onChange={(event) => setPassword(event.target.value)}
+                        InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}, type: "password"}}
+                        InputLabelProps={{sx: {color: "Snow"}}}
+                    />
 
-                <Button
-                    variant="contained"
-                    type="submit"
-                    sx={{
-                        bgcolor: "black",
-                        color: "green",
-                        fontWeight: "bold",
-                        minWidth: "100px",
-                        maxWidth: "200px",
-                        mx: "auto",
-                        "&:hover": {
+                    <Button
+                        variant="contained"
+                        type="submit"
+                        sx={{
+                            bgcolor: "black",
+                            color: "green",
+                            fontWeight: "bold",
+                            minWidth: "100px",
+                            maxWidth: "200px",
+                            mx: "auto",
+                            "&:hover": {
+                                color: "black",
+                                bgcolor: "deepskyblue",
+                            },
+                        }}
+                    >
+                        Login
+                    </Button>
+
+                    <Button
+                        sx={{
+                            bgcolor: "black",
+                            color: "deepskyblue",
+                            fontWeight: "bold",
+                            minWidth: "100px",
+                            maxWidth: "200px",
+                            mx: "auto",
+                            "&:hover": {
+                                color: "black",
+                                bgcolor: "deepskyblue",
+                            },
+                        }}
+                        size="small"
+                        onClick={() => navigate("/signup")}
+                    >
+                        Anmelden
+                    </Button>
+
+                    <Paper
+                        elevation={7}
+                        sx={{
+                            bgcolor: "darkgrey",
                             color: "black",
-                            bgcolor: "deepskyblue",
-                        },
-                    }}
-                >
-                    Login
-                </Button>
-
-                <Button
-                    sx={{
-                        bgcolor: "black",
-                        color: "deepskyblue",
-                        fontWeight: "bold",
-                        minWidth: "100px",
-                        maxWidth: "200px",
-                        mx: "auto",
-                        "&:hover": {
-                            color: "black",
-                            bgcolor: "deepskyblue",
-                        },
-                    }}
-                    size="small"
-                    onClick={() => navigate("/signup")}
-                >
-                    Anmelden
-                </Button>
-
-                <Paper
-                    elevation={7}
-                    sx={{
-                        bgcolor: "darkgrey",
-                        color: "black",
-                        p: 2,
-                    }}
-                >
-                    <Typography variant="h6">Willkommen auf meiner Website.</Typography>
-                    <Typography>
-                        Damit Sie sich nicht erst Registrieren müssen, <br/>
-                        können Sie sich hier zum testen der seite mit dem <br/>
-                        test Konto anmelden,
-                    </Typography>
-                    <br/>
-                    <Typography>Username: "test"</Typography>
-                    <Typography>und Passwort: "test"</Typography>
-                </Paper>
+                            p: 2,
+                        }}
+                    >
+                        <Typography variant="h6">Willkommen auf meiner Website.</Typography>
+                        <Typography>
+                            Damit Sie sich nicht erst Registrieren müssen, <br/>
+                            können Sie sich hier zum testen der seite mit dem <br/>
+                            test Konto anmelden,
+                        </Typography>
+                        <br/>
+                        <Typography>Username: "test"</Typography>
+                        <Typography>und Passwort: "test"</Typography>
+                    </Paper>
+                </div>
 
                 <Button
                     type="button"
@@ -123,6 +124,7 @@ export const LoginPage = (props: Props) => {
                     sx={{
                         color: "deepskyblue",
                         textDecoration: "underline",
+                        mt: "auto",
                         mx: "auto",
                         textTransform: "none",
                     }}
@@ -145,7 +147,7 @@ export const LoginPage = (props: Props) => {
                     </Typography>
 
                     <Typography paragraph>
-                        Robin Schatzl<br/>
+                        Robin Schatz<br/>
                         Schillerstraße 13/2<br/>
                         73642 Welzheim<br/>
                         Deutschland
