@@ -71,8 +71,8 @@ jobs:
 
       - name: Deploy Production
         if: github.ref == 'refs/heads/main'
-        run: flyctl deploy --remote-only --app gameapprs
+        run: flyctl deploy --local-only --app gameapprs
 
       - name: Deploy Development
         if: github.ref == 'refs/heads/dev'
-        run: flyctl deploy --remote-only --app gameapprs-dev
+        run: flyctl deploy --local-only --app gameapprs-dev
