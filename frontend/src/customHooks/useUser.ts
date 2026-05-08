@@ -17,9 +17,7 @@ export default function useUser() {
                         setUser(response.data);
                     }
                 })
-                .catch(() => {
-                    toast.error("Kein User gefunden");
-                })
+                .catch(() => {})
                 .finally(() => {
                     setIsLoading(false);
                 });
@@ -36,8 +34,9 @@ export default function useUser() {
                 setUser(response.data);
                 toast.success("Login erfolgreich!");
             })
-            .catch(() => {
+            .catch((error) => {
                 toast.error("Login fehlgeschlagen: Bitte Benutzernamen und/oder Passwort überprüfen.");
+                throw error;
             });
     }
 

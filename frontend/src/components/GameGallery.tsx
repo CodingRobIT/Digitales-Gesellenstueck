@@ -3,7 +3,6 @@ import React, {useState} from "react";
 import GameCard from "./GameCard";
 import {TextField} from "@mui/material";
 import './GameGallery.css'
-import {ToastContainer} from "react-toastify";
 
 type GameGalleryProps = {
     games: Game[],
@@ -34,19 +33,6 @@ export default function GameGallery(props: GameGalleryProps) {
                         <GameCard key={card.id} game={card}/>
                     ))}
                 </div>
-
-                <ToastContainer
-                    position="top-right"
-                    autoClose={5000}
-                    hideProgressBar={false}
-                    newestOnTop={false}
-                    closeOnClick
-                    rtl={false}
-                    pauseOnFocusLoss
-                    draggable
-                    pauseOnHover
-                    theme="dark"
-                />
             </div>
         </div>
     );

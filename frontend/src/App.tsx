@@ -11,6 +11,8 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 import {useEffect} from "react";
 import {SignUpPage} from "./components/SignUpPage";
 import UserDetails from "./components/UserDetails";
+import {ToastContainer} from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
@@ -40,6 +42,18 @@ function App() {
 
     return (
         <BrowserRouter>
+            <ToastContainer
+                position="top-right"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="dark"
+             />
             <div className="App">
                 {/*This line displays the header only after successful login*/}
                 {window.location.pathname !== '/login' && window.location.pathname !== '/signup' && window.location.pathname !== '/' && <Header onLogout={handleLogout} />}
