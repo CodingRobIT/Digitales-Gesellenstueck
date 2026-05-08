@@ -98,22 +98,87 @@ export const LoginPage = (props: Props) => {
                     </Button>
 
                     <Paper
-                        elevation={7}
+                        elevation={10}
                         sx={{
-                            bgcolor: "darkgrey",
-                            color: "black",
-                            p: 2,
+                            bgcolor: "rgba(5, 11, 20, 0.88)",
+                            color: "white",
+                            p: 3,
+                            borderRadius: "18px",
+                            border: "1px solid rgba(0,191,255,0.5)",
+                            backdropFilter: "blur(10px)",
+                            boxShadow: `
+                                0 0 8px rgba(0,191,255,0.5),
+                                0 0 18px rgba(0,191,255,0.35)
+                                `,
+                            textAlign: "center",
                         }}
                     >
-                        <Typography variant="h6">Willkommen auf meiner Website.</Typography>
-                        <Typography>
-                            Damit Sie sich nicht erst Registrieren müssen, <br/>
-                            können Sie sich hier zum testen der seite mit dem <br/>
-                            test Konto anmelden,
-                        </Typography>
-                        <br/>
-                        <Typography>Username: "test"</Typography>
-                        <Typography>und Passwort: "test"</Typography>
+                        <Typography
+                            variant="h5"
+                            sx={{
+                                color: "deepskyblue",
+                                fontWeight: "bold",
+                                mb: 2,
+                                letterSpacing: "1px",
+                            }}
+                        >
+							Willkommen 👋
+						</Typography>
+						
+						<Typography
+							sx={{
+								color: "#d6eaff",
+								fontSize: "0.98rem",
+								lineHeight: 1.8,
+								mb: 2,
+							}}
+						>
+							Dies ist eine Test- und Demonstrationswebsite für ein
+							Java- und React-Projekt im Rahmen eines Gesellenstücks.
+							<br/><br/>
+							Sie können sich mit dem bereitgestellten Testkonto anmelden,
+							ohne zuvor einen eigenen Account erstellen zu müssen.
+						</Typography>
+						
+						<Paper
+							sx={{
+								bgcolor: "rgba(0,0,0,0.35)",
+								border: "1px solid rgba(0,191,255,0.35)",
+								borderRadius: "12px",
+								p: 2,
+								mt: 2,
+							}}
+						>
+							<Typography
+								sx={{
+									color: "deepskyblue",
+									fontWeight: "bold",
+									fontSize: "1rem",
+								}}
+							>
+								Testkonto
+							</Typography>
+
+							<Typography
+								sx={{
+									mt: 1,
+									color: "white",
+									fontFamily: "monospace",
+									fontSize: "1rem",
+								}}
+							>
+								Username: test
+							</Typography>
+    
+							<Typography
+								sx={{
+									color: "white",
+									fontFamily: "monospace",
+									fontSize: "1rem",
+								}}
+							>
+								Passwort: test
+							</Typography>
                     </Paper>
                 </div>
 
@@ -162,7 +227,7 @@ export const LoginPage = (props: Props) => {
                     </Typography>
 
                     <Typography paragraph>
-                        Robin Schatz<br/>
+                        Robin Schatzl<br/>
                         Schillerstraße 13/2<br/>
                         73642 Welzheim<br/>
                         Deutschland
