@@ -138,8 +138,23 @@ export const LoginPage = (props: Props) => {
                 onClose={() => setImpressumOpen(false)}
                 maxWidth="sm"
                 fullWidth
+                PaperProps={{
+                    sx: {
+                        bgcolor: "#050b14",
+                        color: "white",
+                        border: "2px solid deepskyblue",
+                        borderRadius: "18px",
+                        boxShadow: `
+                          0 0 8px deepskyblue,
+                          0 0 18px rgba(0, 191, 255, 0.75),
+                          0 0 36px rgba(0, 191, 255, 0.45)
+                        `,
+                    },
+                }}
             >
-                <DialogTitle>Impressum</DialogTitle>
+                <DialogTitle sx={{ color: "deepskyblue", fontWeight: "bold" }}>
+                    Impressum
+                </DialogTitle>
 
                 <DialogContent dividers>
                     <Typography paragraph>
@@ -178,9 +193,17 @@ export const LoginPage = (props: Props) => {
                 </DialogContent>
 
                 <DialogActions>
-                    <Button onClick={() => setImpressumOpen(false)}>
-                        Schließen
-                    </Button>
+                    <Button
+                        onClick={() => setImpressumOpen(false)}
+                        sx={{
+                            color: "deepskyblue",
+                            fontWeight: "bold",
+                            "&:hover": {
+                                bgcolor: "deepskyblue",
+                                color: "black",
+                            },
+                        }}
+                    >
                 </DialogActions>
             </Dialog>
         </>
