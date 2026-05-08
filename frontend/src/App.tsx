@@ -22,8 +22,7 @@ function App() {
         if (user) {
             loadAllGames();
         }
-        //eslint-disable-next-line
-    }, []);
+    }, [user]);
 
     function handleLogout() {
         return new Promise<void>((resolve) => {
