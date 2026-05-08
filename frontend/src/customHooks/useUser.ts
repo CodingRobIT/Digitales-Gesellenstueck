@@ -17,9 +17,7 @@ export default function useUser() {
                         setUser(response.data);
                     }
                 })
-                .catch(() => {
-                    toast.error("Kein User gefunden");
-                })
+                .catch(() => {})
                 .finally(() => {
                     setIsLoading(false);
                 });
