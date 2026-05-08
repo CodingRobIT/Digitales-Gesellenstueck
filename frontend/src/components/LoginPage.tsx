@@ -1,7 +1,7 @@
-import {Button, TextField, Dialog, DialogTitle, DialogContent, DialogActions} from "@mui/material";
-import {styled} from "@mui/material/styles";
-import React, {FormEvent, useState} from "react";
-import {useNavigate} from "react-router-dom";
+import { Button, TextField, Dialog, DialogTitle, DialogContent, DialogActions } from "@mui/material";
+import { styled } from "@mui/material/styles";
+import React, { FormEvent, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 
@@ -14,8 +14,8 @@ const FormContainer = styled("form")({
 });
 
 type Props = {
-    onLogin: (username: string, password: string) => Promise<void>
-}
+    onLogin: (username: string, password: string) => Promise<void>;
+};
 
 export const LoginPage = (props: Props) => {
     const [username, setUsername] = useState<string>("");
@@ -38,15 +38,15 @@ export const LoginPage = (props: Props) => {
 
     return (
         <>
-            <FormContainer className="form-container" onSubmit={onSubmit} sx={{maxWidth: 400, mx: "auto"}}>
-                <div style={{display: "flex", flexDirection: "column", gap: "1rem"}}>
+            <FormContainer className="form-container" onSubmit={onSubmit} sx={{ maxWidth: 400, mx: "auto" }}>
+                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
                     <TextField
                         id="input-with-sx"
                         label="Username"
                         variant="filled"
                         value={username}
-                        InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}}}
-                        InputLabelProps={{sx: {color: "Snow"}}}
+                        InputProps={{ sx: { color: "deepskyblue", fontWeight: "bold" } }}
+                        InputLabelProps={{ sx: { color: "snow" } }}
                         onChange={(event) => setUsername(event.target.value)}
                     />
 
@@ -55,8 +55,11 @@ export const LoginPage = (props: Props) => {
                         variant="filled"
                         value={password}
                         onChange={(event) => setPassword(event.target.value)}
-                        InputProps={{sx: {color: "deepskyblue", fontWeight: "bold"}, type: "password"}}
-                        InputLabelProps={{sx: {color: "Snow"}}}
+                        InputProps={{
+                            sx: { color: "deepskyblue", fontWeight: "bold" },
+                            type: "password",
+                        }}
+                        InputLabelProps={{ sx: { color: "snow" } }}
                     />
 
                     <Button
@@ -108,8 +111,9 @@ export const LoginPage = (props: Props) => {
                             backdropFilter: "blur(10px)",
                             boxShadow: `
                                 0 0 8px rgba(0,191,255,0.5),
-                                0 0 18px rgba(0,191,255,0.35)
-                                `,
+                                0 0 18px rgba(0,191,255,0.35),
+                                0 0 32px rgba(0,191,255,0.2)
+                            `,
                             textAlign: "center",
                         }}
                     >
@@ -122,63 +126,66 @@ export const LoginPage = (props: Props) => {
                                 letterSpacing: "1px",
                             }}
                         >
-							Willkommen 👋
-						</Typography>
-						
-						<Typography
-							sx={{
-								color: "#d6eaff",
-								fontSize: "0.98rem",
-								lineHeight: 1.8,
-								mb: 2,
-							}}
-						>
-							Dies ist eine Test- und Demonstrationswebsite für ein
-							Java- und React-Projekt im Rahmen eines Gesellenstücks.
-							<br/><br/>
-							Sie können sich mit dem bereitgestellten Testkonto anmelden,
-							ohne zuvor einen eigenen Account erstellen zu müssen.
-						</Typography>
-						
-						<Paper
-							sx={{
-								bgcolor: "rgba(0,0,0,0.35)",
-								border: "1px solid rgba(0,191,255,0.35)",
-								borderRadius: "12px",
-								p: 2,
-								mt: 2,
-							}}
-						>
-							<Typography
-								sx={{
-									color: "deepskyblue",
-									fontWeight: "bold",
-									fontSize: "1rem",
-								}}
-							>
-								Testkonto
-							</Typography>
+                            Willkommen
+                        </Typography>
 
-							<Typography
-								sx={{
-									mt: 1,
-									color: "white",
-									fontFamily: "monospace",
-									fontSize: "1rem",
-								}}
-							>
-								Username: test
-							</Typography>
-    
-							<Typography
-								sx={{
-									color: "white",
-									fontFamily: "monospace",
-									fontSize: "1rem",
-								}}
-							>
-								Passwort: test
-							</Typography>
+                        <Typography
+                            sx={{
+                                color: "#d6eaff",
+                                fontSize: "0.98rem",
+                                lineHeight: 1.8,
+                                mb: 2,
+                            }}
+                        >
+                            Dies ist eine Test- und Demonstrationswebsite für ein Java- und React-Projekt
+                            im Rahmen eines Gesellenstücks.
+                            <br />
+                            <br />
+                            Sie können sich mit dem bereitgestellten Testkonto anmelden, ohne zuvor einen
+                            eigenen Account erstellen zu müssen.
+                        </Typography>
+
+                        <Paper
+                            elevation={3}
+                            sx={{
+                                bgcolor: "rgba(0,0,0,0.35)",
+                                border: "1px solid rgba(0,191,255,0.35)",
+                                borderRadius: "12px",
+                                p: 2,
+                                mt: 2,
+                            }}
+                        >
+                            <Typography
+                                sx={{
+                                    color: "deepskyblue",
+                                    fontWeight: "bold",
+                                    fontSize: "1rem",
+                                    mb: 1,
+                                }}
+                            >
+                                Testkonto
+                            </Typography>
+
+                            <Typography
+                                sx={{
+                                    color: "white",
+                                    fontFamily: "monospace",
+                                    fontSize: "1rem",
+                                }}
+                            >
+                                Username: test
+                            </Typography>
+
+                            <Typography
+                                sx={{
+                                    color: "white",
+                                    fontFamily: "monospace",
+                                    fontSize: "1rem",
+                                }}
+                            >
+                                Passwort: test
+                            </Typography>
+                        </Paper>
                     </Paper>
                 </div>
 
@@ -210,9 +217,9 @@ export const LoginPage = (props: Props) => {
                         border: "2px solid deepskyblue",
                         borderRadius: "18px",
                         boxShadow: `
-                          0 0 8px deepskyblue,
-                          0 0 18px rgba(0, 191, 255, 0.75),
-                          0 0 36px rgba(0, 191, 255, 0.45)
+                            0 0 8px deepskyblue,
+                            0 0 18px rgba(0, 191, 255, 0.75),
+                            0 0 36px rgba(0, 191, 255, 0.45)
                         `,
                     },
                 }}
@@ -222,20 +229,19 @@ export const LoginPage = (props: Props) => {
                 </DialogTitle>
 
                 <DialogContent dividers>
-                    <Typography paragraph>
-                        Angaben gemäß § 5 TMG
-                    </Typography>
+                    <Typography paragraph>Angaben gemäß § 5 TMG</Typography>
 
                     <Typography paragraph>
-                        Robin Schatzl<br/>
-                        Schillerstraße 13/2<br/>
-                        73642 Welzheim<br/>
+                        Robin Schatz
+                        <br />
+                        Schillerstraße 13/2
+                        <br />
+                        73642 Welzheim
+                        <br />
                         Deutschland
                     </Typography>
 
-                    <Typography paragraph>
-                        E-Mail: tmai02476@gmail.com
-                    </Typography>
+                    <Typography paragraph>E-Mail: tmai02476@gmail.com</Typography>
 
                     <Typography variant="h6" gutterBottom>
                         Hinweis zum Projekt
