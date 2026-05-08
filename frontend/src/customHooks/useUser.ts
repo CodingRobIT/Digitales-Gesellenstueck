@@ -36,8 +36,9 @@ export default function useUser() {
                 setUser(response.data);
                 toast.success("Login erfolgreich!");
             })
-            .catch(() => {
+            .catch((error) => {
                 toast.error("Login fehlgeschlagen: Bitte Benutzernamen und/oder Passwort überprüfen.");
+                throw error;
             });
     }
 
