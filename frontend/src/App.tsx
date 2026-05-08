@@ -22,6 +22,7 @@ function App() {
         if (user) {
             loadAllGames();
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [user]);
 
     function handleLogout() {
