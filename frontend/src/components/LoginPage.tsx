@@ -204,6 +204,8 @@ export const LoginPage = (props: Props) => {
                             },
                         }}
                     >
+                        Schließen
+                    </Button>
                 </DialogActions>
             </Dialog>
         </>
