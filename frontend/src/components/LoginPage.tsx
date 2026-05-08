@@ -232,7 +232,7 @@ export const LoginPage = (props: Props) => {
                     <Typography paragraph>Angaben gemäß § 5 TMG</Typography>
 
                     <Typography paragraph>
-                        Robin Schatz
+                        Robin Schatzl
                         <br />
                         Schillerstraße 13/2
                         <br />
