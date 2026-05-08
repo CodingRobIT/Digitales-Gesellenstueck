@@ -6,7 +6,7 @@ import { NewGame } from '../model/Game';
 import './AddGame.css'
 
 type AddGameProps = {
-    addGame: (newGame: NewGame) => void;
+    addGame: (newGame: NewGame) => Promise<void>;
 };
 
 const FormContainer = styled('form')({
@@ -34,27 +34,26 @@ export default function AddGame(props: AddGameProps) {
         //eslint-disable-next-line
     }, []);
 
-    function onSaveGame(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault();
+async function onSaveGame(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
-        if (title === undefined || title === '') {
-            console.error('Title required');
-            return;
-        }
-
-        const newGame: NewGame = {
-            title: title,
-            publisher: publisher,
-            genre: genre,
-            note: note,
-            imageUrl: imageUrl,
-            userId: userId,
-        };
-
-        props.addGame(newGame);
-
-        navigate('/games');
+    if (!title) {
+        console.error('Title required');
+        return;
     }
+
+    const newGame: NewGame = {
+        title,
+        publisher,
+        genre,
+        note,
+        imageUrl,
+        userId,
+    };
+
+    await props.addGame(newGame);
+    navigate('/games');
+}
 
     return (
         <FormContainer className="form-container" onSubmit={onSaveGame} sx={{maxWidth: 600, mx: "auto"}}>

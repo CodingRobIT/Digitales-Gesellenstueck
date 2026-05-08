@@ -3,19 +3,20 @@ import {Box, Button, Card, CardContent, CardHeader, TextField, Typography} from 
 import useGameDetail from "../customHooks/useGameDetail";
 
 type GameDetailProps = {
-    deleteGame: (id: string) => void;
+    deleteGame: (id: string) => Promise<void>;
 };
 
 export default function GameDetails(props: GameDetailProps) {
     const navigate = useNavigate();
     const {game, editedGame, editing, handleFormSubmit, editOnClick, gameInputChange} = useGameDetail();
 
-    function onDeleteClick() {
-        if (game) {
-            props.deleteGame(game.id);
-        }
-        navigate("/games");
+    async function onDeleteClick() {
+    if (game) {
+        await props.deleteGame(game.id);
     }
+
+    navigate("/games");
+}
 
     return (
         <div>

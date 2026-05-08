@@ -21,28 +21,26 @@ export default function useGames() {
             });
     }
 
-    async function addGame(newGame: NewGame) {
-        try {
-            await axios.post('/api/games', newGame);
-            setGames(games.filter(() => newGame));
-            await loadAllGames();
-            toast.success('Game wurde erfolgreich hinzugefügt!');
-        } catch (error) {
-            console.error('POST auf /api/games nicht erfolgreich!!!', error);
-            toast.error('Es gab ein Problem beim Hinzufügen des Spiels!');
-        }
+async function addGame(newGame: NewGame) {
+    try {
+        const response = await axios.post('/api/games', newGame);
+        setGames((prevGames) => [...prevGames, response.data]);
+        toast.success('Game wurde erfolgreich hinzugefügt!');
+    } catch (error) {
+        console.error('POST auf /api/games nicht erfolgreich!!!', error);
+        toast.error('Es gab ein Problem beim Hinzufügen des Spiels!');
     }
+}
 
-    function deleteGame(id: string) {
-        axios.delete('/api/games/' + id)
-            .then(() => {
-                setGames(games.filter((game ) => game.id !== id))
-                toast.success("Game wurde erfolgreich gelöscht")
-            })
-            .catch((error) => {
-            console.error(error)
-        })
+async function deleteGame(id: string) {
+    try {
+        await axios.delete('/api/games/' + id);
+        setGames((prevGames) => prevGames.filter((game) => game.id !== id));
+        toast.success("Game wurde erfolgreich gelöscht");
+    } catch (error) {
+        console.error(error);
     }
+}
 
     return {games: filteredGames, searchTerm, addGame , deleteGame, loadAllGames}
 
