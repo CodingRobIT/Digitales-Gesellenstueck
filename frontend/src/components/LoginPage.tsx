@@ -234,7 +234,7 @@ export const LoginPage = (props: Props) => {
                     <Typography paragraph>
                         Robin Schatzl
                         <br />
-                        Schillerstraße 13/2
+                        Schillerstraße 13/1
                         <br />
                         73642 Welzheim
                         <br />
